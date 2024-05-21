@@ -126,8 +126,8 @@
     e.preventDefault();
     var userId = $(this).data('user-id');
     $('[name="message_id"]').val(userId);  
-    var userName = $(this).text();  
-    var userImage = $(this).attr('src');  
+    var userName = $(this).data('user-name');  
+    var userImage = $(this).data('user-image');  
     console.log("User Image:", userImage);
     $('#selected-user-name').text(userName); 
     $('#selected-user-image').attr('src', userImage);  
