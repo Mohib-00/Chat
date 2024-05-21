@@ -78,8 +78,6 @@ class MessagesController extends Controller
          
         ->with('lastMessageComments')
        ->get();
-       
-    
         
         $user = User::where('id', $user)->first();
 
