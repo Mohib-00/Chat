@@ -102,7 +102,7 @@
                                 <li><a class="dropdown-item mt-3  text-white " href="#">New Group</a></li>
                                 <li><a class="dropdown-item my-3 text-white " href="#">Archived</a></li>
                                 <li><a class="dropdown-item  text-white " href="#">Select Chats</a></li>
-                                <li><a class="dropdown-item my-4 text-white " href="#">Logout</a></li>
+                                <li><a class="dropdown-item my-3 text-white " href="#">Logout</a></li>
                             </ul>
 
                         </div>
