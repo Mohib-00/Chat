@@ -166,10 +166,10 @@
                                                 <span class="time-meta text-white pull-right">{{ $single_message->lastMessageComments ? $single_message->lastMessageComments->created_at->diffForHumans() : '' }}</span>
                                             </div>
                                         </a>
-                                    </div>
-                                </div> 
+                                </div>
+                              </div> 
                             </div>
-                        @endforeach                      
+                           @endforeach                      
                         </div>
                       </div>
                    </div>              
