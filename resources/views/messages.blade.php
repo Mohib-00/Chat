@@ -167,17 +167,14 @@
                                             </div>
                                         </a>
                                     </div>
-                                </div>
-                                
+                                </div> 
                             </div>
                         @endforeach                      
-
                         </div>
                       </div>
                    </div>              
                  </div>                   
                </div>
-    
     
             <div class="col-lg-7 col-md-12 col-sm-12 conversation   text-white three">
                 <div class="row b" style="width:107.3%;margin-left:1px">
