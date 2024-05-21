@@ -178,7 +178,7 @@
     
             <div class="col-lg-7 col-md-12 col-sm-12 conversation   text-white three">
                 <div class="row b" style="width:107.3%;margin-left:1px">
-
+                                            
                     <div class="col-lg-12 col-md-12 col-sm-12" style="background-color: #202c33;padding:5px 10px 5px 0px">
                         <div class="row">
 
