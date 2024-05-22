@@ -206,12 +206,11 @@ public function update(Request $request)
     $user->typing_status = $typing;
     $user->save();
 
-    return response()->json(['success' => true]);
+    return response()->json([
+        'success' => true,
+        'user_id' => $user->id,  
+    ]);
 }
 
-
-
-
- 
 }
  
