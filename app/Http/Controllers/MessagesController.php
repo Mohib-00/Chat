@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class MessagesController extends Controller
 {
 
+
     
    public function store(Request $request)
     {
@@ -196,6 +197,16 @@ public function loadChat(Request $request, $userId)
         ->get();
 
     return response()->json(['conversations' => $conversations,]);
+}
+
+public function update(Request $request)
+{
+    $user = auth()->user();
+    $typing = filter_var($request->input('typing'), FILTER_VALIDATE_BOOLEAN);  
+    $user->typing_status = $typing;
+    $user->save();
+
+    return response()->json(['success' => true]);
 }
 
 

@@ -1,7 +1,70 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+ </head>
+ <body>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+    <script>
+var typingTimer;
+var typingInterval = 1000;
+
+$('[name="message"]').on('input', function() {
+    var userId = $(this).data('user-id');  
+    clearTimeout(typingTimer);
+    if (!userId) {
+        console.error("User ID is not provided.");
+        return;
+    }
+    sendTypingStatus(userId, true);  
+});
+
+$('[name="message"]').on('keyup', function() {
+    var userId = $(this).data('user-id'); 
+    console.log("User ID:", userId);
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(function() {
+        if (!userId) {
+            console.error("User ID is not provided.");
+            return;
+        }
+        sendTypingStatus(userId, false);  
+    }, typingInterval);
+});
+
+function sendTypingStatus(userId, typing) {
+    $.ajax({
+        url: "/typing-status",
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            userId: userId,
+            typing: typing
+        },
+        success: function(response) {
+            console.log("Typing status sent successfully");
+        },
+        error: function(xhr, status, error) {
+            console.error("Error sending typing status:", error);
+        }
+    });
+}
+
+    </script>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -434,3 +497,9 @@ setInterval(function() {
 });
 
 </script>
+ 
+ 
+ </body>
+ </html>   
+    
+     

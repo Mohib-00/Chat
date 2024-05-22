@@ -192,6 +192,7 @@
                                     {{ $user_messages[0]->name }}
                                     <br>
                                     <div style="font-size:15px;margin-top:4px">Online</div>
+                                     
                                 </a>
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div>

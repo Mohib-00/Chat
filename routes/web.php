@@ -29,6 +29,9 @@ Route::post('/update-timestamp', [MessagesController::class,'updateTimestamp'])-
 
 Route::get('/load-chat/{userId}', [MessagesController::class, 'loadChat'])->name('loadChat');
 
+Route::post('/typing-status', [MessagesController::class, 'update'])->name('typing-status.update');
+
+
 
  
 
