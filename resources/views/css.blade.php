@@ -33,6 +33,27 @@
         }
         
     }
+ 
+ 
+.chat-title {
+    display: block;
+}
+
+.whatsapp-title {
+    display: none;
+}
+
+ 
+@media (max-width: 768px) {
+    .chat-title {
+        display: none !important;
+    }
+
+    .whatsapp-title {
+        display: block !important;
+    }
+}
+
 
      
 .icon {

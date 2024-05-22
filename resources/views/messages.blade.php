@@ -76,8 +76,10 @@
                 <div class="row">
 
                     <div class="col-lg-10 col-md-10 col-sm-10 ">
-                        <h3 class="mt-5 mx-3" style="color:#e9edf0;font-weight:bold">Chats</h3>
+                        <h3 class="mt-5 mx-3 chat-title" style="color:#e9edf0;font-weight:bold">Chats</h3>
+                        <h3 class="mt-5 mx-3 whatsapp-title" style="color:#e9edf0;font-weight:bold; display: none;">WhatsApp</h3>
                     </div>
+                    
 
                     <div class="col-lg-1 col-sm-1 col-md-1">
                         <span data-icon="new-chat-outline" class="">
