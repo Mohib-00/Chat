@@ -208,9 +208,23 @@ public function update(Request $request)
 
     return response()->json([
         'success' => true,
-        'user_id' => $user->id,  
     ]);
 }
+
+public function checkTypingStatus(Request $request)
+{
+    $currentUserId = auth()->id();
+    $chatUserId = $request->query('chat_user_id');  
+
+    $chatUser = User::find($chatUserId);
+
+    return response()->json([
+        'typing' => $chatUser->typing_status,
+        'user_id' => $chatUserId
+    ]);
+}
+
+
 
 }
  

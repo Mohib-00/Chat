@@ -190,12 +190,12 @@
                             </div>
                             
                             <div class="col-lg-8 col-md-8 col-sm-8 mt-2">
-                                <a class="heading-name-meta" id="selected-user-name" style="color:#dfe3e6; margin-top:1%;font-size:20px;text-decoration:none;">
+                                <a class="heading-name-meta" id="selected-user-name" data-user-id="{{ $user_messages[0]->id }}" style="color:#dfe3e6; margin-top:1%;font-size:20px;text-decoration:none;">
                                     {{ $user_messages[0]->name }}
                                     <br>
-                                    <div style="font-size:15px;margin-top:4px">Online</div>
-                                     
                                 </a>
+                                <div id="typing-indicator" style="display: none;">{{ $user_messages[0]->name }} is typing...</div>
+                                
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div>
                             
@@ -278,6 +278,10 @@
                             <input id="video" type="hidden" name="video">
 
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
+
+                            <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">
+                            
+
                       
                             <div class="input-group" >
                                 <div class="row reply" style="padding:4px 0px 5px 0px;height:70px">

@@ -18,19 +18,18 @@
 
 
     <script>
-var typingTimer;
-var typingInterval = 1000;   
- 
+   var typingTimer;
+var typingInterval = 1000;
 
 $('[name="message"]').on('input', function() {
     clearTimeout(typingTimer);
-    sendTypingStatus(true); 
+    sendTypingStatus(true);
 });
 
 $('[name="message"]').on('keyup', function() {
     clearTimeout(typingTimer);
     typingTimer = setTimeout(function() {
-        sendTypingStatus(false);  
+        sendTypingStatus(false);
     }, typingInterval);
 });
 
@@ -39,21 +38,48 @@ function sendTypingStatus(typing) {
         url: "/typing-status",
         method: "POST",
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data: {typing: typing },
+        data: {
+            typing: typing
+        },
         success: function(response) {
-            console.log("Typing status sent successfully");
+            console.log("Typing status sent successfully for user ID:", response.user_id);
         },
         error: function(xhr, status, error) {
             console.error("Error sending typing status:", error);
         }
     });
 }
-    </script>
+
+function checkTypingStatus() {
+    var chatUserId = $('#selected-user-name').data('user-id');  
+
+    $.ajax({
+        url: "/check-typing-status",
+        method: "GET",
+        data: {
+            chat_user_id: chatUserId
+        },
+        success: function(response) {
+            if (response.typing) {
+                $('#typing-indicator').show();
+            } else {
+                $('#typing-indicator').hide();
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error checking typing status:", error);
+        }
+    });
+}
+
+ 
+setInterval(checkTypingStatus, 1000);
 
 
-
+        </script>
+        
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const sidebar = document.getElementById('sidebar');

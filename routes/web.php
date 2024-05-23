@@ -31,6 +31,8 @@ Route::get('/load-chat/{userId}', [MessagesController::class, 'loadChat'])->name
 
 Route::post('/typing-status', [MessagesController::class, 'update'])->name('typing-status.update');
 
+Route::get('/check-typing-status', [MessagesController::class, 'checkTypingStatus'])->name('check.typing.status');
+
 
 
  
