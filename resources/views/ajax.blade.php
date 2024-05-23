@@ -52,8 +52,30 @@ function sendTypingStatus(typing) {
     });
 }
 
- 
+function checkTypingStatus() {
+    var chatUserId = $('#selected-user-name').data('user-id');
 
+    $.ajax({
+        url: "/check-typing-status",
+        method: "GET",
+        data: {
+            chat_user_id: chatUserId
+        },
+        success: function(response) {
+            console.log("Typing status for user ID:", response.user_id, "is", response.typing);
+            if (response.typing) {
+                $('#typing-indicator').text(response.name + ' is typing...').show();
+            } else {
+                $('#typing-indicator').hide();
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error checking typing status:", error);
+        }
+    });
+}
+
+setInterval(checkTypingStatus, 2000);
         </script>
         
     <script>
