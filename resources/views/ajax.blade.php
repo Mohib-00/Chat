@@ -18,7 +18,7 @@
 
 
     <script>
-   var typingTimer;
+var typingTimer;
 var typingInterval = 1000;
 
 $('[name="message"]').on('input', function() {
@@ -52,31 +52,7 @@ function sendTypingStatus(typing) {
     });
 }
 
-function checkTypingStatus() {
-    var chatUserId = $('#selected-user-name').data('user-id');  
-
-    $.ajax({
-        url: "/check-typing-status",
-        method: "GET",
-        data: {
-            chat_user_id: chatUserId
-        },
-        success: function(response) {
-            if (response.typing) {
-                $('#typing-indicator').show();
-            } else {
-                $('#typing-indicator').hide();
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("Error checking typing status:", error);
-        }
-    });
-}
-
  
-setInterval(checkTypingStatus, 1000);
-
 
         </script>
         

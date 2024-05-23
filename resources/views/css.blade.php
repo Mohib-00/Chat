@@ -42,7 +42,7 @@
 .whatsapp-title {
     display: none;
 }
-
+ 
  
 @media (max-width: 768px) {
     .chat-title {

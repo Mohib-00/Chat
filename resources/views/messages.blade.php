@@ -194,10 +194,10 @@
                                     {{ $user_messages[0]->name }}
                                     <br>
                                 </a>
-                                <div id="typing-indicator" style="display: none;">{{ $user_messages[0]->name }} is typing...</div>
-                                
+                                 
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div>
+                            
                             
 
                             <div class="col-lg-1 col-md-1 col-sm-1" >
@@ -279,7 +279,7 @@
 
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
 
-                            <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">
+                           
                             
 
                       
