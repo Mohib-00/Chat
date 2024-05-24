@@ -57,7 +57,6 @@ function sendTypingStatus(typing) {
 
 function checkTypingStatus() {
     var chatUserId = $('#selected-user-name').data('user-id');
-
     $.ajax({
         url: "/check-typing-status",
         method: "GET",
