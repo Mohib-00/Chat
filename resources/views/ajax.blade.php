@@ -64,7 +64,7 @@ function checkTypingStatus() {
         success: function(response) {
             console.log("Typing status for user ID:", response.user_id, "is", response.typing);
             if (response.typing) {
-                $('#typing-indicator').text(response.name + ' is typing...').show();
+                $('#typing-indicator').show();
             } else {
                 $('#typing-indicator').hide();
             }
@@ -75,7 +75,7 @@ function checkTypingStatus() {
     });
 }
 
-setInterval(checkTypingStatus, 2000);
+setInterval(checkTypingStatus, 1000);
         </script>
         
     <script>
