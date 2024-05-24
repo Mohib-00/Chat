@@ -26,6 +26,8 @@ $('[name="message"]').on('input', function() {
     sendTypingStatus(true);
 });
 
+ 
+
 $('[name="message"]').on('keyup', function() {
     clearTimeout(typingTimer);
     typingTimer = setTimeout(function() {
@@ -45,6 +47,7 @@ function sendTypingStatus(typing) {
         },
         success: function(response) {
             console.log("Typing status sent successfully for user ID:", response.user_id);
+            
         },
         error: function(xhr, status, error) {
             console.error("Error sending typing status:", error);
@@ -62,11 +65,11 @@ function checkTypingStatus() {
             chat_user_id: chatUserId
         },
         success: function(response) {
-            console.log("Typing status for user ID:", response.user_id, "is", response.typing);
+           
             if (response.typing) {
-                $('#typing-indicator').show();
+                $('#typing').show();
             } else {
-                $('#typing-indicator').hide();
+                $('#typing').hide();
             }
         },
         error: function(xhr, status, error) {

@@ -194,7 +194,7 @@
                                     {{ $user_messages[0]->name }}
                                     <br>
                                 </a>
-                                <div id="typing-indicator" style="display: none;color:white;font-weight:bolder">typing...</div>
+                                <div id="typing" style="display: none;color:white;font-weight:bolder">typing...</div>
                                 
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div>
