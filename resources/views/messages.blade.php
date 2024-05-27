@@ -195,6 +195,9 @@
                                     <br>
                                 </a>
                                 <div id="typing" style="display: none;color:white;font-weight:bolder">typing...</div>
+                                <div id="last-seen" style="font-size: 0.9em; color: grey;"></div>
+                                
+
                                 
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div>

@@ -6,6 +6,7 @@ use App\Models\Message;
 use App\Models\MessageComment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
  
 class MessagesController extends Controller
 {
@@ -221,6 +222,29 @@ public function checkTypingStatus(Request $request)
         'typing' => $chatUser->typing_status,
         'user_id' => $chatUserId
     ]);
+}
+
+public function updateLastSeen(Request $request)
+{
+    $user = Auth::user();
+    if ($user) {
+        $user->last_seen = now();
+        $user->save();
+
+        return response()->json(['success' => true, 'message' => 'Last seen updated successfully']);
+    }
+
+    return response()->json(['success' => false, 'message' => 'User not authenticated'], 401);
+}
+
+public function checkLastSeen(Request $request)
+{
+    $userId = $request->input('user_id');
+    $user = User::find($userId);
+    if ($user && $user->last_seen) {
+        return response()->json(['success' => true, 'last_seen' => $user->last_seen]);
+    }
+    return response()->json(['success' => false, 'message' => 'Last seen not available']);
 }
 
 }

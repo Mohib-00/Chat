@@ -15,70 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-
-    <script>
-var typingTimer;
-var typingInterval = 1000;
-
-$('[name="message"]').on('input', function() {
-    clearTimeout(typingTimer);
-    sendTypingStatus(true);
-});
-
  
-
-$('[name="message"]').on('keyup', function() {
-    clearTimeout(typingTimer);
-    typingTimer = setTimeout(function() {
-        sendTypingStatus(false);
-    }, typingInterval);
-});
-
-function sendTypingStatus(typing) {
-    $.ajax({
-        url: "/typing-status",
-        method: "POST",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-            typing: typing
-        },
-        success: function(response) {
-            console.log("Typing status sent successfully for user ID:", response.user_id);
-            
-        },
-        error: function(xhr, status, error) {
-            console.error("Error sending typing status:", error);
-        }
-    });
-}
-
-function checkTypingStatus() {
-    var chatUserId = $('#selected-user-name').data('user-id');
-    $.ajax({
-        url: "/check-typing-status",
-        method: "GET",
-        data: {
-            chat_user_id: chatUserId
-        },
-        success: function(response) {
-           
-            if (response.typing) {
-                $('#typing').show();
-            } else {
-                $('#typing').hide();
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("Error checking typing status:", error);
-        }
-    });
-}
-
-setInterval(checkTypingStatus, 1000);
-        </script>
         
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -213,8 +150,9 @@ setInterval(checkTypingStatus, 1000);
     });
 
 
-function loadUserChat(userId) {
+    function loadUserChat(userId) {
     console.log("Loading chat for user:", userId);
+    
     var user_id = "{{ Auth::user()->id }}";
     $.ajax({
         url: "/load-chat/" + userId,
@@ -231,7 +169,8 @@ function loadUserChat(userId) {
                         $('#chat-content').append(messageHtml);
                         lastCheckedTimestamp = conversation.uniquetimestamp;
                     });
-                 
+                  
+                    checkLastSeen(userId);
                 }
             } else {
                 console.log("No conversations found for user:", userId);
@@ -242,8 +181,8 @@ function loadUserChat(userId) {
             console.error("Error loading chat:", error);
         }
     });
-
 }
+
     
     $('[name="message"]').keypress(function(e) {
     if (e.which === 13) {
@@ -371,7 +310,8 @@ function loadUserChat(userId) {
             },
             success: function(result) {
                 $('[name="message"]').val('');
-                $('#image-upload').val('');              
+                $('#image-upload').val('');   
+                updateLastSeen();           
             },
 
             error: function(xhr, status, error) {
@@ -379,6 +319,114 @@ function loadUserChat(userId) {
             }
         });
     }
+
+    var typingTimer;
+var typingInterval = 2000;
+var isTyping = false;
+
+$('[name="message"]').on('input', function() {
+    clearTimeout(typingTimer);
+    sendTypingStatus(true);
+});
+
+ 
+
+$('[name="message"]').on('keyup', function() {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(function() {
+        sendTypingStatus(false);
+    }, typingInterval);
+});
+
+function sendTypingStatus(typing) {
+    $.ajax({
+        url: "/typing-status",
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            typing: typing
+        },
+        success: function(response) {
+            console.log("Typing status sent successfully for user ID:", response.user_id);
+             
+            if (!typing) {
+                updateLastSeen();
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error sending typing status:", error);
+        }
+    });
+}
+function checkTypingStatus() {
+    var chatUserId = $('#selected-user-name').data('user-id');
+    $.ajax({
+        url: "/check-typing-status",
+        method: "GET",
+        data: {
+            chat_user_id: chatUserId
+        },
+        success: function(response) {
+            if (response.typing) {
+                $('#typing').show();
+                
+                $('#last-seen').hide();
+            } else {
+                $('#typing').hide();
+                
+                $('#last-seen').show();
+                
+                checkLastSeen(chatUserId);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error checking typing status:", error);
+        }
+    });
+}
+
+setInterval(checkTypingStatus, 2000);
+
+
+    function updateLastSeen() {
+    $.ajax({
+        url: "{{ route('update.last.seen') }}",
+        method: 'post',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.success) {
+                console.log(response.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error updating last seen:", xhr.responseText);
+        }
+    });
+}
+
+function checkLastSeen(userId) {
+    $.ajax({
+        url: '/check-last-seen',
+        method: 'GET',
+        data: { user_id: userId },
+        success: function(response) {
+            if (response.success && response.last_seen) {
+                $('#last-seen').text('Last seen: ' + new Date(response.last_seen).toLocaleString());
+            } else {
+                $('#last-seen').text('');  
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error checking last seen:", error);
+        }
+    });
+}
+
+ 
 
     function scrollToBottom() {
         var chatContainer = $('#chat-content');
@@ -395,19 +443,20 @@ function loadUserChat(userId) {
         }   
 }
  
-function fetchConversations() {
+function fetchConversations(userId) {
     var lastCheckedTimestamp = getLastCheckedTimestamp() || 0;
     var message_id = $('[name="message_id"]').val();
     var user_id = "{{ Auth::user()->id }}";
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
     var isAtTop = $('#chat-content').scrollTop() === 0;
-    
+    var userId = $('#selected-user-name').data('user-id');
+
     $.ajax({
         url: "{{ route('getConversations') }}",
         method: "get",
         data: {
             lastCheckedUniqueTimestamp: lastCheckedTimestamp,
-            id: message_id,  
+            id: message_id,
             _token: csrfToken,
         },
         success: function(response) {
@@ -417,52 +466,45 @@ function fetchConversations() {
                 var updatedConversations = response.updatedConversations;
 
                 if (lastCheckedTimestamp === 0) {
-                $('#chat-content').empty();
+                    $('#chat-content').empty();
                 }
                 if (conversations.length > 0 || updatedConversations.length > 0) {
-                  
-                conversations.forEach(function(conversation) {
+                    conversations.forEach(function(conversation) {
+                        var messageHtml = Html(conversation, user_id);
+                        $('#chat-content').append(messageHtml);
 
-                var messageHtml = Html(conversation, user_id);                       
-                $('#chat-content').append(messageHtml);
-                        
-                lastCheckedTimestamp = conversation.uniquetimestamp;
-                });
-                if (lastCheckedTimestamp === 0) {
-                $('#chat-content').empty();
+                        lastCheckedTimestamp = conversation.uniquetimestamp;
+                    });
+
+                    if (updatedConversations.length > 0) {
+                        updatedConversations.forEach(function(updatedConversation) {
+                            var messageHtml = Html(updatedConversation, user_id);
+                            $('#chat-content > #message-' + updatedConversation.id).replaceWith(messageHtml);
+
+                            if (lastCheckedTimestamp < updatedConversation.updatedtimestamp) {
+                                lastCheckedTimestamp = updatedConversation.updatedtimestamp;
+                            }
+                        });
+                    }
+                    localStorage.setItem('lastCheckedTimestamp', lastCheckedTimestamp);
+                    scrollToBottom();
+                    loadingMessages = false;
                 }
 
-                if (updatedConversations.length > 0) {
-                   
-                updatedConversations.forEach(function(updatedConversation) {
-
-                var messageHtml = Html(updatedConversation, user_id);                       
-                 $('#chat-content > #message-'+updatedConversation.id).replaceWith(messageHtml);
-
- 
-                if(lastCheckedTimestamp < updatedConversation.updatedtimestamp){
-                lastCheckedTimestamp = updatedConversation.updatedtimestamp;
-                }
-                    
-                });
-
-                }
-                localStorage.setItem('lastCheckedTimestamp', lastCheckedTimestamp);
-                scrollToBottom();
-                loadingMessages = false;
-                }
-
+               
+                checkLastSeen(userId); 
             } else {
                 console.error('Invalid response format:', response);
                 loadingMessages = false;
             }
         },
-            error: function(xhr, status, error) {
+        error: function(xhr, status, error) {
             console.error(xhr.responseText);
             loadingMessages = false;
         }
     });
 }
+
  
 fetchConversations();
 setInterval(function() {

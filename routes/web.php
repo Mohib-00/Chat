@@ -33,6 +33,12 @@ Route::post('/typing-status', [MessagesController::class, 'update'])->name('typi
 
 Route::get('/check-typing-status', [MessagesController::class, 'checkTypingStatus']);
 
+Route::post('/update-last-seen', [MessagesController::class, 'updateLastSeen'])->name('update.last.seen');
+
+Route::get('/check-last-seen', [MessagesController::class, 'checkLastSeen']);
+
+
+
  
 
 
