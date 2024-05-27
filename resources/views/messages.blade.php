@@ -195,7 +195,7 @@
                                     <br>
                                 </a>
                                 <div id="typing" style="display: none;color:white;font-weight:bolder">typing...</div>
-                                <div id="last-seen" style="font-size: 0.9em; color: grey;"></div>
+                                <div class="last" id="last-seen" style="font-size: 0.9em; color: grey;"></div>
                                 
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div> 
@@ -206,7 +206,7 @@
                             <div class="col-lg-1 col-md-1 col-sm-1" >
                                 <div class="row">
 
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 svg1">
                                 <span data-icon="video-call" class="x1w0mnb">
                                     <svg class="mt-4 mx-5" style="color:#4d5d66"  viewBox="0 0 24 24" height="30" width="40" preserveAspectRatio="xMidYMid meet" fill="none">
                                         <title>video-call</title>
@@ -216,7 +216,7 @@
                                 </span>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 svg2">
                                 <span data-icon="chevron-down-alt" class="">
                                     <svg class="mx-5"  style="color:#4d5d66;margin-top:22px" viewBox="0 0 17 13" height="15" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 17 13">
                                         <title>chevron-down-alt</title>
@@ -228,7 +228,7 @@
                                 </div>                               
                             </div>
 
-                            <div class="col-lg-1 col-md-1 col-sm-1 mt-4 ">
+                            <div class="col-lg-1 col-md-1 col-sm-1 mt-4 svg3">
                                 <span class="mx-5"  style="color:#8b989e;" data-icon="search-alt" class="">
                                     <svg viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                         <title>search-alt</title>
@@ -238,9 +238,9 @@
                                 
                             </div>
 
-                            <div class="col-lg-1 col-md-1 col-sm-1 mt-4 ">
+                            <div class="col-lg-1 col-md-1 col-sm-1 mt-4">
                             <span data-icon="menu" class="xr9ek0c" data-icon="menu" data-bs-toggle="dropdown" aria-expanded="false ">
-                                <svg  style="color:#8b989e;" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                <svg class="svg4"  style="color:#8b989e;" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                     <title>menu</title>
                                     <path fill="currentColor" d="M12,7c1.104,0,2-0.896,2-2c0-1.105-0.895-2-2-2c-1.104,0-2,0.894-2,2 C10,6.105,10.895,7,12,7z M12,9c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,9.895,13.104,9,12,9z M12,15 c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,15.894,13.104,15,12,15z"></path>
                                 </svg>

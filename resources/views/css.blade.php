@@ -31,6 +31,22 @@
         .smily {
              display: none;
         }
+        .last{
+            display: none;
+            margin-left: 35px;
+        }
+        .svg1{
+            margin-left:-20px;
+        }
+        .svg2{
+            margin-left:10px;
+        }
+        .svg3{
+            margin-left:-10px;
+        }
+        .svg4{
+            margin-left:10px;
+        }
         
     }
  
