@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('uniquetimestamp')->nullable();         
             $table->string('updatedtimestamp')->nullable();
             $table->enum('status', ['active', 'deleted'])->nullable();
+            $table->boolean('seen_status')->default(0);
             $table->timestamps();
         });
     }

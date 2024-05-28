@@ -245,28 +245,34 @@
     } else {
        
         messageHtml = `
-  <div id="message-${conversation.id}"  class="card position-relative" style="border:none;background:none;">
-     <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
-         <div style="position: relative;">
-             <div  style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block;  padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
-              ${conversation.message}
-              <br>
-              <p style="font-size:15px;color:#a6abad">${formattedDate}</p>
-              </div>
-              ${conversation.user_id == user_id ? `
-              <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 70px;margin-top:25px;color:green">
-                                 
-              </a>
-              ` : ''}
-              <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background-color: #233138; display: none;">    
-              <li><a class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
-              </ul>
- 
-         </div>
-     </div>
- </div><br>
+        <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
+        <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
+            <div style="position: relative;">
+                <div style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
+                    ${conversation.message}
+                    <br>
+                    <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
+                    ${conversation.user_id == user_id ? `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16" style="vertical-align: middle; margin-left: 5px;">
+                            <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z"/>
+                            <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+                        </svg>
+                    ` : ''}
+                </div>
+                ${conversation.user_id == user_id ? `
+                    <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 70px; margin-top:25px; color:green">
+                    </a>
+                ` : ''}
+                <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background-color: #233138; display: none;">
+                    <li><a class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>`;
 
-`;
+
+
 }
     return messageHtml;
 }
