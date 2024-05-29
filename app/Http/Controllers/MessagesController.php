@@ -200,7 +200,7 @@ public function loadChat(Request $request, $userId)
     return response()->json(['conversations' => $conversations,]);
 }
 
-/*public function update(Request $request)
+public function update(Request $request)
 {
     $user = auth()->user();
     $typing = filter_var($request->input('typing'), FILTER_VALIDATE_BOOLEAN);  
@@ -245,20 +245,7 @@ public function checkLastSeen(Request $request)
         return response()->json(['success' => true, 'last_seen' => $user->last_seen]);
     }
     return response()->json(['success' => false, 'message' => 'Last seen not available']);
-}*/
-
-public function updateSeenStatus($id)
-{
-    $message = MessageComment::find($id);
-    if ($message) {
-         
-        $message->seen_status = 1;
-        $message->save();
-        return response()->json(['success' => true, 'message' => 'Seen status updated successfully']);
-    } else {
-        return response()->json(['success' => false, 'message' => 'Message not found'], 404);
-    }
-
 }
+
 }
  

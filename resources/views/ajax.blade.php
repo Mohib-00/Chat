@@ -138,24 +138,16 @@
 
     $(document).on('click', '.user-chat-link', function(e) {
     e.preventDefault();
-    var messageId = $(this).attr('id');
-    if (messageId) {
-        messageId = messageId.split('-')[1];
-        var userId = $(this).data('user-id');
-        $('[name="message_id"]').val(userId);  
-        var userName = $(this).data('user-name');  
-        var userImage = $(this).data('user-image');  
-        console.log("User Image:", userImage);
-        $('#selected-user-name').text(userName); 
-        $('#selected-user-image').attr('src', userImage);  
-        window.history.pushState({}, '', '/messages/' + userId); 
-        loadUserChat(userId); 
-        updateSeenStatus(messageId);
-    } else {
-        console.error("Message ID not found");
-    }
-});
-
+    var userId = $(this).data('user-id');
+    $('[name="message_id"]').val(userId);  
+    var userName = $(this).data('user-name');  
+    var userImage = $(this).data('user-image');  
+    console.log("User Image:", userImage);
+    $('#selected-user-name').text(userName); 
+    $('#selected-user-image').attr('src', userImage);  
+    window.history.pushState({}, '', '/messages/' + userId); 
+    loadUserChat(userId); 
+    });
 
 
     function loadUserChat(userId) {
@@ -178,8 +170,7 @@
                         lastCheckedTimestamp = conversation.uniquetimestamp;
                     });
                   
-                    //checkLastSeen(userId);
-                  
+                    checkLastSeen(userId);
                 }
             } else {
                 console.log("No conversations found for user:", userId);
@@ -188,29 +179,6 @@
         },
         error: function(xhr, status, error) {
             console.error("Error loading chat:", error);
-        }
-    });
-}
-$(document).on('click', '.card', function() {
-    var messageId = $(this).attr('id').split('-')[1];  
-    console.log("Message ID:", messageId);
-    updateSeenStatus(messageId);
-});
-
-
-function updateSeenStatus(messageId) {
-     
-    $.ajax({
-        url: "/update-seen-status/" + messageId,
-        method: "POST",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(response) {
-            console.log("Seen status updated:", response.message);
-        },
-        error: function(xhr, status, error) {
-            console.error("Error updating seen status:", error);
         }
     });
 }
@@ -350,7 +318,7 @@ function updateSeenStatus(messageId) {
             success: function(result) {
                 $('[name="message"]').val('');
                 $('#image-upload').val('');   
-                //updateLastSeen();           
+                updateLastSeen();           
             },
 
             error: function(xhr, status, error) {
@@ -359,7 +327,7 @@ function updateSeenStatus(messageId) {
         });
     }
 
-    /*var typingTimer;
+    var typingTimer;
 var typingInterval = 2000;
 var isTyping = false;
 
@@ -463,7 +431,7 @@ function checkLastSeen(userId) {
             console.error("Error checking last seen:", error);
         }
     });
-}*/
+}
 
  
 
@@ -531,7 +499,7 @@ function fetchConversations(userId) {
                 }
 
                
-                //checkLastSeen(userId); 
+                checkLastSeen(userId); 
             } else {
                 console.error('Invalid response format:', response);
                 loadingMessages = false;
@@ -553,7 +521,6 @@ setInterval(function() {
     $(document).on('click', '.delete-message', function(e) {
     e.preventDefault();
     var messageId = $(this).data('message-id');
-    console.log("Message ID:", messageId);
        
     swal.fire({
         title: "Are you sure?",
