@@ -161,7 +161,9 @@
                                         <a href="#" style="text-decoration: none; color:white;">
                                             <div class="col-sm-8 col-xs-8 sideBar-name">
                                                 
-                                                <span class="name-meta user-chat-link" data-user-id="{{ $single_message->id }}" data-user-name="{{$single_message->name}}" data-user-image="{{ asset('images/' . $single_message->image) }}">{{$single_message->name}}</span><br>
+                                                <span id="message-{{ $single_message->id }}" class="name-meta user-chat-link" data-message-id="{{ $single_message->id }}" data-user-id="{{ $single_message->id }}" data-user-name="{{ $single_message->name }}" data-user-image="{{ asset('images/' . $single_message->image) }}">{{ $single_message->name }}</span><br>
+
+
                                                 <span style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
                                             </div>
                                             <div class="col-sm-4 col-xs-4 mt-5 sideBar-time pull-right">

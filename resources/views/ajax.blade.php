@@ -138,16 +138,24 @@
 
     $(document).on('click', '.user-chat-link', function(e) {
     e.preventDefault();
-    var userId = $(this).data('user-id');
-    $('[name="message_id"]').val(userId);  
-    var userName = $(this).data('user-name');  
-    var userImage = $(this).data('user-image');  
-    console.log("User Image:", userImage);
-    $('#selected-user-name').text(userName); 
-    $('#selected-user-image').attr('src', userImage);  
-    window.history.pushState({}, '', '/messages/' + userId); 
-    loadUserChat(userId); 
-    });
+    var messageId = $(this).attr('id');
+    if (messageId) {
+        messageId = messageId.split('-')[1];
+        var userId = $(this).data('user-id');
+        $('[name="message_id"]').val(userId);  
+        var userName = $(this).data('user-name');  
+        var userImage = $(this).data('user-image');  
+        console.log("User Image:", userImage);
+        $('#selected-user-name').text(userName); 
+        $('#selected-user-image').attr('src', userImage);  
+        window.history.pushState({}, '', '/messages/' + userId); 
+        loadUserChat(userId); 
+        updateSeenStatus(messageId);
+    } else {
+        console.error("Message ID not found");
+    }
+});
+
 
 
     function loadUserChat(userId) {
@@ -171,6 +179,7 @@
                     });
                   
                     //checkLastSeen(userId);
+                  
                 }
             } else {
                 console.log("No conversations found for user:", userId);
@@ -179,6 +188,29 @@
         },
         error: function(xhr, status, error) {
             console.error("Error loading chat:", error);
+        }
+    });
+}
+$(document).on('click', '.card', function() {
+    var messageId = $(this).attr('id').split('-')[1];  
+    console.log("Message ID:", messageId);
+    updateSeenStatus(messageId);
+});
+
+
+function updateSeenStatus(messageId) {
+     
+    $.ajax({
+        url: "/update-seen-status/" + messageId,
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            console.log("Seen status updated:", response.message);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error updating seen status:", error);
         }
     });
 }
@@ -246,25 +278,31 @@
        
         messageHtml = `
         <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
-        <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
-            <div style="position: relative;">
-                <div style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
-                    ${conversation.message}
-                    <br>
-                    <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
-                     
-                </div>
+    <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
+        <div style="position: relative;">
+            <div style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
+                ${conversation.message}
+                <br>
+                <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
                 ${conversation.user_id == user_id ? `
-                    <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 70px; margin-top:25px; color:green">
-                    </a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16" style="vertical-align: middle; margin-left: 5px;">
+                        <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z"/>
+                        <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+                    </svg>
                 ` : ''}
-                <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background-color: #233138; display: none;">
-                    <li><a class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
-                </ul>
             </div>
+            ${conversation.user_id == user_id ? `
+                <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 90px; margin-top:25px; color:green">
+                </a>
+            ` : ''}
+            <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background-color: #233138; display: none;">
+                <li><a class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
+            </ul>
         </div>
     </div>
-    <br>`;
+</div>
+<br>
+`;
 
 
 
@@ -312,7 +350,7 @@
             success: function(result) {
                 $('[name="message"]').val('');
                 $('#image-upload').val('');   
-                updateLastSeen();           
+                //updateLastSeen();           
             },
 
             error: function(xhr, status, error) {
@@ -321,7 +359,7 @@
         });
     }
 
-var typingTimer;
+    /*var typingTimer;
 var typingInterval = 2000;
 var isTyping = false;
 
@@ -425,7 +463,7 @@ function checkLastSeen(userId) {
             console.error("Error checking last seen:", error);
         }
     });
-}
+}*/
 
  
 
@@ -493,7 +531,7 @@ function fetchConversations(userId) {
                 }
 
                
-               checkLastSeen(userId); 
+                //checkLastSeen(userId); 
             } else {
                 console.error('Invalid response format:', response);
                 loadingMessages = false;
@@ -515,6 +553,7 @@ setInterval(function() {
     $(document).on('click', '.delete-message', function(e) {
     e.preventDefault();
     var messageId = $(this).data('message-id');
+    console.log("Message ID:", messageId);
        
     swal.fire({
         title: "Are you sure?",
