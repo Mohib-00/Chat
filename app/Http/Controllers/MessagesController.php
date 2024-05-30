@@ -247,5 +247,14 @@ public function checkLastSeen(Request $request)
     return response()->json(['success' => false, 'message' => 'Last seen not available']);
 }
 
+public function updateSeenStatus(Request $request) {
+    $userId = $request->input('user_id');
+
+    
+    MessageComment::where('user_id', $userId)->update(['seen_status' => 1]);
+
+    return response()->json(['success' => true]);
+}
+
 }
  

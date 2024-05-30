@@ -37,7 +37,8 @@ Route::post('/update-last-seen', [MessagesController::class, 'updateLastSeen'])-
 
 Route::get('/check-last-seen', [MessagesController::class, 'checkLastSeen']);
 
-Route::post('/update-seen-status/{messageId}', [MessagesController::class, 'updateSeenStatus'])->name('updateSeenStatus');
+Route::post('/update-seen-status', [MessagesController::class, 'updateSeenStatus'])->name('updateSeenStatus');
+
 
 
 

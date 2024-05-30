@@ -145,9 +145,31 @@
     console.log("User Image:", userImage);
     $('#selected-user-name').text(userName); 
     $('#selected-user-image').attr('src', userImage);  
+
+     
+    updateSeenStatus(userId);
+
     window.history.pushState({}, '', '/messages/' + userId); 
     loadUserChat(userId); 
+});
+
+function updateSeenStatus(userId) {
+    $.ajax({
+        url: "{{ route('updateSeenStatus') }}", 
+        method: "POST",
+        data: {
+            user_id: userId,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            console.log("Seen status updated for user:", userId);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error updating seen status:", error);
+        }
     });
+}
+
 
 
     function loadUserChat(userId) {
@@ -260,7 +282,7 @@
                 ` : ''}
             </div>
             ${conversation.user_id == user_id ? `
-                <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 90px; margin-top:25px; color:green">
+                <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 70px; margin-top:25px; color:green">
                 </a>
             ` : ''}
             <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background-color: #233138; display: none;">
