@@ -195,93 +195,91 @@
     }
     }); 
 
-    function  Html(conversation, user_id) {
+    
+
+function Html(conversation, user_id) {
     var deleteButton = (conversation.user_id == user_id) ? `<a style="color:white" class="delete-message btn-sm  position-absolute  top-0 start-0 mt-1 ms-1" data-message-id="${conversation.id}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>` : '';
     var createdAt = new Date(conversation.created_at);
-    var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric',   });
+    var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
     var messageStyle = (conversation.user_id == user_id) ? 'text-right' : '';    
     messageStyle += (conversation.user_id == user_id) ? ' ml-50' : '';
     var messageHtml = '';
-    var svgColor = (conversation.seen_status == 1) ? 'blue' : 'currentColor';
+
+    var seenStatusSvg = (conversation.seen_status == 1) ? 
+    `<i style="color:blue" class="fa fa-check" aria-hidden="true"></i>` : 
+    `<i class="fa fa-check" aria-hidden="true"></i>`;
+
     if (conversation.video) {
+        var videoUrl = '{{ asset('') }}' + conversation.video.trim();
+        var videoHtml = `
+            <video controls style="width:50%">
+                <source src="${videoUrl}" type="video/mp4">
+            </video>
+        `;
 
-    var videoUrl = '{{ asset('') }}' + conversation.video.trim();
-    var videoHtml = `
-    <video controls style="width:50%">
-         <source src="${videoUrl}" type="video/mp4">
-    </video>
-    `;
-
-    messageHtml = `
-    <div class="card position-relative"style="border:none; background:none !important">
-    <div style="font-weight:bolder" class="card-body text-black ${messageStyle}">
-            ${videoHtml}
-            <br><br>
-            <i style="color:white">${formattedDate}</i>
-            ${deleteButton}
-    </div>
-    </div><br>
-    `;
+        messageHtml = `
+            <div class="card position-relative" style="border:none; background:none !important">
+                <div style="font-weight:bolder" class="card-body text-black ${messageStyle}">
+                    ${videoHtml}
+                    <br><br>
+                    <i style="color:white">${formattedDate}</i>
+                    ${deleteButton}
+                </div>
+            </div><br>
+        `;
 
     } else if (conversation.image && !conversation.message) {
         var imageUrls = conversation.image.split(',');
         var baseUrl = '{{ asset('') }}';
         var imageHtml = '';
         $.each(imageUrls, function (index, imageUrl) {
-        var fullImageUrl = baseUrl + imageUrl.trim();
-        imageHtml += `
-        <br>                          
-            <a class="image-popup-vertical-fit" href="${fullImageUrl}">
-              <img src="${fullImageUrl}" style="width:25%;height:150px">
-            </a>
+            var fullImageUrl = baseUrl + imageUrl.trim();
+            imageHtml += `
+                <br>
+                <a class="image-popup-vertical-fit" href="${fullImageUrl}">
+                    <img src="${fullImageUrl}" style="width:25%;height:150px">
+                </a>
             `;
         });
 
         messageHtml = `
             <div class="card position-relative" style="border:none; background:none !important">
-                <div style="font-weight:bolder;   " class="card-body  ${messageStyle}">
+                <div style="font-weight:bolder; " class="card-body ${messageStyle}">
                     ${imageHtml}
                     <br><br>
-                    <i style="color:white" >${formattedDate}</i>
+                    <i style="color:white">${formattedDate}</i>
                     ${deleteButton}
                 </div>
             </div><br>
         `;
     } else {
-       
         messageHtml = `
-        <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
-    <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
-        <div style="position: relative;">
-            <div style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
-                ${conversation.message}
-                <br>
-                <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
-                ${conversation.user_id == user_id ? `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="${svgColor}" class="bi bi-chevron-double-up" viewBox="0 0 16 16" style="vertical-align: middle; margin-left: 5px;">
-            <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z"/>
-            <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
-        </svg>
-                ` : ''}
+            <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
+                <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
+                    <div style="position: relative;">
+                        <div style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
+                            ${conversation.message}
+                            <br>
+                            <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
+                            ${conversation.user_id == user_id ? seenStatusSvg : ''}
+                        </div>
+                        ${conversation.user_id == user_id ? `
+                            <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 70px; margin-top:25px; color:green">
+                            </a>
+                        ` : ''}
+                        <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background-color: #233138; display: none;">
+                            <li><a class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            ${conversation.user_id == user_id ? `
-                <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 70px; margin-top:25px; color:green">
-                </a>
-            ` : ''}
-            <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background-color: #233138; display: none;">
-                <li><a class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<br>
-`;
+            <br>
+        `;
+    }
 
-
-
-}
     return messageHtml;
 }
+
   
     function sendMessage() {
         var formData = new FormData();  
