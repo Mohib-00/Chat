@@ -146,32 +146,14 @@
     $('#selected-user-name').text(userName); 
     $('#selected-user-image').attr('src', userImage);  
 
-     
-    updateSeenStatus(userId);
+    //updateSeenStatus(userId);
+    fetchConversations(userId);
 
     window.history.pushState({}, '', '/messages/' + userId); 
     loadUserChat(userId); 
 });
 
-function updateSeenStatus(userId) {
-    $.ajax({
-        url: "{{ route('updateSeenStatus') }}", 
-        method: "POST",
-        data: {
-            user_id: userId,
-            _token: $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(response) {
-            console.log("Seen status updated for user:", userId);
-        },
-        error: function(xhr, status, error) {
-            console.error("Error updating seen status:", error);
-        }
-    });
-}
-
-
-
+ 
     function loadUserChat(userId) {
     console.log("Loading chat for user:", userId);
     
@@ -192,7 +174,7 @@ function updateSeenStatus(userId) {
                         lastCheckedTimestamp = conversation.uniquetimestamp;
                     });
                   
-                    checkLastSeen(userId);
+                     
                 }
             } else {
                 console.log("No conversations found for user:", userId);
@@ -220,6 +202,7 @@ function updateSeenStatus(userId) {
     var messageStyle = (conversation.user_id == user_id) ? 'text-right' : '';    
     messageStyle += (conversation.user_id == user_id) ? ' ml-50' : '';
     var messageHtml = '';
+    var svgColor = (conversation.seen_status == 1) ? 'blue' : 'currentColor';
     if (conversation.video) {
 
     var videoUrl = '{{ asset('') }}' + conversation.video.trim();
@@ -275,10 +258,10 @@ function updateSeenStatus(userId) {
                 <br>
                 <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
                 ${conversation.user_id == user_id ? `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16" style="vertical-align: middle; margin-left: 5px;">
-                        <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z"/>
-                        <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="${svgColor}" class="bi bi-chevron-double-up" viewBox="0 0 16 16" style="vertical-align: middle; margin-left: 5px;">
+            <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z"/>
+            <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+        </svg>
                 ` : ''}
             </div>
             ${conversation.user_id == user_id ? `
@@ -340,7 +323,8 @@ function updateSeenStatus(userId) {
             success: function(result) {
                 $('[name="message"]').val('');
                 $('#image-upload').val('');   
-                updateLastSeen();           
+                //updateLastSeen();
+                         
             },
 
             error: function(xhr, status, error) {
@@ -348,8 +332,8 @@ function updateSeenStatus(userId) {
             }
         });
     }
-
-    var typingTimer;
+ 
+    /*var typingTimer;
 var typingInterval = 2000;
 var isTyping = false;
 
@@ -453,9 +437,10 @@ function checkLastSeen(userId) {
             console.error("Error checking last seen:", error);
         }
     });
-}
+}*/
 
  
+
 
     function scrollToBottom() {
         var chatContainer = $('#chat-content');
@@ -472,6 +457,8 @@ function checkLastSeen(userId) {
         }   
 }
  
+ 
+
 function fetchConversations(userId) {
     var lastCheckedTimestamp = getLastCheckedTimestamp() || 0;
     var message_id = $('[name="message_id"]').val();
@@ -505,6 +492,8 @@ function fetchConversations(userId) {
                         lastCheckedTimestamp = conversation.uniquetimestamp;
                     });
 
+                    
+
                     if (updatedConversations.length > 0) {
                         updatedConversations.forEach(function(updatedConversation) {
                             var messageHtml = Html(updatedConversation, user_id);
@@ -517,11 +506,9 @@ function fetchConversations(userId) {
                     }
                     localStorage.setItem('lastCheckedTimestamp', lastCheckedTimestamp);
                     scrollToBottom();
-                    loadingMessages = false;
+                    loadingMessages = false;       
                 }
-
-               
-                checkLastSeen(userId); 
+                //checkLastSeen(userId);
             } else {
                 console.error('Invalid response format:', response);
                 loadingMessages = false;
@@ -533,6 +520,8 @@ function fetchConversations(userId) {
         }
     });
 }
+
+
 
  
 fetchConversations();
@@ -588,3 +577,8 @@ setInterval(function() {
 </script>
  </body>
  </html>
+
+
+
+
+  

@@ -88,8 +88,10 @@ class MessagesController extends Controller
 
     }
  
+
 public function getConversations(Request $request)
 {
+    $updatedTimestamp = time();
     $messageId = $request->input('id');  
     $lastCheckedUniqueTimestamp = $request->input('lastCheckedUniqueTimestamp');
 
@@ -97,24 +99,28 @@ public function getConversations(Request $request)
         return response()->json(['error' => 'Invalid timestamp'], 400);
     }
 
+    
+    MessageComment::where('message_id', $messageId)
+        ->where('user_id', '!=', auth()->id())
+        ->where('seen_status', 0)
+        ->update(['seen_status' => 1, 'updatedTimestamp' => $updatedTimestamp]);
+
+    
     $conversations = MessageComment::with('user')
         ->where('message_id', $messageId)
         ->where('uniquetimestamp', '>', $lastCheckedUniqueTimestamp)
-        ->where(function ($query) {
-             
-        })
         ->get();
 
-        $updatedConversations = MessageComment::with('user')
+    
+    $updatedConversations = MessageComment::with('user')
         ->where('message_id', $messageId)
         ->where('updatedtimestamp', '>', $lastCheckedUniqueTimestamp)
-        ->where(function ($query) {
-              
-        })
         ->get();
         
-    return response()->json(['conversations' => $conversations,'updatedConversations' => $updatedConversations]);
+    return response()->json(['conversations' => $conversations, 'updatedConversations' => $updatedConversations]);
 }
+
+
 
  
  
@@ -200,7 +206,7 @@ public function loadChat(Request $request, $userId)
     return response()->json(['conversations' => $conversations,]);
 }
 
-public function update(Request $request)
+/*public function update(Request $request)
 {
     $user = auth()->user();
     $typing = filter_var($request->input('typing'), FILTER_VALIDATE_BOOLEAN);  
@@ -246,15 +252,10 @@ public function checkLastSeen(Request $request)
     }
     return response()->json(['success' => false, 'message' => 'Last seen not available']);
 }
+*/
+ 
 
-public function updateSeenStatus(Request $request) {
-    $userId = $request->input('user_id');
-
-    
-    MessageComment::where('user_id', $userId)->update(['seen_status' => 1]);
-
-    return response()->json(['success' => true]);
-}
+ 
 
 }
  
