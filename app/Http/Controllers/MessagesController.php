@@ -82,9 +82,10 @@ class MessagesController extends Controller
        ->get();
         
         $user = User::where('id', $user)->first();
+        
 
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info',));
+       return view('messages', compact('user_messages', 'conversations', 'message_info'));
 
     }
  
@@ -253,9 +254,29 @@ public function checkLastSeen(Request $request)
     return response()->json(['success' => false, 'message' => 'Last seen not available']);
 }
 */
- 
 
- 
+public function updateBackgroundImage(Request $request, $user_id)
+{
+    $user = User::find($user_id);
 
+    if ($user) {
+       
+        if ($request->hasFile('background_image')) {
+            $backgroundImage = $request->file('background_image');
+            $backgroundImageName = time() . '-' . $backgroundImage->getClientOriginalName();
+            $backgroundImage->move(public_path('images'), $backgroundImageName);
+
+            
+            $user->background_image = $backgroundImageName;
+            $user->save(); 
+
+            return response()->json(['success' => true, 'message' => 'Background image updated successfully']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'No background image uploaded']);
+        }
+    } else {
+        return response()->json(['success' => false, 'message' => 'User not found']);
+    }
+}
 }
  

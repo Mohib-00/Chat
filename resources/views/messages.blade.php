@@ -13,7 +13,8 @@
 </head>
 
 <body>
-    <div class="container-fluid " style="border: 13px solid #0c1317; background-image: url('{{ asset('chat.jpg') }}')">
+    <div class="container-fluid " id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset($user->background_image) }}')">
+        
         <div class="row">
             <div style="background-color:#202c33;width:4%" class="col-lg-1 one">
                 <div class="row">
@@ -246,7 +247,7 @@
                                 </svg>
                             </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item mt-3 text-white" href="#">New Group</a></li>
+                               <li><a  class="dropdown-item mt-3 text-white wallpaper" href="#">Wallpaper</a></li>
                                 <li><a class="dropdown-item my-3 text-white" href="#">Archived</a></li>
                                 <li><a class="dropdown-item  text-white" href="#">Select Chats</a></li>
                                 <li><a class="dropdown-item my-3 text-white" href="#">Logout</a></li>
@@ -281,6 +282,8 @@
                             <input id="video" type="hidden" name="video">
 
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
+
+                              <input type="file" id="file-input" style="display: none;">
 
                            
                             <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">

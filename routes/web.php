@@ -39,6 +39,10 @@ Route::get('/check-last-seen', [MessagesController::class, 'checkLastSeen']);
 
 Route::post('/update-seen-status', [MessagesController::class, 'updateSeenStatus'])->name('updateSeenStatus');
 
+Route::post('/update-background-image/{user_id}', [MessagesController::class, 'updateBackgroundImage']);
+
+ 
+
 
 
 

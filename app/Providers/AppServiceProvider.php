@@ -26,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
         $messagessss= Message::all();
 
         View::share('messagessss',$messagessss);
+
+        $user= User::first();
+
+        View::share('user',$user);
  
  
 
