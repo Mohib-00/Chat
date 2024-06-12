@@ -83,9 +83,10 @@ class MessagesController extends Controller
         
         $user = User::where('id', $user)->first();
         
+        
 
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info'));
+       return view('messages', compact('user_messages', 'conversations', 'message_info','user'));
 
     }
  
@@ -278,5 +279,7 @@ public function updateBackgroundImage(Request $request, $user_id)
         return response()->json(['success' => false, 'message' => 'User not found']);
     }
 }
+ 
+
 }
  

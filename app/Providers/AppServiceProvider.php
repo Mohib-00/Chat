@@ -27,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('messagessss',$messagessss);
 
-        $user= User::first();
+        //$user= User::first();
 
-        View::share('user',$user);
+        //View::share('user',$user);
  
  
 

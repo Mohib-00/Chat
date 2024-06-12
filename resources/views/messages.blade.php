@@ -13,8 +13,9 @@
 </head>
 
 <body>
-    <div class="container-fluid " id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset($user->background_image) }}')">
-        
+   
+    <div class="container-fluid " id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset('images/' . $user->background_image) }}')">
+    
         <div class="row">
             <div style="background-color:#202c33;width:4%" class="col-lg-1 one">
                 <div class="row">
@@ -162,7 +163,13 @@
                                         <a href="#" style="text-decoration: none; color:white;">
                                             <div class="col-sm-8 col-xs-8 sideBar-name">
                                                 
-                                                <span class="name-meta user-chat-link" data-user-id="{{ $single_message->id }}" data-user-name="{{$single_message->name}}" data-user-image="{{ asset('images/' . $single_message->image) }}">{{$single_message->name}}</span><br>
+                                                <span class="name-meta user-chat-link" 
+      data-user-id="{{ $single_message->id }}" 
+      data-user-name="{{ $single_message->name }}" 
+      data-user-image="{{ asset('images/' . $single_message->image) }}" 
+      data-user-backimage="{{ asset('images/' . $single_message->background_image) }}">{{ $single_message->name }}</span>
+      <br>
+
                                                 <span style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
                                             </div>
                                             <div class="col-sm-4 col-xs-4 mt-5 sideBar-time pull-right">

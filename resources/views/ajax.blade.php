@@ -137,26 +137,35 @@
     
 
    $(document).on('click', '.user-chat-link', function(e) {
-   e.preventDefault();
-   var userId = $(this).data('user-id');
-   $('[name="message_id"]').val(userId);  
-   var userName = $(this).data('user-name');  
-   var userImage = $(this).data('user-image');  
-   console.log("User Image:", userImage);
-   var userBackgroundImage = $(this).data('user-backgroundImage');
-   console.log("Background Image:", userBackgroundImage);
-   $('#selected-user-name').text(userName); 
-   $('#selected-user-image').attr('src', userImage);  
-   $('.slected-background-image').attr('src', userBackgroundImage);
+    e.preventDefault();
     
-
-   //updateSeenStatus(userId);
-   fetchConversations(userId);
-   setupWallpaperChange(userId);
-
-   window.history.pushState({}, '', '/messages/' + userId); 
-   loadUserChat(userId); 
+    var userId = $(this).data('user-id');
+    var userName = $(this).data('user-name');
+    var userImage = $(this).data('user-image');
+    var backImage = $(this).data('user-backimage');  
+    
+    console.log("User ID:", userId);
+    console.log("User Name:", userName);
+    console.log("User Image:", userImage);
+    console.log("Back Image:", backImage);
+    
+    if (backImage) {
+        $('#chat-container').css('background-image', 'url(' + backImage + ')');
+    } else {
+        console.error("Background image is undefined for user:", userId);
+    }
+    
+    $('#selected-user-name').text(userName);
+    $('#selected-user-image').attr('src', userImage);
+    
+    fetchConversations(userId);
+    setupWallpaperChange(userId);
+    
+    window.history.pushState({}, '', '/messages/' + userId);
+    loadUserChat(userId);
 });
+
+
 
 
    function loadUserChat(userId) {
