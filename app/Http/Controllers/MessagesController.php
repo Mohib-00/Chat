@@ -121,10 +121,6 @@ public function getConversations(Request $request)
         
     return response()->json(['conversations' => $conversations, 'updatedConversations' => $updatedConversations]);
 }
-
-
-
- 
  
 public function delete($id)
 {
@@ -279,6 +275,31 @@ public function updateBackgroundImage(Request $request, $user_id)
         return response()->json(['success' => false, 'message' => 'User not found']);
     }
 }
+
+
+public function update(Request $request, $id)
+{
+    $updatedTimestamp = time();
+
+    $messageComment = MessageComment::findOrFail($id);
+    $messageComment->message = $request->input('message');
+    $messageComment->edit_status = 'Edited';
+    $messageComment->updatedtimestamp = $updatedTimestamp;
+    $messageComment->save();
+
+    return response()->json(['success' => 'Message updated successfully',]);
+}
+
+public function destroy($id)
+{
+    $messageComment = MessageComment::findOrFail($id);
+  
+    $messageComment->delete();
+
+    return response()->json(['success' => 'Message deleted successfully']);
+}
+
+
  
 
 }

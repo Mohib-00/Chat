@@ -308,7 +308,7 @@
                                     </div>
 
                                     <div class="col-9 reply-main ">
-                                        <input style="background-color: #2a3942;margin-top:5px; border:none;border-radius:10px;width:100%;color:white;padding:30px 0px 30px 10px " type="text" name="message" autocomplete="off" chat-box class="form-control" placeholder="Type a message">
+                                        <input id="editMessageInput" style="background-color: #2a3942; margin-top:5px; border:none; border-radius:10px; width:100%; color:white; padding:30px 0px 30px 10px;" type="text" name="message" autocomplete="off" chat-box class="form-control" placeholder="Type a message">
                                     </div>
 
                                     <div class="col-1">
@@ -325,6 +325,7 @@
                                                         <title>send</title>
                                                         <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
                                                     </svg>
+                                                    
                                                 </button>
                                             </div>
 

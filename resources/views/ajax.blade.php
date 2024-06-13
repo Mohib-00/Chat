@@ -130,7 +130,8 @@
        $('#video').val(file.name);  
    });
 
-   $('#submitMessage').click(function() {
+   $('#submitMessage').click(function(e) {
+    e.preventDefault();
        sendMessage();  
    })
 
@@ -205,7 +206,7 @@
    $('[name="message"]').keypress(function(e) {
    if (e.which === 13) {
    e.preventDefault();  
-   sendMessage();
+   //sendMessage();
    }
    }); 
 
@@ -275,34 +276,108 @@ function Html(conversation, user_id) {
            </div><br>
        `;
    } else {
-       messageHtml = `
-           <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
-               <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
-                   <div style="position: relative;">
-                       <div style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
-                           ${conversation.message}
-                           <br>
-                           <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
-                           ${conversation.user_id == user_id ? seenStatusSvg : ''}
-                       </div>
-                       ${conversation.user_id == user_id ? `
-                           <a class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 90px; margin-top:25px; color:green">
-                           </a>
-                       ` : ''}
-                       <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background-color: #233138; display: none;">
-                           <li><a class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
-           <br>
-       `;
+    messageHtml = `
+    <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
+        <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
+            <div style="position: relative;">
+                <div class="message-content" style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
+                    ${conversation.message}
+                    <br>
+                    <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
+                    ${conversation.user_id == user_id ? seenStatusSvg : ''}
+                     ${conversation.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
+                </div>
+                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${conversation.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 90px; margin-top:25px; color:green" data-message-id="${conversation.id}">
+                    <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
+                    <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
+                    <li><a class="dropdown-item text-white edit-message" href="#" data-message-id="${conversation.id}">Edit</a></li>
+                    ${conversation.status === 'deleted' ? `
+                        <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${conversation.id}">Remove</a></li>
+                    ` : ''}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+`;
+
+
+
    }
 
    return messageHtml;
 }
 
+$(document).on('click', '.remove-message', function(event) {
+        event.preventDefault();
+        let messageId = $(this).data('message-id');
+          
+            $.ajax({
+                url: `/messages/${messageId}`,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                     
+                    $(`#message-${messageId}`).remove();
+                   
+                     
+                },
+                error: function(xhr) {
+                    alert('Error deleting message');
+                }
+            });
+        
+    });
+
+
+
+let currentMessageId = null;
+
  
+$(document).on('click', '.edit-message', function(event) {
+    event.preventDefault();
+    currentMessageId = $(this).data('message-id');
+    let currentMessage = $(this).closest('.card-body').find('.message-content').contents().filter(function() {
+        return this.nodeType === 3;
+    }).text().trim();
+    $('#editMessageInput').val(currentMessage).data('message-id', currentMessageId).focus();
+});
+
+ 
+$('#editMessageInput').on('keypress', function(event) {
+    if (event.which == 13 && currentMessageId) {  
+        event.preventDefault();  
+        let updatedMessage = $(this).val().trim();
+
+        if (currentMessageId && updatedMessage) {
+             
+            $.ajax({
+                url: `/messages/${currentMessageId}`,
+                type: 'PUT',
+                data: {
+                    message: updatedMessage,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                     
+                },
+                error: function(xhr) {
+                    alert('Error updating message');
+                }
+            });
+
+             
+            $(this).val('').removeData('message-id');
+            currentMessageId = null;
+        }
+    }
+});
+
+
    function sendMessage() {
        var formData = new FormData();  
        var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -342,7 +417,8 @@ function Html(conversation, user_id) {
            },
            success: function(result) {
                $('[name="message"]').val('');
-               $('#image-upload').val('');   
+               $('#image-upload').val(''); 
+               $('#video-upload').val('');  
                //updateLastSeen();
                         
            },

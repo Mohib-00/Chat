@@ -41,6 +41,13 @@ Route::post('/update-seen-status', [MessagesController::class, 'updateSeenStatus
 
 Route::post('/update-background-image/{user_id}', [MessagesController::class, 'updateBackgroundImage']);
 
+Route::put('/messages/{id}', [MessagesController::class, 'update'])->name('messages.update');
+
+Route::delete('/messages/{id}', [MessagesController::class, 'destroy'])->name('messages.destroy');
+
+
+
+
  
 
 
