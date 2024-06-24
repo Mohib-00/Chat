@@ -207,4 +207,11 @@ border-left: 1px solid rgba(0, 0, 0, .08);
     background-color:#202c33;
 }
 
+@media screen and (max-width: 1354px) {
+    .v {
+        margin-left:20px;
+    }
+}
+
+
 </style>

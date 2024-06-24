@@ -283,12 +283,13 @@ function Html(conversation, user_id) {
                 <div class="message-content" style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
                     ${conversation.message}
                     <br>
+                    ${conversation.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
                     <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
                     ${conversation.user_id == user_id ? seenStatusSvg : ''}
-                     ${conversation.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
+                      
                 </div>
                 <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${conversation.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 90px; margin-top:25px; color:green" data-message-id="${conversation.id}">
-                    <i class="fas fa-ellipsis-v"></i>
+                    
                 </a>
                 <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
                     <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
@@ -419,7 +420,7 @@ $('#editMessageInput').on('keypress', function(event) {
                $('[name="message"]').val('');
                $('#image-upload').val(''); 
                $('#video-upload').val('');  
-               //updateLastSeen();
+               updateLastSeen();
                         
            },
 
@@ -496,7 +497,7 @@ function checkTypingStatus() {
    });
 }
 
-setInterval(checkTypingStatus, 2000);
+setInterval(checkTypingStatus, 2000);*/
 
 
    function updateLastSeen() {
@@ -533,7 +534,7 @@ function checkLastSeen(userId) {
            console.error("Error checking last seen:", error);
        }
    });
-}*/
+}
 
 
 
@@ -605,7 +606,7 @@ function fetchConversations(userId) {
                    loadingMessages = false;       
                }
                
-               //checkLastSeen(userId);
+               checkLastSeen(userId);
            } else {
                console.error('Invalid response format:', response);
                loadingMessages = false;

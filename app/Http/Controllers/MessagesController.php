@@ -226,7 +226,7 @@ public function checkTypingStatus(Request $request)
         'typing' => $chatUser->typing_status,
         'user_id' => $chatUserId
     ]);
-}
+}*/
 
 public function updateLastSeen(Request $request)
 {
@@ -250,7 +250,7 @@ public function checkLastSeen(Request $request)
     }
     return response()->json(['success' => false, 'message' => 'Last seen not available']);
 }
-*/
+
 
 public function updateBackgroundImage(Request $request, $user_id)
 {

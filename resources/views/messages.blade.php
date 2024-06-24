@@ -163,17 +163,17 @@
                                         <a href="#" style="text-decoration: none; color:white;">
                                             <div class="col-sm-8 col-xs-8 sideBar-name">
                                                 
-                                                <span class="name-meta user-chat-link" 
+                                                <span class="name-meta user-chat-link v" 
       data-user-id="{{ $single_message->id }}" 
       data-user-name="{{ $single_message->name }}" 
       data-user-image="{{ asset('images/' . $single_message->image) }}" 
       data-user-backimage="{{ asset('images/' . $single_message->background_image) }}">{{ $single_message->name }}</span>
       <br>
 
-                                                <span style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
+                                                <span class="v" style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
                                             </div>
                                             <div class="col-sm-4 col-xs-4 mt-5 sideBar-time pull-right">
-                                                <span class="time-meta text-white pull-right">{{ $single_message->lastMessageComments ? $single_message->lastMessageComments->created_at->diffForHumans() : '' }}</span>
+                                                <span class="time-meta text-white pull-right ">{{ $single_message->lastMessageComments ? $single_message->lastMessageComments->created_at->diffForHumans() : '' }}</span>
                                             </div>
                                         </a>
                                 </div>
@@ -198,12 +198,12 @@
                             </div>
                             
                             <div class="col-lg-8 col-md-8 col-sm-8 mt-2">
-                                <a class="heading-name-meta" id="selected-user-name" data-user-id="{{ $user_messages[0]->id }}" style="color:#dfe3e6; margin-top:1%;font-size:20px;text-decoration:none;">
+                                <a class="heading-name-meta v" id="selected-user-name" data-user-id="{{ $user_messages[0]->id }}" style="color:#dfe3e6; margin-top:1%;font-size:20px;text-decoration:none;">
                                     {{ $user_messages[0]->name }}
                                     <br>
                                 </a>
-                                <div id="typing" style="display: none;color:white;font-weight:bolder">typing...</div>
-                                <div class="last" id="last-seen" style="font-size: 0.9em; color: grey;"></div>
+                                <div class="v" id="typing" style="display: none;color:white;font-weight:bolder">typing...</div>
+                                <div class="last v" id="last-seen" style="font-size: 0.9em; color: grey;"></div>
                                 
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div> 
