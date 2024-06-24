@@ -9,21 +9,17 @@
 </head>
 <body>
    
-
    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-       
+  
    <script>
        document.addEventListener('DOMContentLoaded', (event) => {
            const sidebar = document.getElementById('sidebar');
            const chatContent = document.querySelector('.conversation');
            const userChatLinks = document.querySelectorAll('.user-chat-link');
            const goBackIcon = document.getElementById('goBackIcon');
-
            const isSidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
        
            userChatLinks.forEach(link => {
@@ -67,7 +63,6 @@
            }
        
            window.addEventListener('resize', handleResize);
-   
            handleResize();
        });
    </script>
@@ -166,9 +161,6 @@
     loadUserChat(userId);
 });
 
-
-
-
    function loadUserChat(userId) {
    console.log("Loading chat for user:", userId);
    
@@ -188,8 +180,7 @@
                        $('#chat-content').append(messageHtml);
                        lastCheckedTimestamp = conversation.uniquetimestamp;
                    });
-                 
-                    
+                  
                }
            } else {
                console.log("No conversations found for user:", userId);
@@ -277,19 +268,18 @@ function Html(conversation, user_id) {
        `;
    } else {
     messageHtml = `
-    <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
-        <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
-            <div style="position: relative;">
-                <div class="message-content" style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
-                    ${conversation.message}
-                    <br>
-                    ${conversation.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
-                    <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
-                    ${conversation.user_id == user_id ? seenStatusSvg : ''}
-                      
-                </div>
+   <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
+    <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
+        <div style="position: relative;">
+            <div class="message-content" style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
+                ${conversation.message}
+                <br>
+                ${conversation.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
+                <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
+                ${conversation.user_id == user_id ? seenStatusSvg : ''}
+            </div>
+            ${conversation.user_id == user_id ? `
                 <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${conversation.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 90px; margin-top:25px; color:green" data-message-id="${conversation.id}">
-                    
                 </a>
                 <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
                     <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
@@ -298,14 +288,13 @@ function Html(conversation, user_id) {
                         <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${conversation.id}">Remove</a></li>
                     ` : ''}
                 </ul>
-            </div>
+            ` : ''}
         </div>
     </div>
-    <br>
+</div>
+<br>
+
 `;
-
-
-
    }
 
    return messageHtml;
@@ -334,11 +323,8 @@ $(document).on('click', '.remove-message', function(event) {
         
     });
 
-
-
 let currentMessageId = null;
 
- 
 $(document).on('click', '.edit-message', function(event) {
     event.preventDefault();
     currentMessageId = $(this).data('message-id');
@@ -348,7 +334,6 @@ $(document).on('click', '.edit-message', function(event) {
     $('#editMessageInput').val(currentMessage).data('message-id', currentMessageId).focus();
 });
 
- 
 $('#editMessageInput').on('keypress', function(event) {
     if (event.which == 13 && currentMessageId) {  
         event.preventDefault();  
@@ -430,7 +415,7 @@ $('#editMessageInput').on('keypress', function(event) {
        });
    }
 
-   /*var typingTimer;
+/*var typingTimer;
 var typingInterval = 2000;
 var isTyping = false;
 
@@ -499,7 +484,6 @@ function checkTypingStatus() {
 
 setInterval(checkTypingStatus, 2000);*/
 
-
    function updateLastSeen() {
    $.ajax({
        url: "{{ route('update.last.seen') }}",
@@ -536,9 +520,6 @@ function checkLastSeen(userId) {
    });
 }
 
-
-
-
    function scrollToBottom() {
        var chatContainer = $('#chat-content');
        chatContainer.scrollTop(chatContainer[0].scrollHeight);
@@ -553,8 +534,6 @@ function checkLastSeen(userId) {
        localStorage.setItem('lastCheckedTimestamp', 0);
        }   
 }
-
-
 
 function fetchConversations(userId) {
    var lastCheckedTimestamp = getLastCheckedTimestamp() || 0;
@@ -589,8 +568,6 @@ function fetchConversations(userId) {
                        lastCheckedTimestamp = conversation.uniquetimestamp;
                    });
 
-                   
-
                    if (updatedConversations.length > 0) {
                        updatedConversations.forEach(function(updatedConversation) {
                            var messageHtml = Html(updatedConversation, user_id);
@@ -618,9 +595,6 @@ function fetchConversations(userId) {
        }
    });
 }
-
-
-
 
 fetchConversations();
 setInterval(function() {
@@ -683,8 +657,6 @@ function setupWallpaperChange(userId) {
        });
 
 
-
-
    $(document).on('click', '.delete-message', function(e) {
    e.preventDefault();
    var messageId = $(this).data('message-id');
@@ -728,7 +700,6 @@ function setupWallpaperChange(userId) {
        }
    });
 });
-
 
 </script>
 </body>

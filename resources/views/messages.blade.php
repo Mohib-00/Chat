@@ -20,21 +20,21 @@
             <div style="background-color:#202c33;width:4%" class="col-lg-1 one">
                 <div class="row">
 
-                    <div class="col-lg-12 col-md-12 col-sm-12">                     
-                        <svg class="mt-5" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">                     
+                        <svg class="mt-5 vi" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
                             <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                             <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
                           </svg>
                     </div>
 
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                          <svg class="mt-5" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+                          <svg class="mt-5 vi" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                             <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
                           </svg>
                     </div>
 
-                    <div class="col-lg-12 col-md-12 col-sm-12">                      
-                        <svg class="mt-5" style="color:#8b989e" viewBox="0 0 24 24" height="30" width="50" preserveAspectRatio="xMidYMid meet" fill="none">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">                      
+                        <svg class="mt-5 vi" style="color:#8b989e" viewBox="0 0 24 24" height="30" width="50" preserveAspectRatio="xMidYMid meet" fill="none">
                             <title>status-unread-outline</title>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M3.71672 8.34119C3.23926 8.06362 3.07722 7.45154 3.35479 6.97407C4.33646 5.28548 5.79114 3.92134 7.53925 3.05006C9.28736 2.17878 11.2524 1.83851 13.1916 2.07126C13.74 2.13707 14.1312 2.63494 14.0654 3.18329C13.9995 3.73164 13.5017 4.12282 12.9533 4.05701C11.4019 3.87081 9.82989 4.14303 8.43141 4.84005C7.03292 5.53708 5.86917 6.62839 5.08384 7.97926C4.80626 8.45672 4.19419 8.61876 3.71672 8.34119Z" fill="currentColor"></path>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8569 10.115C21.4065 10.0604 21.8963 10.4616 21.9509 11.0112C22.144 12.9548 21.7638 14.9125 20.857 16.6424C19.9503 18.3724 18.5567 19.799 16.8485 20.746C16.3655 21.0138 15.7568 20.8393 15.489 20.3563C15.2213 19.8732 15.3957 19.2646 15.8788 18.9968C17.2454 18.2392 18.3602 17.0979 19.0856 15.714C19.811 14.33 20.1152 12.7639 19.9607 11.209C19.9061 10.6594 20.3073 10.1696 20.8569 10.115Z" fill="currentColor"></path>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <svg  class="mt-5" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                        <svg  class="mt-5 vi" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
                             <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
                           </svg>                    
                     </div>
@@ -55,20 +55,20 @@
                     </div>
 
                     <div style="height:480px" class="col-lg-12 col-md-12 col-sm-12">
-                        <svg class="mt-3" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                        <svg class="mt-3 vi" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
                             <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
                         </svg>                      
                     </div>
 
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <svg class="mt-3" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                        <svg class="mt-3 vi" style="color:#8b989e" xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                             <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
                             <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
                           </svg>                    
                     </div>
 
                     <div style="padding:0px 0px 15px 20px" class="col-lg-12 col-md-12 col-sm-12 mt-5 ">
-                        <img class="icon" src="{{ asset('images/' . auth()->user()->image) }}">
+                        <img class="icon vi" src="{{ asset('images/' . auth()->user()->image) }}">
                     </div>
                     
                 </div>                
@@ -163,15 +163,15 @@
                                         <a href="#" style="text-decoration: none; color:white;">
                                             <div class="col-sm-8 col-xs-8 sideBar-name">
                                                 
-                                                <span class="name-meta user-chat-link v" 
-      data-user-id="{{ $single_message->id }}" 
-      data-user-name="{{ $single_message->name }}" 
-      data-user-image="{{ asset('images/' . $single_message->image) }}" 
-      data-user-backimage="{{ asset('images/' . $single_message->background_image) }}">{{ $single_message->name }}</span>
-      <br>
+                                <span class="name-meta user-chat-link v" 
+                                 data-user-id="{{ $single_message->id }}" data-user-name="{{ $single_message->name }}" 
+                                 data-user-image="{{ asset('images/' . $single_message->image) }}" 
+                                 data-user-backimage="{{ asset('images/' . $single_message->background_image) }}">{{ $single_message->name }}
+                                </span>
+                                 <br>
 
-                                                <span class="v" style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
-                                            </div>
+                                <span class="v" style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
+                                </div>
                                             <div class="col-sm-4 col-xs-4 mt-5 sideBar-time pull-right">
                                                 <span class="time-meta text-white pull-right ">{{ $single_message->lastMessageComments ? $single_message->lastMessageComments->created_at->diffForHumans() : '' }}</span>
                                             </div>

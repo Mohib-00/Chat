@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Auth;
  
 class MessagesController extends Controller
 {
-
-
-    
    public function store(Request $request)
     {
         $conversation = new MessageComment;
@@ -251,7 +248,6 @@ public function checkLastSeen(Request $request)
     return response()->json(['success' => false, 'message' => 'Last seen not available']);
 }
 
-
 public function updateBackgroundImage(Request $request, $user_id)
 {
     $user = User::find($user_id);
@@ -298,9 +294,6 @@ public function destroy($id)
 
     return response()->json(['success' => 'Message deleted successfully']);
 }
-
-
- 
 
 }
  

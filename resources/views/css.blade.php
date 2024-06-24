@@ -211,6 +211,9 @@ border-left: 1px solid rgba(0, 0, 0, .08);
     .v {
         margin-left:20px;
     }
+    .vi{
+        margin-left:-12px;
+    }
 }
 
 
