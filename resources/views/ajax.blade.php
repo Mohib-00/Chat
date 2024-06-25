@@ -101,6 +101,8 @@
       });
       });
 </script>
+
+ 
          
 <script type="text/javascript">
   
@@ -600,6 +602,24 @@ fetchConversations();
 setInterval(function() {
    fetchConversations();
 }, 2000);
+
+document.getElementById('searchText').addEventListener('input', function () {
+    var searchText = this.value.toLowerCase();
+    var sideBar = document.querySelector('.sideBar');
+    var sideBarItems = sideBar.querySelectorAll('.sideBar-body');
+
+    sideBarItems.forEach(function (item) {
+        var messageElement = item.querySelector('#message');
+        if (messageElement) {
+            var message = messageElement.innerText.toLowerCase();
+            if (message.indexOf(searchText) !== -1) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        }
+    });
+});
 
 function setupWallpaperChange(userId) {
                console.log("Wallpaper change for User ID: " + userId);

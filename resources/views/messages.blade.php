@@ -170,7 +170,7 @@
                                 </span>
                                  <br>
 
-                                <span class="v" style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
+                                <span class="v" id="message" style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
                                 </div>
                                             <div class="col-sm-4 col-xs-4 mt-5 sideBar-time pull-right">
                                                 <span class="time-meta text-white pull-right ">{{ $single_message->lastMessageComments ? $single_message->lastMessageComments->created_at->diffForHumans() : '' }}</span>
@@ -269,7 +269,7 @@
                         </div>
                     </div>
                     
-                    <div class="row message "style="height:690px;width:100% ">
+                    <div id="message" class="row message "style="height:690px;width:100% ">
                         <div class="col-lg-12 col-sm-12   conversation">
                             <div id="chat-content"  style=" height: calc(127% - 120px); overflow-y: auto;width:102%">          
                                
