@@ -14,7 +14,7 @@
 
 <body>
    
-    <div class="container-fluid " id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset('images/' . $user->background_image) }}')">
+    <div class="container-fluid" id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset('images/' . $user->background_image) }}')">
     
         <div class="row">
             <div style="background-color:#202c33;width:4%" class="col-lg-1 one">
@@ -208,9 +208,6 @@
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div> 
                             
-                            
-                            
-
                             <div class="col-lg-1 col-md-1 col-sm-1" >
                                 <div class="row">
 

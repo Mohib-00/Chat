@@ -101,9 +101,7 @@
       });
       });
 </script>
-
- 
-         
+  
 <script type="text/javascript">
   
    var lastCheckedTimestamp = null;
@@ -133,7 +131,6 @@
    })
 
     
-
    $(document).on('click', '.user-chat-link', function(e) {
     e.preventDefault();
     
@@ -194,16 +191,13 @@
        }
    });
 }
-
-   
+  
    $('[name="message"]').keypress(function(e) {
    if (e.which === 13) {
    e.preventDefault();  
    //sendMessage();
    }
    }); 
-
-   
 
 function Html(conversation, user_id) {
    var deleteButton = (conversation.user_id == user_id) ? `<a style="color:white" class="delete-message btn-sm  position-absolute  top-0 start-0 mt-1 ms-1" data-message-id="${conversation.id}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>` : '';
@@ -364,7 +358,6 @@ $('#editMessageInput').on('keypress', function(event) {
         }
     }
 });
-
 
    function sendMessage() {
        var formData = new FormData();  

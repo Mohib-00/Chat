@@ -57,9 +57,7 @@ class MessagesController extends Controller
 
          
         if(Message::where(['sender_id'=> $auth_user, 'receiver_id'=> $user])->first()){
-
             $message_info = Message::where(['sender_id'=> $auth_user, 'receiver_id'=> $user])->first();
-
         }else if(Message::where(['sender_id'=> $user, 'receiver_id'=> $auth_user])->first()){
 
             $message_info = Message::where(['sender_id'=> $user, 'receiver_id'=> $auth_user])->first();
@@ -179,8 +177,7 @@ public function updateProfile(Request $request){
 
 public function loadChat(Request $request, $userId)
 {
-     
-
+    
     $messageInfo = Message::where(function ($query) use ($userId) {
         $query->where('sender_id', auth()->user()->id)
             ->where('receiver_id', $userId);
@@ -271,8 +268,6 @@ public function updateBackgroundImage(Request $request, $user_id)
         return response()->json(['success' => false, 'message' => 'User not found']);
     }
 }
-
-
 public function update(Request $request, $id)
 {
     $updatedTimestamp = time();

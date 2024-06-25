@@ -70,8 +70,6 @@
     }
 }
 
-
-     
 .icon {
 border-radius: 50%;
 height: 40px;
@@ -84,7 +82,6 @@ width: 65px;
 border-radius: 50%;
 }
  
-
 .sideBar {
 padding: 0 !important;
 margin: 0 !important; 
@@ -138,8 +135,6 @@ margin: 0 !important;
 background-color: #202c33;
 }
 
-
-
 .avatar-icon img {
 border-radius: 50%;
 height: 60px;
@@ -161,8 +156,6 @@ padding:20px 0px 0px 0px !important;
 color:#dfe3e6;
 font-size:20px
 }
-
-
 
 .sideBar-time {
 padding: 10px !important;
@@ -215,6 +208,4 @@ border-left: 1px solid rgba(0, 0, 0, .08);
         margin-left:-12px;
     }
 }
-
-
 </style>
