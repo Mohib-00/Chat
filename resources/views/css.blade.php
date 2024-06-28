@@ -208,4 +208,14 @@ border-left: 1px solid rgba(0, 0, 0, .08);
         margin-left:-12px;
     }
 }
+
+@media (max-width: 1354px) {
+    .co {
+        width: 85% !important;  
+    }
+}
+
+ 
+
+
 </style>

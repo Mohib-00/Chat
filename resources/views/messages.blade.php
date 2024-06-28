@@ -266,18 +266,42 @@
                         </div>
                     </div>
                     
-                    <div id="message" class="row message "style="height:690px;width:100% ">
+                    <div id="message" class="row message "style="height:510px;width:100% ">
                         <div class="col-lg-12 col-sm-12   conversation">
-                            <div id="chat-content"  style=" height: calc(127% - 120px); overflow-y: auto;width:102%">          
+                            <div id="chat-content"  style=" height: calc(150% - 120px); overflow-y: auto;width:102%">          
                                
                             </div>
+                            <form id="myForm" class="form-group">
+                                <div id="reply" class="container-fluid" style="margin-top:-21px;margin-left:5px;background-color:#202c33;width:102%">
+                                    <div class="row">
+                                        <div class="col-1" style="background-color:#52bdeb;width:1%;border-radius:5px 0px 0px 5px;">
+                                            <p style="display: none">nn</p>
+                                        </div>
+                                        <div class="col-10 co" style="background-color: #111b21; height:110px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:90%">
+                                            @if (count($user_messages) > 0)
+                                            <h5><i style="color: #52bdde"> {{ $user_messages[0]->name }}</i></h5>
+                                            @endif
+                                            <p id="reply-message" style="color:#9fa4a6"></p>
+                                        </div>
+                                        <div class="col-1">
+                                            <svg id="hideReply" style="color: #8797a1;margin-top:30px;margin-left:20px" viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" class="" fill="currentColor" enable-background="new 0 0 24 24">
+                                                <title>x</title>
+                                                <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
                         </div>
                     </div>
 
 
-                    <div style="margin-top:45px;background-color:#202c33;" class="col-lg-12">
-                        <form id="myForm" class="form-group"  >
+                    <div style="margin-top:224px; background-color:#202c33;" class="col-lg-12">
+
+                        
                             <input type="hidden" name="message_id" value="{{$message_info->id}}">
+
+                            <input type="hidden" name="reply_message_content" id="replyMessageContent">
 
                             <input id="image-upload" type="file" style="display: none;" multiple>
                             <input id="image" type="hidden" name="image">
@@ -294,7 +318,7 @@
 
                       
                             <div class="input-group" >
-                                <div class="row reply" style="padding:4px 0px 5px 0px;height:70px">
+                                <div class="row reply" style="padding:4px 0px 5px 0px;height:85px">
 
                                     <div style="width:6%" class="col-1 reply-emojis video-upload-icon" id="image-upload-icon">
                                         <svg class="mx-4  " style="color:#8b989e;margin-top:35%" viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>smiley</title><path fill="currentColor" d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,14.073,12.566,15.128,17.312,14.073z M11.804,1.011c-6.195,0-10.826,5.022-10.826,11.217 s4.826,10.761,11.021,10.761S23.02,18.423,23.02,12.228C23.021,6.033,17.999,1.011,11.804,1.011z M12,21.354 c-5.273,0-9.381-3.886-9.381-9.159s3.942-9.548,9.215-9.548s9.548,4.275,9.548,9.548C21.381,17.467,17.273,21.354,12,21.354z  M15.108,11.603c0.795,0,1.439-0.879,1.439-1.962s-0.644-1.962-1.439-1.962s-1.439,0.879-1.439,1.962S14.313,11.603,15.108,11.603z"></path></svg>
@@ -317,7 +341,7 @@
                                             
 
                                             <div class="col-6">
-                                                <button style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3 mt-4 mx-4" id="submitMessage">
+                                                <button  style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3 mt-4 mx-4" id="submitMessage">
                                                     <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                                         <title>send</title>
                                                         <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>

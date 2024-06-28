@@ -13,7 +13,8 @@
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+
+
    <script>
        document.addEventListener('DOMContentLoaded', (event) => {
            const sidebar = document.getElementById('sidebar');
@@ -139,10 +140,10 @@
     var userImage = $(this).data('user-image');
     var backImage = $(this).data('user-backimage');  
     
-    console.log("User ID:", userId);
+    /*console.log("User ID:", userId);
     console.log("User Name:", userName);
     console.log("User Image:", userImage);
-    console.log("Back Image:", backImage);
+    console.log("Back Image:", backImage);*/
     
     if (backImage) {
         $('#chat-container').css('background-image', 'url(' + backImage + ')');
@@ -156,19 +157,20 @@
     fetchConversations(userId);
     setupWallpaperChange(userId);
     
+    
     window.history.pushState({}, '', '/messages/' + userId);
     loadUserChat(userId);
 });
 
    function loadUserChat(userId) {
-   console.log("Loading chat for user:", userId);
+   //console.log("Loading chat for user:", userId);
    
    var user_id = "{{ Auth::user()->id }}";
    $.ajax({
        url: "/load-chat/" + userId,
        method: "GET",
        success: function(response) {
-           console.log("Received response:", response);
+           //console.log("Received response:", response);
            if (response && Array.isArray(response.conversations)) {
                $('#chat-content').empty();
                var conversations = response.conversations;
@@ -182,8 +184,9 @@
                   
                }
            } else {
-               console.log("No conversations found for user:", userId);
+               //console.log("No conversations found for user:", userId);
                $('#chat-content').empty();
+                
            }
        },
        error: function(xhr, status, error) {
@@ -264,9 +267,16 @@ function Html(conversation, user_id) {
        `;
    } else {
     messageHtml = `
-   <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
+  <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
     <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
         <div style="position: relative;">
+
+            ${conversation.reply_message_content ? `
+                <div>
+                    <h6 id="replyMessageContent">${conversation.reply_message_content}</h6>
+                </div>
+            ` : ''}
+
             <div class="message-content" style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
                 ${conversation.message}
                 <br>
@@ -274,27 +284,46 @@ function Html(conversation, user_id) {
                 <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
                 ${conversation.user_id == user_id ? seenStatusSvg : ''}
             </div>
-            ${conversation.user_id == user_id ? `
-                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${conversation.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; right: 90px; margin-top:25px; color:green" data-message-id="${conversation.id}">
-                </a>
-                <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
+            
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${conversation.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; ${conversation.user_id == user_id ? 'right: 90px;' : 'left: 70px;'} margin-top:25px; ${conversation.user_id != user_id ? 'color:black;' : 'color:green;'}" data-message-id="${conversation.id}">
+            </a>
+            <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
+                <li><a class="dropdown-item text-white reply-message" href="#" data-message-content="${conversation.message}">Reply</a></li>
+                ${conversation.user_id == user_id ? `
                     <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
                     <li><a class="dropdown-item text-white edit-message" href="#" data-message-id="${conversation.id}">Edit</a></li>
                     ${conversation.status === 'deleted' ? `
                         <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${conversation.id}">Remove</a></li>
                     ` : ''}
-                </ul>
-            ` : ''}
+                ` : ''}
+            </ul>
         </div>
     </div>
 </div>
 <br>
+
 
 `;
    }
 
    return messageHtml;
 }
+
+ 
+
+$(document).on('click', '.reply-message', function(event) {
+    event.preventDefault();
+    var messageContent = $(this).data('message-content');
+    $('#reply-message').text(messageContent);  
+    $('#replyMessageContent').val(messageContent);  
+    $('#reply').show();  
+});
+
+$('#reply').hide();    
+$('#hideReply').click(function() {
+    $('#reply').toggle();
+});
+
 
 $(document).on('click', '.remove-message', function(event) {
         event.preventDefault();
@@ -330,6 +359,7 @@ $(document).on('click', '.edit-message', function(event) {
     $('#editMessageInput').val(currentMessage).data('message-id', currentMessageId).focus();
 });
 
+ 
 $('#editMessageInput').on('keypress', function(event) {
     if (event.which == 13 && currentMessageId) {  
         event.preventDefault();  
@@ -359,56 +389,68 @@ $('#editMessageInput').on('keypress', function(event) {
     }
 });
 
-   function sendMessage() {
-       var formData = new FormData();  
-       var csrfToken = $('meta[name="csrf-token"]').attr('content');
+ 
 
-       formData.append('message_id', $('[name="message_id"]').val());
-       var messageInput = $('[name="message"]').val().trim();         
-  
-       var uniqueTimestamp = Math.floor(Date.now() / 1000); 
-       var formattedDate = new Date(uniqueTimestamp * 1000).toISOString().slice(0, 19).replace('T', ' '); 
-         
-       if ($('#video-upload')[0].files.length > 0) {
-       var videoFile = $('#video-upload')[0].files[0];
-       formData.append('video', videoFile); 
-       }
+   
 
-       if ($('#image-upload')[0].files.length > 0) {
-       var files = $('#image-upload')[0].files;
-       for (var i = 0; i < files.length; i++) {
-       formData.append('images[]', files[i]); 
-       }
-       }
-       
-       if (messageInput !== '') {
-       formData.append('message', messageInput);
-       } else {
-       formData.append('message', 'No message');
-       }
+function sendMessage() {
+    var formData = new FormData();
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-       $.ajax({
-           url: "{{ route('storeConversations') }}",
-           method: 'post',
-           data: formData,
-           contentType: false,
-           processData: false,
-           headers: {
-               'X-CSRF-TOKEN': csrfToken  
-           },
-           success: function(result) {
-               $('[name="message"]').val('');
-               $('#image-upload').val(''); 
-               $('#video-upload').val('');  
-               updateLastSeen();
-                        
-           },
+    formData.append('message_id', $('[name="message_id"]').val());
+    var messageInput = $('[name="message"]').val().trim();
+    var replyMessageContent = $('#replyMessageContent').val().trim(); 
+    console.log("Reply Message:", replyMessageContent);
 
-           error: function(xhr, status, error) {
-               console.error(xhr.responseText);
-           }
-       });
-   }
+
+    var uniqueTimestamp = Math.floor(Date.now() / 1000);
+    var formattedDate = new Date(uniqueTimestamp * 1000).toISOString().slice(0, 19).replace('T', ' ');
+
+    if ($('#video-upload')[0].files.length > 0) {
+        var videoFile = $('#video-upload')[0].files[0];
+        formData.append('video', videoFile);
+    }
+
+    if ($('#image-upload')[0].files.length > 0) {
+        var files = $('#image-upload')[0].files;
+        for (var i = 0; i < files.length; i++) {
+            formData.append('images[]', files[i]);
+        }
+    }
+
+    if (messageInput !== '') {
+        formData.append('message', messageInput);
+    } else {
+        formData.append('message', 'No message');
+    }
+
+    if (replyMessageContent !== '') {
+        formData.append('reply_message_content', replyMessageContent);  
+    }
+
+    $.ajax({
+        url: "{{ route('storeConversations') }}",
+        method: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        success: function(result) {
+            $('[name="message"]').val('');
+            $('#image-upload').val('');
+            $('#video-upload').val('');
+            $('#replyMessageContent').val('');  
+            updateLastSeen();
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+
 
 /*var typingTimer;
 var typingInterval = 2000;
@@ -488,11 +530,11 @@ setInterval(checkTypingStatus, 2000);*/
        },
        success: function(response) {
            if (response.success) {
-               console.log(response.message);
+               //console.log(response.message);
            }
        },
        error: function(xhr, status, error) {
-           console.error("Error updating last seen:", xhr.responseText);
+           //console.error("Error updating last seen:", xhr.responseText);
        }
    });
 }
@@ -510,7 +552,7 @@ function checkLastSeen(userId) {
            }
        },
        error: function(xhr, status, error) {
-           console.error("Error checking last seen:", error);
+           //console.error("Error checking last seen:", error);
        }
    });
 }
@@ -547,7 +589,7 @@ function fetchConversations(userId) {
            _token: csrfToken,
        },
        success: function(response) {
-           console.log(response);
+           //console.log(response);
            if (response && Array.isArray(response.conversations)) {
                var conversations = response.conversations;
                var updatedConversations = response.updatedConversations;
@@ -580,7 +622,7 @@ function fetchConversations(userId) {
                
                checkLastSeen(userId);
            } else {
-               console.error('Invalid response format:', response);
+               //console.error('Invalid response format:', response);
                loadingMessages = false;
            }
        },
@@ -615,7 +657,7 @@ document.getElementById('searchText').addEventListener('input', function () {
 });
 
 function setupWallpaperChange(userId) {
-               console.log("Wallpaper change for User ID: " + userId);
+                
                
                 
                $('.wallpaper').off('click').on('click', function(e) {
@@ -630,7 +672,7 @@ function setupWallpaperChange(userId) {
 
                    var file = event.target.files[0];
                    if (!file) {
-                       console.log("No file selected");
+                      // console.log("No file selected");
                        return;
                    }
 
@@ -648,11 +690,11 @@ function setupWallpaperChange(userId) {
                        },
                        success: function(response) {
                            if (response.success) {
-                               console.log('Background image updated successfully');
+                              // console.log('Background image updated successfully');
                                var imageUrl = URL.createObjectURL(file);
                                $('#chat-container').css('background-image', 'url(' + imageUrl + ')');
                            } else {
-                               console.error('Error updating background image');
+                              // console.error('Error updating background image');
                            }
                        },
                        error: function(xhr, status, error) {
