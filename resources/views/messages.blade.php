@@ -301,7 +301,7 @@
                         
                             <input type="hidden" name="message_id" value="{{$message_info->id}}">
 
-                            <input type="hidden" name="reply_message_content" id="replyMessageContent">
+                            <input type="hidden" name="reply_message_content" id="replyMessage">
 
                             <input id="image-upload" type="file" style="display: none;" multiple>
                             <input id="image" type="hidden" name="image">

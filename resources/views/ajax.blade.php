@@ -270,10 +270,18 @@ function Html(conversation, user_id) {
   <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
     <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
         <div style="position: relative;">
+ 
 
-            ${conversation.reply_message_content ? `
-                <div>
-                    <h6 id="replyMessageContent">${conversation.reply_message_content}</h6>
+                ${conversation.reply_message_content ? `
+                <div class="container-fluid vo" style="margin-top:-21px; ${conversation.user_id == user_id ? 'margin-left:560px;' : 'margin-left:-1px;'} background-color:#202c33;width:100%">
+                    <div class="row">
+                        <div class="col-1" style="background-color:#52bdeb;width:1%;border-radius:5px 0px 0px 5px;">
+                            <p style="display: none">nn</p>
+                        </div>
+                        <div class="col-10" style="background-color: #111b21; height:110px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:90%;margin:4px 4px 4px 4px">  
+                            <p style="font-size:17px;  color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left:-25%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${conversation.reply_message_content}</p>
+                        </div>
+                    </div>
                 </div>
             ` : ''}
 
@@ -289,6 +297,7 @@ function Html(conversation, user_id) {
             </a>
             <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
                 <li><a class="dropdown-item text-white reply-message" href="#" data-message-content="${conversation.message}">Reply</a></li>
+                 <li><a class="dropdown-item text-white react-message" href="#">React</a></li>
                 ${conversation.user_id == user_id ? `
                     <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
                     <li><a class="dropdown-item text-white edit-message" href="#" data-message-id="${conversation.id}">Edit</a></li>
@@ -315,7 +324,7 @@ $(document).on('click', '.reply-message', function(event) {
     event.preventDefault();
     var messageContent = $(this).data('message-content');
     $('#reply-message').text(messageContent);  
-    $('#replyMessageContent').val(messageContent);  
+    $('#replyMessage').val(messageContent);  
     $('#reply').show();  
 });
 
@@ -399,8 +408,8 @@ function sendMessage() {
 
     formData.append('message_id', $('[name="message_id"]').val());
     var messageInput = $('[name="message"]').val().trim();
-    var replyMessageContent = $('#replyMessageContent').val().trim(); 
-    console.log("Reply Message:", replyMessageContent);
+    var replyMessage = $('#replyMessage').val().trim(); 
+    console.log("Reply Message:", replyMessage);
 
 
     var uniqueTimestamp = Math.floor(Date.now() / 1000);
@@ -424,8 +433,8 @@ function sendMessage() {
         formData.append('message', 'No message');
     }
 
-    if (replyMessageContent !== '') {
-        formData.append('reply_message_content', replyMessageContent);  
+    if (replyMessage !== '') {
+        formData.append('reply_message_content', replyMessage);  
     }
 
     $.ajax({
@@ -441,8 +450,9 @@ function sendMessage() {
             $('[name="message"]').val('');
             $('#image-upload').val('');
             $('#video-upload').val('');
-            $('#replyMessageContent').val('');  
+            $('#replyMessage').val('');  
             updateLastSeen();
+            $('#reply').hide();   
         },
         error: function(xhr, status, error) {
             console.error(xhr.responseText);
