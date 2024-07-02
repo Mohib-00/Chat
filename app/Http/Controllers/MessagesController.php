@@ -294,5 +294,24 @@ public function destroy($id)
     return response()->json(['success' => 'Message deleted successfully']);
 }
 
+public function saveReact(Request $request)
+    {
+        $updatedTimestamp = time();
+         
+
+        $messageComment = MessageComment::find($request->conversation_id);
+
+        if (!$messageComment) {
+            return response()->json(['error' => 'Message not found'], 404);
+        }
+
+        $messageComment->updatedtimestamp = $updatedTimestamp;
+        
+        $messageComment->react_message = $request->emoji;
+        $messageComment->save();
+
+        return response()->json(['message' => 'Reaction saved successfully'], 200);
+    }
+
 }
  

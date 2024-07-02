@@ -102,7 +102,44 @@
       });
       });
 </script>
-  
+ 
+<script>
+    function toggleReact(conversationId) {
+        var reactDiv = document.getElementById('react-' + conversationId);
+        if (reactDiv.style.display === 'none' || reactDiv.style.display === '') {
+            reactDiv.style.display = 'block';
+        } else {
+            reactDiv.style.display = 'none';
+        }
+    }
+
+    function saveReact(conversationId, emojiSrc) {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        url: "/save-react",
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        data: {
+            conversation_id: conversationId,
+            emoji: emojiSrc
+        },
+        success: function(response) {
+            console.log('Reaction saved:', response);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error saving reaction:', error);
+        }
+    });
+}
+
+
+</script>
+
+ 
+
 <script type="text/javascript">
   
    var lastCheckedTimestamp = null;
@@ -267,37 +304,60 @@ function Html(conversation, user_id) {
        `;
    } else {
     messageHtml = `
-  <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
+ <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
     <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
         <div style="position: relative;">
- 
 
-                ${conversation.reply_message_content ? `
-                <div class="container-fluid vo" style="margin-top:-21px; ${conversation.user_id == user_id ? 'margin-left:560px;' : 'margin-left:-1px;'} background-color:#202c33;width:100%">
+            ${conversation.reply_message_content ? `
+                 <div class="container-fluid vo" style="margin-top:-21px; ${conversation.user_id == user_id ? 'margin-left:650px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
                     <div class="row">
-                        <div class="col-1" style="background-color:#52bdeb;width:1%;border-radius:5px 0px 0px 5px;">
+                        <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
                             <p style="display: none">nn</p>
                         </div>
-                        <div class="col-10" style="background-color: #111b21; height:110px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:90%;margin:4px 4px 4px 4px">  
-                            <p style="font-size:17px;  color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left:-25%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${conversation.reply_message_content}</p>
+                         <div class="col-10" style="${conversation.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px 4px">  
+                            <p style="font-size:17px; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left:-25%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${conversation.reply_message_content}</p>
                         </div>
                     </div>
                 </div>
             ` : ''}
 
+             <div id="react-${conversation.id}" class="col-4" style="display: none; background-color:#222e36; height:70px; border-radius:20px;">
+                <div class="row">
+                    <div class="col-2 mt-1 mx-4">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji.jfif') }}" alt="Emoji 1" onclick="saveReact(${conversation.id}, 'emoji.jfif')">
+                    </div>
+                    <div class="col-2 mt-1">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji1.jfif') }}" alt="Emoji 2" onclick="saveReact(${conversation.id}, 'emoji1.jfif')">
+                    </div>
+                    <div class="col-2 mt-1 mx-4">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji2.jfif') }}" alt="Emoji 3" onclick="saveReact(${conversation.id}, 'emoji2.jfif')">
+                    </div>
+                    <div class="col-2 mt-1">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji3.jfif') }}" alt="Emoji 4" onclick="saveReact(${conversation.id}, 'emoji3.jfif')">
+                    </div>
+                </div>
+            </div>
+
             <div class="message-content" style="font-size:17px;background:${conversation.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${conversation.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
                 ${conversation.message}
+
                 <br>
                 ${conversation.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
                 <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
                 ${conversation.user_id == user_id ? seenStatusSvg : ''}
             </div>
+
+             ${conversation.react_message ? `
+                <div style="margin-top: 10px;">
+                    <p><img style="width: 30px; height: 30px; border-radius: 50%;" src="{{ asset('${conversation.react_message}') }}" alt="React Emoji"></p>
+                </div>
+            ` : ''}
             
             <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${conversation.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; ${conversation.user_id == user_id ? 'right: 90px;' : 'left: 70px;'} margin-top:25px; ${conversation.user_id != user_id ? 'color:black;' : 'color:green;'}" data-message-id="${conversation.id}">
             </a>
             <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
                 <li><a class="dropdown-item text-white reply-message" href="#" data-message-content="${conversation.message}">Reply</a></li>
-                 <li><a class="dropdown-item text-white react-message" href="#">React</a></li>
+                <li><a class="dropdown-item text-white react-message" href="#" onclick="toggleReact(${conversation.id})">React</a></li>
                 ${conversation.user_id == user_id ? `
                     <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
                     <li><a class="dropdown-item text-white edit-message" href="#" data-message-id="${conversation.id}">Edit</a></li>
@@ -306,11 +366,13 @@ function Html(conversation, user_id) {
                     ` : ''}
                 ` : ''}
             </ul>
+
+            
+            
         </div>
     </div>
 </div>
 <br>
-
 
 `;
    }
@@ -318,7 +380,7 @@ function Html(conversation, user_id) {
    return messageHtml;
 }
 
- 
+  
 
 $(document).on('click', '.reply-message', function(event) {
     event.preventDefault();
@@ -333,7 +395,7 @@ $('#hideReply').click(function() {
     $('#reply').toggle();
 });
 
-
+ 
 $(document).on('click', '.remove-message', function(event) {
         event.preventDefault();
         let messageId = $(this).data('message-id');
@@ -452,6 +514,7 @@ function sendMessage() {
             $('#video-upload').val('');
             $('#replyMessage').val('');  
             updateLastSeen();
+             
             $('#reply').hide();   
         },
         error: function(xhr, status, error) {
@@ -582,6 +645,9 @@ function checkLastSeen(userId) {
        }   
 }
 
+
+ 
+
 function fetchConversations(userId) {
    var lastCheckedTimestamp = getLastCheckedTimestamp() || 0;
    var message_id = $('[name="message_id"]').val();
@@ -600,6 +666,9 @@ function fetchConversations(userId) {
        },
        success: function(response) {
            //console.log(response);
+
+            
+
            if (response && Array.isArray(response.conversations)) {
                var conversations = response.conversations;
                var updatedConversations = response.updatedConversations;
@@ -631,6 +700,7 @@ function fetchConversations(userId) {
                }
                
                checkLastSeen(userId);
+               
            } else {
                //console.error('Invalid response format:', response);
                loadingMessages = false;

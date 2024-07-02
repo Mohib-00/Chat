@@ -217,7 +217,7 @@ border-left: 1px solid rgba(0, 0, 0, .08);
 
 @media (max-width: 1354px) {
     .vo {
-        width:30% !important;  
+        width:19% !important;  
 
     }
 
