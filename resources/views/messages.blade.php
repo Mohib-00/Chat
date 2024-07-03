@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @include('css')    
+    @include('css')   
+     
 </head>
-
 <body>
    
     <div class="container-fluid" id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset('images/' . $user->background_image) }}')">
@@ -133,8 +133,7 @@
                                     <input style="color:white; border:none;background-color:#202c33" id="searchText" type="text" class="form-control" name="searchText" placeholder="Search">
                                 </div>
 
-                            </div>
-                         
+                            </div> 
                         </div>
 
                         <div class="col-lg-1 col-md-1 col-sm-1">
@@ -292,14 +291,11 @@
                                         </div>
                                     </div>
                                 </div>
-
                         </div>
                     </div>
 
-
                     <div style="margin-top:224px; background-color:#202c33;" class="col-lg-12">
 
-                        
                             <input type="hidden" name="message_id" value="{{$message_info->id}}">
 
                             <input type="hidden" name="reply_message_content" id="replyMessage">
@@ -312,12 +308,11 @@
 
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
 
-                              <input type="file" id="file-input" style="display: none;">
+                            <input type="file" id="file-input" style="display: none;">
 
                            
                             <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">
-
-                      
+                    
                             <div class="input-group" >
                                 <div class="row reply" style="padding:4px 0px 5px 0px;height:85px">
 

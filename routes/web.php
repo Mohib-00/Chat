@@ -4,8 +4,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessagesController;
 use Illuminate\Support\Facades\Route;
 
- 
-
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

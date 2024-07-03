@@ -135,10 +135,7 @@
     });
 }
 
-
 </script>
-
- 
 
 <script type="text/javascript">
   
@@ -177,11 +174,6 @@
     var userImage = $(this).data('user-image');
     var backImage = $(this).data('user-backimage');  
     
-    /*console.log("User ID:", userId);
-    console.log("User Name:", userName);
-    console.log("User Image:", userImage);
-    console.log("Back Image:", backImage);*/
-    
     if (backImage) {
         $('#chat-container').css('background-image', 'url(' + backImage + ')');
     } else {
@@ -193,21 +185,19 @@
     
     fetchConversations(userId);
     setupWallpaperChange(userId);
-    
-    
+
     window.history.pushState({}, '', '/messages/' + userId);
     loadUserChat(userId);
 });
 
    function loadUserChat(userId) {
-   //console.log("Loading chat for user:", userId);
    
    var user_id = "{{ Auth::user()->id }}";
    $.ajax({
        url: "/load-chat/" + userId,
        method: "GET",
        success: function(response) {
-           //console.log("Received response:", response);
+        
            if (response && Array.isArray(response.conversations)) {
                $('#chat-content').empty();
                var conversations = response.conversations;
@@ -221,9 +211,7 @@
                   
                }
            } else {
-               //console.log("No conversations found for user:", userId);
-               $('#chat-content').empty();
-                
+               $('#chat-content').empty();    
            }
        },
        error: function(xhr, status, error) {
@@ -235,7 +223,6 @@
    $('[name="message"]').keypress(function(e) {
    if (e.which === 13) {
    e.preventDefault();  
-   //sendMessage();
    }
    }); 
 
@@ -365,10 +352,7 @@ function Html(conversation, user_id) {
                         <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${conversation.id}">Remove</a></li>
                     ` : ''}
                 ` : ''}
-            </ul>
-
-            
-            
+            </ul>         
         </div>
     </div>
 </div>
@@ -379,8 +363,6 @@ function Html(conversation, user_id) {
 
    return messageHtml;
 }
-
-  
 
 $(document).on('click', '.reply-message', function(event) {
     event.preventDefault();
@@ -394,7 +376,6 @@ $('#reply').hide();
 $('#hideReply').click(function() {
     $('#reply').toggle();
 });
-
  
 $(document).on('click', '.remove-message', function(event) {
         event.preventDefault();
@@ -415,8 +396,7 @@ $(document).on('click', '.remove-message', function(event) {
                 error: function(xhr) {
                     alert('Error deleting message');
                 }
-            });
-        
+            });     
     });
 
 let currentMessageId = null;
@@ -458,8 +438,6 @@ $('#editMessageInput').on('keypress', function(event) {
     }
 });
 
-
-
 $(document).on('keydown', function(e) {
     if (e.which === 38) {   
         e.preventDefault();
@@ -487,7 +465,6 @@ function getLastMessage() {
     });
 }
 
- 
 function sendMessage() {
     var formData = new FormData();
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -496,7 +473,6 @@ function sendMessage() {
     var messageInput = $('[name="message"]').val().trim();
     var replyMessage = $('#replyMessage').val().trim(); 
     console.log("Reply Message:", replyMessage);
-
 
     var uniqueTimestamp = Math.floor(Date.now() / 1000);
     var formattedDate = new Date(uniqueTimestamp * 1000).toISOString().slice(0, 19).replace('T', ' ');
@@ -537,8 +513,7 @@ function sendMessage() {
             $('#image-upload').val('');
             $('#video-upload').val('');
             $('#replyMessage').val('');  
-            updateLastSeen();
-             
+            updateLastSeen();   
             $('#reply').hide();   
         },
         error: function(xhr, status, error) {
@@ -546,8 +521,6 @@ function sendMessage() {
         }
     });
 }
-
-
 
 /*var typingTimer;
 var typingInterval = 2000;
@@ -627,11 +600,11 @@ setInterval(checkTypingStatus, 2000);*/
        },
        success: function(response) {
            if (response.success) {
-               //console.log(response.message);
+               
            }
        },
        error: function(xhr, status, error) {
-           //console.error("Error updating last seen:", xhr.responseText);
+         
        }
    });
 }
@@ -649,7 +622,7 @@ function checkLastSeen(userId) {
            }
        },
        error: function(xhr, status, error) {
-           //console.error("Error checking last seen:", error);
+           
        }
    });
 }
@@ -669,9 +642,6 @@ function checkLastSeen(userId) {
        }   
 }
 
-
- 
-
 function fetchConversations(userId) {
    var lastCheckedTimestamp = getLastCheckedTimestamp() || 0;
    var message_id = $('[name="message_id"]').val();
@@ -689,10 +659,7 @@ function fetchConversations(userId) {
            _token: csrfToken,
        },
        success: function(response) {
-           //console.log(response);
-
-            
-
+           
            if (response && Array.isArray(response.conversations)) {
                var conversations = response.conversations;
                var updatedConversations = response.updatedConversations;
@@ -726,7 +693,6 @@ function fetchConversations(userId) {
                checkLastSeen(userId);
                
            } else {
-               //console.error('Invalid response format:', response);
                loadingMessages = false;
            }
        },
@@ -761,22 +727,19 @@ document.getElementById('searchText').addEventListener('input', function () {
 });
 
 function setupWallpaperChange(userId) {
-                
-               
-                
+                               
                $('.wallpaper').off('click').on('click', function(e) {
                    e.preventDefault();
                   
                    $('#file-input').click();
                });
-
-              
+             
                $('#file-input').off('change').on('change', function(event) {
                    
 
                    var file = event.target.files[0];
                    if (!file) {
-                      // console.log("No file selected");
+                      
                        return;
                    }
 
@@ -794,11 +757,11 @@ function setupWallpaperChange(userId) {
                        },
                        success: function(response) {
                            if (response.success) {
-                              // console.log('Background image updated successfully');
+                              
                                var imageUrl = URL.createObjectURL(file);
                                $('#chat-container').css('background-image', 'url(' + imageUrl + ')');
                            } else {
-                              // console.error('Error updating background image');
+                              
                            }
                        },
                        error: function(xhr, status, error) {
@@ -807,8 +770,7 @@ function setupWallpaperChange(userId) {
                    });
                });
            }
-
-           
+          
            var UserId = $('#selected-user-name').data('user-id');
            if (UserId) {
                setupWallpaperChange(UserId);

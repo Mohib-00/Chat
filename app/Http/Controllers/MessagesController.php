@@ -53,8 +53,7 @@ class MessagesController extends Controller
     
         return response()->json($conversation);
     }
-    
-  
+
   public function show($user)
     {
         $auth_user = auth()->user()->id;
@@ -88,7 +87,6 @@ class MessagesController extends Controller
        return view('messages', compact('user_messages', 'conversations', 'message_info','user'));
 
     }
- 
 
 public function getConversations(Request $request)
 {
@@ -100,19 +98,16 @@ public function getConversations(Request $request)
         return response()->json(['error' => 'Invalid timestamp'], 400);
     }
 
-    
     MessageComment::where('message_id', $messageId)
         ->where('user_id', '!=', auth()->id())
         ->where('seen_status', 0)
         ->update(['seen_status' => 1, 'updatedTimestamp' => $updatedTimestamp]);
 
-    
     $conversations = MessageComment::with('user')
         ->where('message_id', $messageId)
         ->where('uniquetimestamp', '>', $lastCheckedUniqueTimestamp)
         ->get();
 
-    
     $updatedConversations = MessageComment::with('user')
         ->where('message_id', $messageId)
         ->where('updatedtimestamp', '>', $lastCheckedUniqueTimestamp)
@@ -149,20 +144,17 @@ public function delete($id)
 
    public function openNewPage()
 {
-    
-    \Log::info('New page request received');
 
-     
+    \Log::info('New page request received'); 
     return response()->json(['message' => 'New page opened successfully']);
 }
 
 
 public function updateProfile(Request $request){
+
     $user = User::where('id', auth()->user()->id)->first();
     $user->name = $request->input('name');
    
-    
-     
     if ($request->has('password')) {
         $user->password = bcrypt($request->input('password'));
     }
@@ -296,8 +288,7 @@ public function destroy($id)
 
 public function saveReact(Request $request)
     {
-        $updatedTimestamp = time();
-         
+        $updatedTimestamp = time();       
 
         $messageComment = MessageComment::find($request->conversation_id);
 
