@@ -269,7 +269,7 @@
                     
                     <div id="message" class="row message "style="height:510px;width:100% ">
                         <div class="col-lg-12 col-sm-12   conversation">
-                            <div id="chat-content"  style=" height: calc(150% - 120px); overflow-y: auto;width:102%">          
+                            <div id="chat-content"  style=" height: calc(170% - 120px); overflow-y: auto;width:102%">          
                                
                             </div>
                             <form id="myForm" class="form-group">

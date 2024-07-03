@@ -46,3 +46,5 @@ Route::put('/messages/{id}', [MessagesController::class, 'update'])->name('messa
 Route::delete('/messages/{id}', [MessagesController::class, 'destroy'])->name('messages.destroy');
 
 Route::post('/save-react', [MessagesController::class, 'saveReact'])->name('message-comments.saveReact');
+
+Route::get('/get-last-message', [MessagesController::class, 'getLastMessage'])->name('getLastMessage');

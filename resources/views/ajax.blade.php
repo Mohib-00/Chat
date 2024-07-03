@@ -430,14 +430,13 @@ $(document).on('click', '.edit-message', function(event) {
     $('#editMessageInput').val(currentMessage).data('message-id', currentMessageId).focus();
 });
 
- 
 $('#editMessageInput').on('keypress', function(event) {
     if (event.which == 13 && currentMessageId) {  
         event.preventDefault();  
         let updatedMessage = $(this).val().trim();
+        let inputField = $(this);  
 
         if (currentMessageId && updatedMessage) {
-             
             $.ajax({
                 url: `/messages/${currentMessageId}`,
                 type: 'PUT',
@@ -446,24 +445,49 @@ $('#editMessageInput').on('keypress', function(event) {
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                     
+                    if (response.success) {
+                        inputField.val('').focus(); 
+                        currentMessageId = null;
+                    }
                 },
                 error: function(xhr) {
                     alert('Error updating message');
                 }
             });
-
-             
-            $(this).val('').removeData('message-id');
-            currentMessageId = null;
         }
     }
 });
 
+
+
+$(document).on('keydown', function(e) {
+    if (e.which === 38) {   
+        e.preventDefault();
+        getLastMessage();
+    }
+});
+
+function getLastMessage() {
+    $.ajax({
+        url: "{{ route('getLastMessage') }}",
+        method: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.success) {
+                var lastMessage = response.lastMessage;
+                $('#editMessageInput').val(lastMessage.message).focus();
+                currentMessageId = lastMessage.id;
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
+
  
-
-   
-
 function sendMessage() {
     var formData = new FormData();
     var csrfToken = $('meta[name="csrf-token"]').attr('content');

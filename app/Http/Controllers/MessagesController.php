@@ -313,5 +313,21 @@ public function saveReact(Request $request)
         return response()->json(['message' => 'Reaction saved successfully'], 200);
     }
 
+    public function getLastMessage(Request $request)
+    {
+        $userId = auth()->user()->id; 
+        $message = MessageComment::where('user_id', $userId)
+                                 ->orderBy('updatedtimestamp', 'desc')
+                                 ->first();
+        if ($message) {
+            return response()->json([
+                'success' => true,
+                'lastMessage' => $message
+            ]);
+        } else {
+            return response()->json(['success' => false, 'error' => 'No message found'], 404);
+        }
+    }
+
 }
  
