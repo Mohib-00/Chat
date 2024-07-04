@@ -266,16 +266,20 @@ public function updateBackgroundImage(Request $request, $user_id)
 }
 public function update(Request $request, $id)
 {
-    $updatedTimestamp = time();
-
     $messageComment = MessageComment::findOrFail($id);
-    $messageComment->message = $request->input('message');
-    $messageComment->edit_status = 'Edited';
-    $messageComment->updatedtimestamp = $updatedTimestamp;
-    $messageComment->save();
+    $updatedMessage = $request->input('message');
+    $originalMessage = $messageComment->message;
 
-    return response()->json(['success' => 'Message updated successfully',]);
+    if ($updatedMessage !== $originalMessage) {
+        $messageComment->message = $updatedMessage;
+        $messageComment->edit_status = 'Edited';
+        $messageComment->updatedtimestamp = time();
+        $messageComment->save();
+    }
+
+    return response()->json(['success' => 'Message updated successfully']);
 }
+
 
 public function destroy($id)
 {
