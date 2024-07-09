@@ -54,6 +54,33 @@ class MessagesController extends Controller
         return response()->json($conversation);
     }
 
+
+
+    public function addStatus(Request $request)
+    {
+        $request->validate([
+            'status' => 'required|file|mimes:jpeg,png,jpg,gif,svg,mp4,mov,avi,flv|max:20480',
+        ]);
+
+        $user = Auth::user();
+        $file = $request->file('status');
+        $fileName = time() . '-' . $file->getClientOriginalName();
+        
+        if (in_array($file->getClientOriginalExtension(), ['jpeg', 'png', 'jpg', 'gif', 'svg'])) {
+            $file->move(public_path('images'), $fileName);
+            $user->user_status = 'images/' . $fileName;
+        } else {
+            $file->move(public_path('videos'), $fileName);
+            $user->user_status = 'videos/' . $fileName;
+        }
+
+        $user->status_date = now();
+        $user->save();
+
+        return response()->json(['message' => 'Status uploaded successfully!']);
+    }
+
+
   public function show($user)
     {
         $auth_user = auth()->user()->id;

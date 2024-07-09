@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="col-lg-12 col-md-12 col-sm-12 ">                      
-                        <svg class="mt-5 vi" style="color:#8b989e" viewBox="0 0 24 24" height="30" width="50" preserveAspectRatio="xMidYMid meet" fill="none">
+                        <svg id="svgi" class="mt-5 vi" style="color:#8b989e" viewBox="0 0 24 24" height="30" width="50" preserveAspectRatio="xMidYMid meet" fill="none">
                             <title>status-unread-outline</title>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M3.71672 8.34119C3.23926 8.06362 3.07722 7.45154 3.35479 6.97407C4.33646 5.28548 5.79114 3.92134 7.53925 3.05006C9.28736 2.17878 11.2524 1.83851 13.1916 2.07126C13.74 2.13707 14.1312 2.63494 14.0654 3.18329C13.9995 3.73164 13.5017 4.12282 12.9533 4.05701C11.4019 3.87081 9.82989 4.14303 8.43141 4.84005C7.03292 5.53708 5.86917 6.62839 5.08384 7.97926C4.80626 8.45672 4.19419 8.61876 3.71672 8.34119Z" fill="currentColor"></path>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8569 10.115C21.4065 10.0604 21.8963 10.4616 21.9509 11.0112C22.144 12.9548 21.7638 14.9125 20.857 16.6424C19.9503 18.3724 18.5567 19.799 16.8485 20.746C16.3655 21.0138 15.7568 20.8393 15.489 20.3563C15.2213 19.8732 15.3957 19.2646 15.8788 18.9968C17.2454 18.2392 18.3602 17.0979 19.0856 15.714C19.811 14.33 20.1152 12.7639 19.9607 11.209C19.9061 10.6594 20.3073 10.1696 20.8569 10.115Z" fill="currentColor"></path>
@@ -73,6 +73,68 @@
                     </div>
                     
                 </div>                
+            </div>
+
+
+            <div id="statusContainer" style="background-color: #111b21;" class="col-lg-4">
+
+                <div class="row" style="background-color: #202c33;">
+
+                    <div id="backicn" class="col-1" style="margin-top:80px;margin-left:5px;color:#dadee0">
+                        <svg  id="backicn" viewBox="0 0 24 24" height="34" width="34" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                            <title>back</title>
+                            <path fill="currentColor" d="M12,4l1.4,1.4L7.8,11H20v2H7.8l5.6,5.6L12,20l-8-8L12,4z"></path>
+                        </svg>
+                    </div>
+
+                    <div class="col-9" style="margin-top:65px;margin-left:5px;color:#dadee0">
+                        <h3>Status</h3>
+                    </div>
+
+                </div>
+
+                <div class="row my-5">
+                    <div class="col-2 avatar-icon mx-3">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                    </div>
+                    <div class="col-7  ">
+                        <h4 class="my" style=" color:#d0d7db">My status</h4><br>
+                        <h5 class="my" style=" margin-top:-17px;color:#8797a1">Date</h5>
+                    </div>
+                    <div class="col-1">
+                        <svg class="plus" style="color:#005c4b;font-weight:bolder" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"/>
+                        </svg>
+                    </div>
+                        
+                </div>
+
+                <h3 style="margin-top:50px;color:#008068;font-weight:lighter;margin-left:5px">Updates</h3>
+        <hr>
+
+
+        <div class="row">
+            <div class="col-1 avatar-icon mx-3">
+                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+            </div>
+            <div class="col-4">
+                <h4 class="m" style=" color:#d0d7db">Name</h4><br>
+                <h5 class="y" style=" margin-top:-17px;color:#8797a1">Date</h5>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-1 avatar-icon mx-3">
+                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+            </div>
+            <div class="col-4">
+                <h4 class="m" style=" color:#d0d7db">Name</h4><br>
+                <h5 class="y" style=" margin-top:-17px;color:#8797a1">Date</h5>
+            </div>
+        </div>
+        <hr>
+
             </div>
     
             <div style="background-color: #111b21; " class="col-lg-4 text-white " id="sidebar">              
@@ -309,6 +371,9 @@
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
 
                             <input type="file" id="file-input" style="display: none;">
+
+                            <input type="file" id="statusUploadInput" style="display: none;">
+
 
                            
                             <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">

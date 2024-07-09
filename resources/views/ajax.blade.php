@@ -15,6 +15,60 @@
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
+
+   <script>
+    $(document).ready(function() {
+        $('.plus').on('click', function() {
+            $('#statusUploadInput').click();
+        });
+
+        $('#statusUploadInput').on('change', function() {
+            var formData = new FormData();
+            formData.append('status', $(this)[0].files[0]);
+
+            $.ajax({
+                url: '{{ route('addStatus') }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    
+                },
+                error: function(response) {
+                     
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+   <script>
+    $(document).ready(function() {
+
+     $("#svgi").click(function() {
+         $("#statusContainer").show();
+         $("#sidebar").hide();
+     });
+
+     $("#backicn").click(function() { 
+             $("#statusContainer").hide();
+             $("#sidebar").show();
+         });
+ });
+ </script>
+ 
+
    <script>
        document.addEventListener('DOMContentLoaded', (event) => {
            const sidebar = document.getElementById('sidebar');
