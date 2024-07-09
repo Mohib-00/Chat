@@ -46,5 +46,3 @@ Route::delete('/messages/{id}', [MessagesController::class, 'destroy'])->name('m
 Route::post('/save-react', [MessagesController::class, 'saveReact'])->name('save-react');
 
 Route::get('/get-last-message', [MessagesController::class, 'getLastMessage'])->name('getLastMessage');
-
-Route::post('/addStatus', [MessagesController::class, 'addStatus'])->name('addStatus');

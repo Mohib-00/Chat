@@ -102,12 +102,11 @@
                         <h5 class="my" style=" margin-top:-17px;color:#8797a1">Date</h5>
                     </div>
                     <div class="col-1">
-                        <svg class="plus" style="color:#005c4b;font-weight:bolder" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
-                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
-                            <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"/>
-                        </svg>
+                    <svg class="plus" style="color:#005c4b;font-weight:bolder" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"/>
+                      </svg>
                     </div>
-                        
                 </div>
 
                 <h3 style="margin-top:50px;color:#008068;font-weight:lighter;margin-left:5px">Updates</h3>
@@ -371,9 +370,6 @@
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
 
                             <input type="file" id="file-input" style="display: none;">
-
-                            <input type="file" id="statusUploadInput" style="display: none;">
-
 
                            
                             <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">
