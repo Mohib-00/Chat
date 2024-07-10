@@ -235,8 +235,44 @@
            width:19% !important;  
    
        }
+       .video{
+            border-radius: 50%;
+            height: 60px;
+            width: 60px;
+        }
+
+         
+
+        .y{
+           margin-left:-10px;
+       }
+       .m{
+           margin-left:-10px;
+       }
+       .cross{
+        margin-left:410px;
+       }
+
+       .icn {
+        margin-left:30px;
+        margin-top: 20px;
+   }
+   .e{
+    margin-top: 30px;
+    color:white;
+   }
+
+   .ev{
+    margin-top:25px;
+    margin-left:20px;
+    color:white;
+   }
+
+   
+
         
-       
+        
+    
    }
 
    #statusContainer {
@@ -248,16 +284,38 @@
             margin-left: -40px;
         }
         .y{
-           margin-left:15px;
+           margin-left:-35px;
        }
        .m{
-           margin-left:15px;
+           margin-left:-35px;
        }
 
         .plus {
             margin-left: 50px;
         }
+        .video{
+            border-radius: 50%;
+            height: 60px;
+            width: 60px;
+        }
+        .cross{
+        margin-left:598px;
+       }
     }
+
+    .iconnn {
+   border-radius: 50%;
+   height: 70px;
+   width: 70px;
+   }
+
+   .glk:hover{
+    background-color: #202c33;
+   }
+
+   #clk:hover{
+    background-color: #202c33;
+   }
 
    </style>
    

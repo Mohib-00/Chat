@@ -14,9 +14,7 @@
      
 </head>
 <body>
-   
     <div class="container-fluid" id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset('images/' . $user->background_image) }}')">
-    
         <div class="row">
             <div style="background-color:#202c33;width:4%" class="col-lg-1 one">
                 <div class="row">
@@ -77,7 +75,6 @@
 
 
             <div id="statusContainer" style="background-color: #111b21;" class="col-lg-4">
-
                 <div class="row" style="background-color: #202c33;">
 
                     <div id="backicn" class="col-1" style="margin-top:80px;margin-left:5px;color:#dadee0">
@@ -93,49 +90,62 @@
 
                 </div>
 
-                <div class="row my-5">
-                    <div class="col-2 avatar-icon mx-3">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                @foreach($users as $user)
+                @if($user->id == auth()->id())
+                    <div class="row my-5" id="clk">
+                        <div class="col-2 avatar-icon mx-3">
+                            @if($user->user_status)
+                                @if(preg_match('/\.(jpg|jpeg|png|gif|jfif)$/i', $user->user_status))
+                                    <img src="{{ asset('images/' . basename($user->user_status)) }}" style="max-width: 100%; max-height: 100%;">
+                                @elseif(preg_match('/\.(mp4|webm|ogg)$/i', $user->user_status))
+                                    <video controls class="video">
+                                        <source src="{{ asset('videos/' . basename($user->user_status)) }}" type="video/mp4">
+                                    </video>
+                                @endif
+                            @endif
+                        </div>
+                        <div class="col-7">
+                            <h4 class="my" style="color:#d0d7db">My Status</h4><br>
+                            <h5 class="my" style="margin-top:-17px;color:#8797a1">{{ $user->status_date }}</h5>
+                        </div>
+                        <div class="col-1">
+                            <svg class="plus" style="color:#005c4b;font-weight:bolder" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+                                <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"/>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="col-7  ">
-                        <h4 class="my" style=" color:#d0d7db">My status</h4><br>
-                        <h5 class="my" style=" margin-top:-17px;color:#8797a1">Date</h5>
-                    </div>
-                    <div class="col-1">
-                    <svg class="plus" style="color:#005c4b;font-weight:bolder" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
-                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
-                        <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"/>
-                      </svg>
-                    </div>
-                </div>
-
+                @endif
+            @endforeach
+            
                 <h3 style="margin-top:50px;color:#008068;font-weight:lighter;margin-left:5px">Updates</h3>
-        <hr>
+                <hr style="width:85%;margin-left:18%">
 
 
-        <div class="row">
-            <div class="col-1 avatar-icon mx-3">
-                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+        @foreach($otherUsers as $otherUser)
+        @if(!empty($otherUser->user_status))
+            <div class="row my-5 glk"   onclick="showStatus('{{ $otherUser->name }}', '{{ asset('images/' . basename($otherUser->image)) }}', '{{ $otherUser->status_date }}', '{{ asset('images/' . basename($otherUser->user_status)) }}', '{{ asset('videos/' . basename($otherUser->user_status)) }}', '{{ pathinfo($otherUser->user_status, PATHINFO_EXTENSION) }}')">
+                <div class="col-2 avatar-icon mx-3">
+                    @if(preg_match('/\.(jpg|jpeg|png|gif|jfif)$/i', $otherUser->user_status))
+                        <img src="{{ asset('images/' . basename($otherUser->user_status)) }}" style="max-width: 100%; max-height: 100%;">
+                    @elseif(preg_match('/\.(mp4|webm|ogg)$/i', $otherUser->user_status))
+                        <video controls class="video" >
+                            <source src="{{ asset('videos/' . basename($otherUser->user_status)) }}" type="video/mp4">
+                        </video>
+                    @endif
+                </div>
+                <div class="col-7">
+                    <h4 class="my" style="color:#d0d7db">{{ $otherUser->name }}</h4><br>
+                    <h5 class="my" style="margin-top:-17px;color:#8797a1">{{ $otherUser->status_date }}</h5>
+                </div>
             </div>
-            <div class="col-4">
-                <h4 class="m" style=" color:#d0d7db">Name</h4><br>
-                <h5 class="y" style=" margin-top:-17px;color:#8797a1">Date</h5>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-1 avatar-icon mx-3">
-                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
-            </div>
-            <div class="col-4">
-                <h4 class="m" style=" color:#d0d7db">Name</h4><br>
-                <h5 class="y" style=" margin-top:-17px;color:#8797a1">Date</h5>
-            </div>
-        </div>
-        <hr>
+            <hr style="width:85%;margin-left:18%">
+        @endif
+         
+    @endforeach
 
             </div>
-    
+
             <div style="background-color: #111b21; " class="col-lg-4 text-white " id="sidebar">              
                 <div class="row">
 
@@ -143,8 +153,7 @@
                         <h3 class="mt-5 mx-3 chat-title" style="color:#e9edf0;font-weight:bold">Chats</h3>
                         <h3 class="mt-5 mx-3 whatsapp-title" style="color:#e9edf0;font-weight:bold; display: none;">WhatsApp</h3>
                     </div>
-                    
-
+                
                     <div class="col-lg-1 col-sm-1 col-md-1">
                         <span data-icon="new-chat-outline" class="">
                             <svg class="mt-5" style="color:#8b989e" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" class="" fill="none">
@@ -371,6 +380,8 @@
 
                             <input type="file" id="file-input" style="display: none;">
 
+                            <input type="file" id="statusUploadInput" style="display: none;">
+
                            
                             <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">
                     
@@ -418,7 +429,74 @@
         </div>
     </div>            
                  
+    <div id="status" class="container-fluid" style="display: none">
+        <div class="row">
+
+            <div class="col-4" style="background-color: #182118;height:922px">
+                
+            </div>
+
+            <div class="col-4">
+                @foreach($users as $user)
+                @if($user->id == auth()->id())
+                    <div class="row" id="clk">
+                        <div class="col-2" style="position: absolute">
+                            @if($user->user_status)
+                                @if(preg_match('/\.(jpg|jpeg|png|gif|jfif)$/i', $user->user_status))
+                                    <img src="{{ asset('images/' . basename($user->user_status)) }}" style="width: 215%;height:921px">
+                                @elseif(preg_match('/\.(mp4|webm|ogg)$/i', $user->user_status))
+                                    <video controls style="width: 215%;height:917.4px">
+                                        <source   src="{{ asset('videos/' . basename($user->user_status)) }}" type="video/mp4">
+                                    </video>
+                                @endif
+                            @endif
+                        </div>
+                        <div class="col-7" style="position:relative">
+                            <div class="row">
+                                <div class="col-4 icn">
+                                    <img class="iconnn" src="{{ asset('images/' . auth()->user()->image) }}">
+                            
+                                </div>
+
+                                <div class="col-6">
+                                    <h4 class="my e" style="color:#d0d7db">My Status</h4><br>
+                                    <h5 class="my" style="margin-top:-17px;color:#8797a1">{{ $user->status_date }}</h5>
+                                </div>
+                            </div>
+                        </div>         
+                    </div>
+                @endif
+            @endforeach
+            
+            </div>
+
+            <div class="col-4"  style="background-color: #182118;height:922px">
+                <svg id="crs" class="cross" style="color:white" viewBox="0 0 24 24" height="34" width="34" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>x-viewer</title><path fill="currentColor" d="M19.8,5.8l-1.6-1.6L12,10.4L5.8,4.2L4.2,5.8l6.2,6.2l-6.2,6.2l1.6,1.6l6.2-6.2l6.2,6.2l1.6-1.6L13.6,12 L19.8,5.8z"></path></svg>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="ostatus" class="container-fluid" style="display: none">
+        <div class="row">
+
+            <div class="col-4" style="background-color: #182118;height:922px">
+                
+            </div>
+
+            <div class="col-4" id="statusDisplayArea">
+                  
+            </div>
+
+            <div class="col-4"  style="background-color: #182118;height:922px">
+                <svg id="cr" class="cross" style="color:white" viewBox="0 0 24 24" height="34" width="34" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>x-viewer</title><path fill="currentColor" d="M19.8,5.8l-1.6-1.6L12,10.4L5.8,4.2L4.2,5.8l6.2,6.2l-6.2,6.2l1.6,1.6l6.2-6.2l6.2,6.2l1.6-1.6L13.6,12 L19.8,5.8z"></path></svg>
+            </div>
+
+        </div>
+    </div>
+
     @include('ajax')
 
 </body>
 </html> 
+

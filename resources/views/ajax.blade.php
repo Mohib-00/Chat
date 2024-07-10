@@ -13,19 +13,116 @@
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+   <script>
+    function showStatus(name, imageUrl, date, statusImageUrl, statusVideoUrl, fileType) {
+        let statusDisplayArea = document.getElementById('statusDisplayArea');
+        statusDisplayArea.innerHTML = `
+            <div class="row">
+                <div class="col-2" style="position: absolute">
+                    ${fileType.match(/jpg|jpeg|png|gif|jfif/i) ? `<img style="width: 215%;height:921px" src="${statusImageUrl}" style="max-width: 100%; max-height: 100%;">` : ''}
+                    ${fileType.match(/mp4|webm|ogg/i) ? `<video controls style="width: 215%;height:917.4px"><source src="${statusVideoUrl}" type="video/mp4"></video>` : ''}
+                </div>
+                <div class="col-7" style="position:relative">
+                    <div class="row">
+
+                        <div class="col-3">
+                            <img class="icn" src="${imageUrl}" style="width:60px;height: 60px;border-radius: 50%;">
+                            </div>
+
+                            <div class="col-8">
+                                  <h4 class="my ev" style="color:#d0d7db">${name}</h4><br>
+                                  <h5 class="my ev" style="margin-top:-17px;color:#8797a1">${date}</h5>
+                                </div>
+
+                        </div
+                </div>
+            </div>
+        `;
+    }
+    </script>
+    
+
+   <script>
+    $(document).ready(function() {
+        $('.plus').on('click', function() {
+            $('#statusUploadInput').click();
+        });
+
+        $('#statusUploadInput').on('change', function() {
+            var formData = new FormData();
+            formData.append('status', $(this)[0].files[0]);
+
+            $.ajax({
+                url: '{{ route('addStatus') }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                   
+                },
+                error: function(response) {
+                    
+                }
+            });
+        });
+    });
+</script>
+
+ 
+
+
    <script>
     $(document).ready(function() {
 
-     $("#svgi").click(function() {
-         $("#statusContainer").show();
-         $("#sidebar").hide();
-     });
+        $("#svgi").click(function() {
+        $("#statusContainer").show();
+        $("#sidebar").hide();
+      
+    });
 
-     $("#backicn").click(function() { 
-             $("#statusContainer").hide();
-             $("#sidebar").show();
-         });
- });
+    $("#backicn").click(function() { 
+        $("#statusContainer").hide();
+        $("#sidebar").show();
+        
+    });
+
+    $("#clk").click(function() {
+        $("#status").show();
+        $("#chat-container").hide();
+      
+    });
+
+    $(".glk").click(function() {
+        $("#ostatus").show();
+        $("#chat-container").hide();
+        
+    });
+
+    $("#crs").click(function() {
+        $("#status").hide();
+        $("#chat-container").show();
+       
+    });
+
+    $("#cr").click(function() {
+        $("#ostatus").hide();
+        $("#chat-container").show();
+        
+    });
+
+    $("#nme").click(function() {
+        $("#status").show();
+        $("#chat-container").hide();
+       
+    });
+
+});
  </script>
  
 

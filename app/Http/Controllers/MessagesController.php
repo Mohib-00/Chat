@@ -81,11 +81,13 @@ class MessagesController extends Controller
        ->get();
         
         $user = User::where('id', $user)->first();
-        
-        
+        $users=User::all();
 
+        $otherUsers = User::where('id', '!=', auth()->id())->get();
+        
+    
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info','user'));
+       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers'));
 
     }
 
@@ -323,6 +325,28 @@ public function saveReact(Request $request)
         } else {
             return response()->json(['success' => false, 'error' => 'No message found'], 404);
         }
+    }
+
+
+    public function addStatus(Request $request)
+    {
+        $user = Auth::user();
+        $file = $request->file('status');
+        $fileName = time() . '-' . $file->getClientOriginalName();
+
+        
+        if (strpos($file->getMimeType(), 'image') === 0) {
+            $file->move(public_path('images'), $fileName);
+            $user->user_status = 'images/' . $fileName;
+        } else {
+            $file->move(public_path('videos'), $fileName);
+            $user->user_status = 'videos/' . $fileName;
+        }
+
+        $user->status_date = now();
+        $user->save();
+
+        return response()->json(['message' => 'Status uploaded successfully!']);
     }
 
 }
