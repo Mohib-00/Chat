@@ -17,7 +17,7 @@
 
    <script>
     function showStatus(name, imageUrl, date, statusImageUrl, statusVideoUrl, fileType) {
-        let statusDisplayArea = document.getElementById('statusDisplayArea');
+        let statusDisplayArea = document.getElementById('statusDisplay');
         statusDisplayArea.innerHTML = `
             <div class="row">
                 <div class="col-2" style="position: absolute">

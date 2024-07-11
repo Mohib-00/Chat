@@ -484,7 +484,7 @@
                 
             </div>
 
-            <div class="col-4" id="statusDisplayArea">
+            <div class="col-4" id="statusDisplay">
                   
             </div>
 
