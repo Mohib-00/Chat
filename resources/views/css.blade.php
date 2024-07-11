@@ -241,7 +241,14 @@
             width: 60px;
         }
 
-         
+        .i{
+      
+        margin-top:25px;
+       }
+
+        .vdo{
+            width:321%;
+        }
 
         .y{
            margin-left:-10px;
@@ -276,7 +283,8 @@
 
         @media (min-width: 1604px) {
         .my {
-            margin-left: -40px;
+            margin-left: -30px;
+             
         }
         .y{
            margin-left:-35px;
@@ -285,6 +293,10 @@
            margin-left:-35px;
        }
 
+       .i{
+        margin-left:-60px;
+        margin-top:25px;
+       }
         .plus {
             margin-left: 50px;
         }
@@ -293,9 +305,13 @@
             height: 60px;
             width: 60px;
         }
-        .cross{
-        margin-left:598px;
-       }
+        .vdo{
+            width:315%;
+        }
+        .icn{
+            margin-left:15px;
+            margin-top:20px;
+        }
     }
 
     .iconnn {

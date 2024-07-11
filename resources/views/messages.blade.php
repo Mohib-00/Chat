@@ -480,16 +480,16 @@
     <div id="ostatus" class="container-fluid" style="display: none">
         <div class="row">
 
-            <div class="col-4" style="background-color: #182118;height:922px">
-                
+            <div class="col-3" style="background-color: #182118;height:922px">
+                <svg id="cr" style="color:white" viewBox="0 0 24 24" height="34" width="34" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>x-viewer</title><path fill="currentColor" d="M19.8,5.8l-1.6-1.6L12,10.4L5.8,4.2L4.2,5.8l6.2,6.2l-6.2,6.2l1.6,1.6l6.2-6.2l6.2,6.2l1.6-1.6L13.6,12 L19.8,5.8z"></path></svg>
             </div>
 
-            <div class="col-4" id="statusDisplay">
+            <div class="col-6" id="statusDisplay">
                   
             </div>
 
-            <div class="col-4"  style="background-color: #182118;height:922px">
-                <svg id="cr" class="cross" style="color:white" viewBox="0 0 24 24" height="34" width="34" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>x-viewer</title><path fill="currentColor" d="M19.8,5.8l-1.6-1.6L12,10.4L5.8,4.2L4.2,5.8l6.2,6.2l-6.2,6.2l1.6,1.6l6.2-6.2l6.2,6.2l1.6-1.6L13.6,12 L19.8,5.8z"></path></svg>
+            <div class="col-3"  style="background-color: #182118;height:922px">
+                
             </div>
 
         </div>

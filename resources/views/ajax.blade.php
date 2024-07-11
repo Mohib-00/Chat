@@ -21,8 +21,8 @@
         statusDisplayArea.innerHTML = `
             <div class="row">
                 <div class="col-2" style="position: absolute">
-                    ${fileType.match(/jpg|jpeg|png|gif|jfif/i) ? `<img style="width: 215%;height:921px" src="${statusImageUrl}" style="max-width: 100%; max-height: 100%;">` : ''}
-                    ${fileType.match(/mp4|webm|ogg/i) ? `<video controls style="width: 215%;height:917.4px"><source src="${statusVideoUrl}" type="video/mp4"></video>` : ''}
+                    ${fileType.match(/jpg|jpeg|png|gif|jfif/i) ? `<img style="width: 325%;height:921px" src="${statusImageUrl}">` : ''}
+                    ${fileType.match(/mp4|webm|ogg/i) ? `<video controls class="vdo" style="height:917.4px"><source src="${statusVideoUrl}" type="video/mp4"></video>` : ''}
                 </div>
                 <div class="col-7" style="position:relative">
                     <div class="row">
@@ -32,8 +32,8 @@
                             </div>
 
                             <div class="col-8">
-                                  <h4 class="my ev" style="color:#d0d7db">${name}</h4><br>
-                                  <h5 class="my ev" style="margin-top:-17px;color:#8797a1">${date}</h5>
+                                  <h4 class="i" style="color:#d0d7db">${name}</h4><br>
+                                  <h5 class="i" style="margin-top:-17px;color:#8797a1">${date}</h5>
                                 </div>
 
                         </div
