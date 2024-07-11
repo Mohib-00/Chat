@@ -268,11 +268,6 @@
     color:white;
    }
 
-   
-
-        
-        
-    
    }
 
    #statusContainer {
