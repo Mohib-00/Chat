@@ -246,8 +246,11 @@
         margin-top:25px;
        }
        .inp{
-        margin-left:6px;
-        margin-top:777px;
+        margin-left:-685px;
+        margin-top:860px;
+       }
+       .butn{
+        margin-top:865px;
        }
 
         .vdo{

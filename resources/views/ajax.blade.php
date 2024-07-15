@@ -36,11 +36,6 @@
                                   <h5 class="i" style="margin-top:-17px;color:#8797a1">${date}</h5>
                                 </div>
 
-                                 <div class="col-12 inp">
-                            <input style="background-color: #202c33; border: none; border-radius: 10px; width:170%; color: white; padding: 30px 0px 30px 10px;" type="text" name="message" autocomplete="off" chat-box class="form-control" placeholder="Type a reply">
-                        </div>
-                        
-
                         </div
                 </div>
             </div>
