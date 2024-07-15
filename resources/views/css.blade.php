@@ -245,6 +245,10 @@
       
         margin-top:25px;
        }
+       .inp{
+        margin-left:6px;
+        margin-top:777px;
+       }
 
         .vdo{
             width:321%;
