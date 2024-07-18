@@ -250,7 +250,7 @@
 <script type="text/javascript">
   
    var lastCheckedTimestamp = null;
-   var latestMessageTimestamp = 0;
+   //var latestMessageTimestamp = 0;
 
    $(document).ready(function() {
 
