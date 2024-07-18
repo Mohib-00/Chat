@@ -366,7 +366,7 @@
 
                     <div style="margin-top:224px; background-color:#202c33;" class="col-lg-12">
 
-                            <input type="hidden" name="message_id" value="{{$message_info->id}}">
+                            <input type="hidden" id="message_id" name="message_id" value="{{$message_info->id}}">
 
                             <input type="hidden" name="reply_message_content" id="replyMessage">
 
@@ -489,9 +489,10 @@
             </div>
 
             <div class="col-3"  style="background-color: #182118;height:922px;position:relative">
-                <input class="inp" style="background-color: #202c33; border:none;position:absolute; border-radius:10px; width:200%; color:white; padding:20px 0px 20px 10px;" type="text" name="message" autocomplete="off" chat-box class="form-control" placeholder="Type a reply">
+                <input type="hidden" id="statusUserId" value="2">  
+                <input class="inp" style="background-color: #202c33; border:none; position:absolute; border-radius:10px; width:200%; color:white; padding:20px 0px 20px 10px;" type="text" name="message" autocomplete="off" class="form-control" placeholder="Type a reply">
 
-                <button id="replyMessage" style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3 butn">
+                <button type="button" id="replyMessage" style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3 butn">
 
                     <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                         <title>send</title>

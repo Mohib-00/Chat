@@ -54,6 +54,27 @@ class MessagesController extends Controller
         return response()->json($conversation);
     }
 
+    public function replyToStatus(Request $request)
+    {
+        $loggedInUserId = Auth::id();
+        $statusUserId = $request->input('status_user_id');
+    
+        
+        $statusUser = User::findOrFail($statusUserId);
+        $replyStatus = $statusUser->user_status;
+    
+        $messageComment = new MessageComment();
+        $uniqueTimestamp = time();
+        $messageComment->uniquetimestamp = $uniqueTimestamp;
+        $messageComment->message_id = $request->input('message_id');  
+        $messageComment->user_id = $loggedInUserId;
+        $messageComment->message = $request->input('message');
+        $messageComment->reply_status = $replyStatus;
+        $messageComment->save();
+    
+        return response()->json(['success' => true, 'message' => 'Reply saved successfully.']);
+    }
+
 
   public function show($user)
     {

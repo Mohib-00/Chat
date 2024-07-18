@@ -48,3 +48,5 @@ Route::post('/save-react', [MessagesController::class, 'saveReact'])->name('save
 Route::get('/get-last-message', [MessagesController::class, 'getLastMessage'])->name('getLastMessage');
 
 Route::post('/addStatus', [MessagesController::class, 'addStatus'])->name('addStatus');
+
+Route::post('/reply-status', [MessagesController::class, 'replyToStatus'])->name('reply.status');

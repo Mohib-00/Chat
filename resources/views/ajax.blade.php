@@ -15,6 +15,49 @@
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
+   {{--<script>
+  $(document).on('click', '#replyMessage', function(e) {
+    e.preventDefault();
+
+    var message = $('.inp').val().trim();
+    var statusUserId = $('#statusUserId').val();
+    var messageId = $('#message_id').val();
+
+    console.log({
+        _token: '{{ csrf_token() }}',
+        message: message,
+        status_user_id: statusUserId,
+        message_id: messageId,
+    });
+
+    $.ajax({
+        url: '{{ route('reply.status') }}',
+        method: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            message: message,
+            status_user_id: statusUserId,
+            message_id: messageId,
+        },
+        success: function(response) {
+            console.log(response);
+            if (response.success) {
+                $('.inp').val('');
+                
+                var newMessageHtml = Html(response.data, {{ Auth::id() }});
+                $('#chat-content').append(newMessageHtml);
+                 
+                $('#chat-content').scrollTop($('#chat-content')[0].scrollHeight);
+            }
+        },
+        error: function(response) {
+            console.error('Error:', response);
+        }
+    });
+});
+</script>--}}
+
+
    <script>
     function showStatus(name, imageUrl, date, statusImageUrl, statusVideoUrl, fileType) {
         let statusDisplayArea = document.getElementById('statusDisplay');
@@ -472,8 +515,46 @@ function Html(conversation, user_id) {
 `;
    }
 
+    
+
    return messageHtml;
 }
+
+$(document).on('click', '#replyMessage', function(e) {
+    e.preventDefault();
+
+    var message = $('.inp').val().trim();
+    var statusUserId = $('#statusUserId').val();
+    var messageId = $('#message_id').val();
+
+    console.log({
+        _token: '{{ csrf_token() }}',
+        message: message,
+        status_user_id: statusUserId,
+        message_id: messageId,
+    });
+
+    $.ajax({
+        url: '{{ route('reply.status') }}',
+        method: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            message: message,
+            status_user_id: statusUserId,
+            message_id: messageId,
+        },
+        success: function(response) {
+            console.log(response);
+            if (response.success) {
+                $('.inp').val('');
+                 
+            }
+        },
+        error: function(response) {
+            console.error('Error:', response);
+        }
+    });
+});
 
 $(document).on('click', '.reply-message', function(event) {
     event.preventDefault();
