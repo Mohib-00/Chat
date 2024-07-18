@@ -13,51 +13,7 @@
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-   {{--<script>
-  $(document).on('click', '#replyMessage', function(e) {
-    e.preventDefault();
-
-    var message = $('.inp').val().trim();
-    var statusUserId = $('#statusUserId').val();
-    var messageId = $('#message_id').val();
-
-    console.log({
-        _token: '{{ csrf_token() }}',
-        message: message,
-        status_user_id: statusUserId,
-        message_id: messageId,
-    });
-
-    $.ajax({
-        url: '{{ route('reply.status') }}',
-        method: 'POST',
-        data: {
-            _token: '{{ csrf_token() }}',
-            message: message,
-            status_user_id: statusUserId,
-            message_id: messageId,
-        },
-        success: function(response) {
-            console.log(response);
-            if (response.success) {
-                $('.inp').val('');
-                
-                var newMessageHtml = Html(response.data, {{ Auth::id() }});
-                $('#chat-content').append(newMessageHtml);
-                 
-                $('#chat-content').scrollTop($('#chat-content')[0].scrollHeight);
-            }
-        },
-        error: function(response) {
-            console.error('Error:', response);
-        }
-    });
-});
-</script>--}}
-
-
+ 
    <script>
     function showStatus(name, imageUrl, date, statusImageUrl, statusVideoUrl, fileType) {
         let statusDisplayArea = document.getElementById('statusDisplay');
@@ -449,8 +405,8 @@ function Html(conversation, user_id) {
     <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
         <div style="position: relative;">
 
-            ${conversation.reply_message_content ? `
-                 <div class="container-fluid vo" style="margin-top:-21px; ${conversation.user_id == user_id ? 'margin-left:650px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
+${conversation.reply_message_content ? `
+    <div class="container-fluid vo" style="margin-top:-21px; ${conversation.user_id == user_id ? 'margin-left:650px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
                     <div class="row">
                         <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
                             <p style="display: none">nn</p>
@@ -460,7 +416,30 @@ function Html(conversation, user_id) {
                         </div>
                     </div>
                 </div>
-            ` : ''}
+` : conversation.reply_status ? `
+    <div class="container-fluid voO" style="margin-top:-21px; ${conversation.user_id == user_id ? 'margin-left:588px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
+        <div class="row">
+            <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
+                <p style="display: none">nn</p>
+            </div>
+            <div class="col-10" style="${conversation.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px;">  
+                 ${(() => {
+                    const replyStatus = conversation.reply_status;
+                    const fileType = replyStatus.split('.').pop();
+                    if (fileType.match(/jpg|jpeg|png|gif|jfif/i)) {
+                        return `<img style="width:110%;height:75px;margin-top:-9%;margin-left:-20%" src="/${replyStatus}">`;
+                    } else if (fileType.match(/mp4|webm|ogg/i)) {
+                        return `<video controls class="vdoo" style=" "><source src="/${replyStatus}" type="video/mp4"></video>`;
+                    } else {
+                        return '';
+                    }
+                })()}
+            </div>
+        </div>
+    </div>
+` : ''}
+
+
 
              <div id="react-${conversation.id}" class="col-4" style="display: none; background-color:#222e36; height:70px; border-radius:20px;">
                 <div class="row">

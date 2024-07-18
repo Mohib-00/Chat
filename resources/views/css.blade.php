@@ -235,6 +235,10 @@
            width:19% !important;  
    
        }
+       .voO {
+           width:26.6% !important;  
+   
+       }
        .video{
             border-radius: 50%;
             height: 60px;
@@ -255,6 +259,12 @@
 
         .vdo{
             width:321%;
+        }
+        .vdoo{
+            width:105%;
+            margin-top:-7%;
+            margin-left:-8%;
+            height:75px;
         }
 
         .y{
