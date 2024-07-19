@@ -82,6 +82,25 @@
         $("#svgi").click(function() {
         $("#statusContainer").show();
         $("#sidebar").hide();
+        $("#group").hide();
+      
+    });
+
+    $("#newgrp").click(function() {
+        $("#group").show();
+        $("#sidebar").hide();
+      
+    });
+
+    $("#new").click(function() {
+        $("#group").show();
+        $("#sidebar").hide();
+      
+    });
+
+    $("#bckgrp").click(function() {
+        $("#group").hide();
+        $("#sidebar").show();
       
     });
 

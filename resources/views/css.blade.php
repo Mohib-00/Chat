@@ -235,10 +235,37 @@
            width:19% !important;  
    
        }
+
+       .mmbr{
+            margin-left:5%;
+             
+        }
+
+       .srch{
+            margin-left:5%;
+             
+        }
+        .hr{
+            margin-left:5%;
+            width:90%;
+        }
+
+       .x{
+            margin-left: 15%;
+        }
+        .mmbrs{
+            margin-left: -5%;
+        }
+        
        .voO {
            width:26.6% !important;  
    
        }
+
+       .grpsrch{
+            margin-left:-21px
+        }
+
        .video{
             border-radius: 50%;
             height: 60px;
@@ -298,16 +325,59 @@
             display: none;
         }
 
+        #group {
+            display: none;
+        }
+
         @media (min-width: 1604px) {
         .my {
             margin-left: -30px;
              
+        }
+        .grpsrch{
+            margin-left:-30px
+        }
+
+        .srch{
+            margin-left:5%;
+             
+        }
+
+        .cz{
+            margin-left:10px;
+        }
+
+        .hr{
+            margin-left:5%;
+            width:90%;
+        }
+
+        .mmbr{
+            margin-left:5%;
+             
+        }
+        .x{
+            margin-left: 15%;
+        }
+        .mmbrs{
+            margin-left: -5%;
         }
         .y{
            margin-left:-35px;
        }
        .m{
            margin-left:-35px;
+       }
+       .vdoo{
+            width:105%;
+            margin-top:-7%;
+            margin-left:-8%;
+            height:75px;
+        }
+
+        .voO {
+           width:18.5% !important;  
+   
        }
 
        .i{

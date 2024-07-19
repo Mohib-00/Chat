@@ -178,6 +178,7 @@ public function updateProfile(Request $request){
 
     $user = User::where('id', auth()->user()->id)->first();
     $user->name = $request->input('name');
+    $user->about = $request->input('about');
    
     if ($request->has('password')) {
         $user->password = bcrypt($request->input('password'));

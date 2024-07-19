@@ -51,6 +51,11 @@
                         <label class="mt-5 ti">Name:</label>
                         <input style="background-color: #222e36; color: white; border-radius: 5px" type="text" name="name" value="{{ auth()->user()->name }}" class="form-control" required />
                     </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <label class="mt-5 ti">About:</label>
+                        <input style="background-color: #222e36; color: white; border-radius: 5px" type="text" name="about" value="{{ auth()->user()->about }}" class="form-control" required />
+                    </div>
             
                    
                    
