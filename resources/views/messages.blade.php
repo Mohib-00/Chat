@@ -585,10 +585,6 @@
     </div>
 </form>
 
-
-
- 
-
     @include('ajax')
 
 </body>
