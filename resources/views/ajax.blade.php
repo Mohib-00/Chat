@@ -140,8 +140,38 @@
        
     });
 
+  
+
 });
  </script>
+
+ 
+<script>
+   $(document).on('click', '.usersgrp .sideBar-body', function() {
+    
+    $(this).toggleClass('selected');  
+    $('#grpnone').empty();
+
+   
+    $('.usersgrp .sideBar-body.selected').each(function() {
+        var userName = $(this).find('.name-meta').data('user-name');
+        var userImage = $(this).find('.name-meta').data('user-image');
+
+        
+        var userDiv = $('<div class="col-1 avatar">');
+        var userImg = $('<img>').attr('src', userImage);
+        var userNameDiv = $('<div class="col-1 nme">');
+        var userNameP = $('<p style="margin-left:25px;margin-top:3px">').text(userName);
+
+       
+        userDiv.append(userImg);
+        userNameDiv.append(userNameP);
+        $('#grpnone').append(userDiv).append(userNameDiv);
+    }); 
+});
+
+</script>
+ 
  
 
    <script>

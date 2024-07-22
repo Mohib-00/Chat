@@ -180,22 +180,39 @@
                                 <hr class="hr">
                             </div>
 
-                            <div class="col-12" style="margin-top:5%;">
-                             <h4 class="mmbr" style="color:green">#</h4>
+                            <div class="col-12" style="margin-top:5%;" >
+
+                                <div class="col-1" id="hash">
+                                    <h4 class="mmbr" style="color:green">#</h4>
+                                </div>
+                                <div class="row d-flex flex-wrap" id="grpnone"> 
+
+                                     <div id="user-avatar" class="col-1 avatar" >
+                                     
+                                     </div>
+
+                                     <div class="col-1 nme">
+                                        <p id="user-name"  style="margin-left:25px;margin-top:3px"></p>
+                                     </div>
+
+                                      
+
+                                </div>
+                            
                              <hr class="hr">
                             </div>
 
 
-                            <div class="col-lg-12">
-                                <div class="row sideBar" style="background-color: #111b21;height:570px; ">
+                            <div class="col-lg-12 mt-5">
+                                <div class="row sideBar usersgrp" style="background-color: #111b21;height:550px;">
                                     @foreach ($user_messages as $single_message)
-                                    <div   class="row sideBar-body " data-message-id="{{ $single_message->id }}">
+                                    <div class="row sideBar-body" data-message-id="{{ $single_message->id }}">
                                         <div style="margin-left:-22px" class="col-sm-2 col-xs-2">
                                             <div class="avatar-icon mt-4" data-user-id="{{ $single_message->id }}">
                                                 @if ($single_message->image)
-                                                <img  src="{{ asset('images/' . $single_message->image) }}">
+                                                <img src="{{ asset('images/' . $single_message->image) }}">
                                                 @else
-                                               <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
                                                 @endif
                                             </div>
                                         </div>
@@ -203,22 +220,20 @@
                                             <div class="row">
                                                 <a href="#" style="text-decoration: none; color:white;">
                                                     <div class="col-sm-8 col-xs-8 sideBar-name">
-                                                        
-                                        <span class="name-meta v" 
-                                         data-user-id="{{ $single_message->id }}" data-user-name="{{ $single_message->name }}" 
-                                         data-user-image="{{ asset('images/' . $single_message->image) }}" 
-                                         data-user-backimage="{{ asset('images/' . $single_message->background_image) }}">{{ $single_message->name }}
-                                        </span>
-                                         <br>
-        
-                                        <span class="v" style="color:#8797a1;font-size:15px;">{{ $single_message->about}}</span>
-                                        </div>
-                                                    
+                                                        <span class="name-meta v"
+                                                            data-user-id="{{ $single_message->id }}"
+                                                            data-user-name="{{ $single_message->name }}"
+                                                            data-user-image="{{ asset('images/' . $single_message->image) }}"
+                                                            data-user-backimage="{{ asset('images/' . $single_message->background_image) }}">{{ $single_message->name }}
+                                                        </span>
+                                                        <br>
+                                                        <span class="v" style="color:#8797a1;font-size:15px;">{{ $single_message->about}}</span>
+                                                    </div>
                                                 </a>
+                                            </div>
                                         </div>
-                                      </div> 
                                     </div>
-                                   @endforeach                      
+                                    @endforeach
                                 </div>
                               </div>
 

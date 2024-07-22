@@ -237,7 +237,7 @@
        }
 
        .mmbr{
-            margin-left:5%;
+            margin-left:55%;
              
         }
 
@@ -415,5 +415,17 @@
     background-color: #202c33;
    }
 
+   .avatar img {
+   border-radius: 50%;
+   height: 30px;
+   width: 30px;
+   margin-left:25px;
+   }
+
+   #grpnone{
+    display: none
+   }
+
+    
    </style>
    
