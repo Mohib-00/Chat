@@ -419,7 +419,7 @@ function Html(conversation, user_id) {
                    ${videoHtml}
                    <br><br>
                    <i style="color:white">${formattedDate}</i>
-                   ${deleteButton}
+                  
                </div>
            </div><br>
        `;
@@ -444,7 +444,7 @@ function Html(conversation, user_id) {
                    ${imageHtml}
                    <br><br>
                    <i style="color:white">${formattedDate}</i>
-                   ${deleteButton}
+                    
                </div>
            </div><br>
        `;

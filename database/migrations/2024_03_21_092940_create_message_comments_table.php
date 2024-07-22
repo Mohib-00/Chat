@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('updatedtimestamp')->nullable();
             $table->enum('status', ['active', 'deleted'])->nullable();
             $table->boolean('seen_status')->default(0);
+            $table->string('reply_status')->nullable();
+            $table->string('edit_status')->nullable();
+            $table->text('reply_message_content')->nullable();
+            $table->string('react_message')->nullable();
             $table->timestamps();
         });
     }
