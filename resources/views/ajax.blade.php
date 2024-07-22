@@ -419,7 +419,7 @@ function Html(conversation, user_id) {
                    ${videoHtml}
                    <br><br>
                    <i style="color:white">${formattedDate}</i>
-                  
+
                </div>
            </div><br>
        `;
@@ -443,8 +443,7 @@ function Html(conversation, user_id) {
                <div style="font-weight:bolder; " class="card-body ${messageStyle}">
                    ${imageHtml}
                    <br><br>
-                   <i style="color:white">${formattedDate}</i>
-                    
+                   <i style="color:white">${formattedDate}</i>                  
                </div>
            </div><br>
        `;
@@ -487,8 +486,6 @@ ${conversation.reply_message_content ? `
         </div>
     </div>
 ` : ''}
-
-
 
              <div id="react-${conversation.id}" class="col-4" style="display: none; background-color:#222e36; height:70px; border-radius:20px;">
                 <div class="row">
@@ -542,8 +539,6 @@ ${conversation.reply_message_content ? `
 
 `;
    }
-
-    
 
    return messageHtml;
 }
