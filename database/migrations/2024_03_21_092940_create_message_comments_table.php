@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('message_comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('message_id');
+            $table->integer('message_id')->nullable();
             $table->integer('user_id');
-            $table->mediumText('message')->nullable();
+            $table->mediumText('message');
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->integer('uniquetimestamp')->nullable();         
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('edit_status')->nullable();
             $table->text('reply_message_content')->nullable();
             $table->string('react_message')->nullable();
+            $table->integer('group_chat_id')->nullable();
             $table->timestamps();
         });
     }

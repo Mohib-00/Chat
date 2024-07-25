@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupChat;
 use App\Models\Message;
 use App\Models\MessageComment;
 use App\Models\User;
@@ -43,6 +44,7 @@ class MessagesController extends Controller
     
         $conversation->message_id = $request->message_id;
         $conversation->uniquetimestamp = $uniqueTimestamp;
+        $conversation->group_chat_id = $request->input('group_chat_id');
     
         
         if ($request->has('reply_message_content')) {
@@ -80,6 +82,10 @@ class MessagesController extends Controller
     {
         $auth_user = auth()->user()->id;
 
+        $groupChats = GroupChat::all()->filter(function($groupChat) use ($auth_user) {
+            return $groupChat->isUserMember($auth_user);
+        });
+    
          
         if(Message::where(['sender_id'=> $auth_user, 'receiver_id'=> $user])->first()){
             $message_info = Message::where(['sender_id'=> $auth_user, 'receiver_id'=> $user])->first();
@@ -105,10 +111,12 @@ class MessagesController extends Controller
         $users=User::all();
 
         $otherUsers = User::where('id', '!=', auth()->id())->get();
+
+       
         
     
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers'));
+       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats'));
 
     }
 
@@ -370,6 +378,92 @@ public function saveReact(Request $request)
 
         return response()->json(['message' => 'Status uploaded successfully!']);
     }
+
+    public function createGroup(Request $request)
+{
+    $userNames = $request->input('names');
+    $groupChatName = 'Group Chat ' . uniqid();
+ 
+    $creatorId = auth()->id();
+
+  
+    $userIds = User::whereIn('name', $userNames)->pluck('id')->toArray();
+
+   
+    $userIds[] = $creatorId;
+
+    
+    $groupChat = GroupChat::create([
+        'group_name' => $groupChatName,
+        'user_ids' => json_encode($userIds),
+    ]);
+
+    return response()->json([
+        'success' => true,
+        'group_chat' => $groupChat
+    ]);
+}
+
+
+public function saveGroupMessage(Request $request)
+{
+    
+    \Log::info('Request Data:', $request->all());
+
+    $validated = $request->validate([
+        'group_chat_id' => 'required|exists:group_chats,id',
+        'message' => 'required|string',
+    ]);
+
+    if (!$validated) {
+        return response()->json(['success' => false, 'message' => 'Validation failed.']);
+    }
+
+    $messageComment = new MessageComment;
+
+    $messageComment->group_chat_id = $request->input('group_chat_id');
+    $messageComment->user_id = auth()->user()->id;
+    $messageComment->message = $request->message;
+    $messageComment->uniquetimestamp = time();
+
+    if ($request->hasFile('video')) {
+        $videoPath = $request->file('video')->store('videos', 'public');
+        $messageComment->video = $videoPath;
+    }
+
+    if ($request->hasFile('images')) {
+        $imagePaths = [];
+        foreach ($request->file('images') as $image) {
+            $imagePaths[] = $image->store('images', 'public');
+        }
+        $messageComment->image = json_encode($imagePaths);
+    }
+
+    $messageComment->save();
+
+    return response()->json(['success' => true]);
+}
+
+
+
+ 
+
+public function loadGroupChatMessages($groupId)
+{
+    $groupChat = GroupChat::findOrFail($groupId);
+
+    
+    $userId = auth()->id();
+    if (!in_array($userId, json_decode($groupChat->user_ids))) {
+        return response()->json(['success' => false, 'message' => 'You are not a member of this group.'], 403);
+    }
+
+  
+    $messages = MessageComment::where('group_chat_id', $groupId)->with('user')->get();
+
+    return response()->json(['success' => true, 'messages' => $messages]);
+}
+
 
 }
  

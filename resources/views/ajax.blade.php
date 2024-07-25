@@ -140,6 +140,19 @@
        
     });
 
+    $(".group-chat-link").click(function() {       
+        $(".send").hide();
+        $("#submitgrpMessage").show(); 
+        
+    });
+
+     
+
+    $(".user-chat-link").click(function() {       
+        $(".send").show();
+        $("#submitgrpMessage").hide(); 
+    });
+
   
 
 });
@@ -169,6 +182,244 @@
         $('#grpnone').append(userDiv).append(userNameDiv);
     }); 
 });
+
+$(document).on('click', '.mmbr', function() {
+    var userNames = [];
+    $('.usersgrp .sideBar-body.selected').each(function() {
+        userNames.push($(this).find('.name-meta').data('user-name'));
+    });
+
+    console.log('Selected User Names:', userNames); // Debugging output
+
+    if (userNames.length > 0) {
+        $.ajax({
+            url: '/create-group',
+            method: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                names: userNames
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Group chat created successfully');
+                    // Optionally update the UI or redirect
+                }
+            },
+            error: function(xhr) {
+                alert('An error occurred: ' + xhr.responseText);
+                console.log('AJAX error:', xhr.responseText);
+            }
+        });
+    } else {
+        alert('Please select users before creating a group.');
+    }
+});
+
+function sendGroupMessage() {
+    var formData = new FormData();
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    var groupChatId = $('#groupChatId').val(); 
+    var userId = $('#userId').val();  
+    var messageInput = $('[name="message"]').val().trim();  
+
+    formData.append('group_chat_id', groupChatId);
+    formData.append('user_id', userId);
+    formData.append('message', messageInput || 'No message');
+
+    if ($('#video-upload')[0].files.length > 0) {
+        var videoFile = $('#video-upload')[0].files[0];
+        formData.append('video', videoFile);
+    }
+
+    if ($('#image-upload')[0].files.length > 0) {
+        var files = $('#image-upload')[0].files;
+        for (var i = 0; i < files.length; i++) {
+            formData.append('images[]', files[i]);
+        }
+    }
+
+    $.ajax({
+        url: '/save-group-message',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        success: function(response) {
+            console.log('Response:', response);
+            if (response.success) {
+                console.log('Message saved successfully');
+                $('[name="message"]').val('');
+                $('#image-upload').val('');
+                $('#video-upload').val('');
+            } else {
+                alert('Failed to save message');
+            }
+        },
+        error: function(xhr) {
+            alert('An error occurred: ' + xhr.responseText);
+            console.log('AJAX error:', xhr.responseText);
+        }
+    });
+    
+}
+
+
+$('#submitgrpMessage').click(function(e) {
+    e.preventDefault();
+    sendGroupMessage();  
+   });
+
+   $('.group-chat-link').click(function(e) {
+    e.preventDefault();
+    var groupId = $(this).data('group-id');
+    var groupName = $(this).data('group-name');
+    loadGroupMessage(groupId, groupName);
+
+});
+
+   
+
+ 
+function loadGroupMessage(groupId, groupName) {
+
+      
+        var user_id = @json(auth()->user()->id);
+
+        $.ajax({
+            url: '/group-chat/' + groupId,
+            method: 'GET',
+            success: function(response) {
+                if (response.success) {
+                    var messages = response.messages;
+                    var chatContent = '';
+
+                    messages.forEach(function(message) {
+                        var createdAt = new Date(message.created_at);
+                        var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
+                        var messageStyle = (message.user_id == user_id) ? 'text-right' : '';    
+                        messageStyle += (message.user_id == user_id) ? ' ml-50' : '';
+                        var seenStatusSvg = (message.seen_status == 1) ? 
+   `<svg style="color:#4fb9e3" viewBox="0 0 16 11" height="11" width="16" preserveAspectRatio="xMidYMid meet" fill="none">
+ <title>msg-dblcheck</title>
+ <path d="M11.0714 0.652832C10.991 0.585124 10.8894 0.55127 10.7667 0.55127C10.6186 0.55127 10.4916 0.610514 10.3858 0.729004L4.19688 8.36523L1.79112 6.09277C1.7488 6.04622 1.69802 6.01025 1.63877 5.98486C1.57953 5.95947 1.51817 5.94678 1.45469 5.94678C1.32351 5.94678 1.20925 5.99544 1.11192 6.09277L0.800883 6.40381C0.707784 6.49268 0.661235 6.60482 0.661235 6.74023C0.661235 6.87565 0.707784 6.98991 0.800883 7.08301L3.79698 10.0791C3.94509 10.2145 4.11224 10.2822 4.29844 10.2822C4.40424 10.2822 4.5058 10.259 4.60313 10.2124C4.70046 10.1659 4.78086 10.1003 4.84434 10.0156L11.4903 1.59863C11.5623 1.5013 11.5982 1.40186 11.5982 1.30029C11.5982 1.14372 11.5348 1.01888 11.4078 0.925781L11.0714 0.652832ZM8.6212 8.32715C8.43077 8.20866 8.2488 8.09017 8.0753 7.97168C7.99489 7.89128 7.8891 7.85107 7.75791 7.85107C7.6098 7.85107 7.4892 7.90397 7.3961 8.00977L7.10411 8.33984C7.01947 8.43717 6.97715 8.54508 6.97715 8.66357C6.97715 8.79476 7.0237 8.90902 7.1168 9.00635L8.1959 10.0791C8.33132 10.2145 8.49636 10.2822 8.69102 10.2822C8.79681 10.2822 8.89838 10.259 8.99571 10.2124C9.09304 10.1659 9.17556 10.1003 9.24327 10.0156L15.8639 1.62402C15.9358 1.53939 15.9718 1.43994 15.9718 1.32568C15.9718 1.1818 15.9125 1.05697 15.794 0.951172L15.4386 0.678223C15.3582 0.610514 15.2587 0.57666 15.1402 0.57666C14.9964 0.57666 14.8715 0.635905 14.7657 0.754395L8.6212 8.32715Z" fill="currentColor"></path>
+</svg>
+` : 
+   `<svg viewBox="0 0 12 11" height="11" width="16" preserveAspectRatio="xMidYMid meet" fill="none">
+ <title>msg-check</title>
+ <path d="M11.1549 0.652832C11.0745 0.585124 10.9729 0.55127 10.8502 0.55127C10.7021 0.55127 10.5751 0.610514 10.4693 0.729004L4.28038 8.36523L1.87461 6.09277C1.8323 6.04622 1.78151 6.01025 1.72227 5.98486C1.66303 5.95947 1.60166 5.94678 1.53819 5.94678C1.407 5.94678 1.29275 5.99544 1.19541 6.09277L0.884379 6.40381C0.79128 6.49268 0.744731 6.60482 0.744731 6.74023C0.744731 6.87565 0.79128 6.98991 0.884379 7.08301L3.88047 10.0791C4.02859 10.2145 4.19574 10.2822 4.38194 10.2822C4.48773 10.2822 4.58929 10.259 4.68663 10.2124C4.78396 10.1659 4.86436 10.1003 4.92784 10.0156L11.5738 1.59863C11.6458 1.5013 11.6817 1.40186 11.6817 1.30029C11.6817 1.14372 11.6183 1.01888 11.4913 0.925781L11.1549 0.652832Z" fill="currentColor"></path>
+</svg>
+`;
+                        chatContent += `
+                            <div id="message-${message.id}" class="card position-relative" style="border:none;background:none;">
+    <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
+        <div style="position: relative;">
+
+${message.reply_message_content ? `
+    <div class="container-fluid vo" style="margin-top:-21px; ${message.user_id == user_id ? 'margin-left:650px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
+                    <div class="row">
+                        <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
+                            <p style="display: none">nn</p>
+                        </div>
+                         <div class="col-10" style="${message.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px 4px">  
+                            <p style="font-size:17px; color: #dfe3e6; ${message.user_id == user_id ? 'margin-left:-25%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${message.reply_message_content}</p>
+                        </div>
+                    </div>
+                </div>
+` : message.reply_status ? `
+    <div class="container-fluid voO" style="margin-top:-21px; ${message.user_id == user_id ? 'margin-left:588px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
+        <div class="row">
+            <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
+                <p style="display: none">nn</p>
+            </div>
+            <div class="col-10" style="${message.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px;">  
+                 ${(() => {
+                    const replyStatus = message.reply_status;
+                    const fileType = replyStatus.split('.').pop();
+                    if (fileType.match(/jpg|jpeg|png|gif|jfif/i)) {
+                        return `<img style="width:110%;height:75px;margin-top:-9%;margin-left:-20%" src="/${replyStatus}">`;
+                    } else if (fileType.match(/mp4|webm|ogg/i)) {
+                        return `<video controls class="vdoo" style=" "><source src="/${replyStatus}" type="video/mp4"></video>`;
+                    } else {
+                        return '';
+                    }
+                })()}
+            </div>
+        </div>
+    </div>
+` : ''}
+
+             <div id="react-${message.id}" class="col-4" style="display: none; background-color:#222e36; height:70px; border-radius:20px;">
+                <div class="row">
+                    <div class="col-2 mt-1 mx-4">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji.jfif') }}" alt="Emoji 1" onclick="saveReact(${message.id}, 'emoji.jfif')">
+                    </div>
+                    <div class="col-2 mt-1">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji1.jfif') }}" alt="Emoji 2" onclick="saveReact(${message.id}, 'emoji1.jfif')">
+                    </div>
+                    <div class="col-2 mt-1 mx-4">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji2.jfif') }}" alt="Emoji 3" onclick="saveReact(${message.id}, 'emoji2.jfif')">
+                    </div>
+                    <div class="col-2 mt-1">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji3.jfif') }}" alt="Emoji 4" onclick="saveReact(${message.id}, 'emoji3.jfif')">
+                    </div>
+                </div>
+            </div>
+
+            <div class="message-content" style="font-size:17px;background:${message.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${message.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${message.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
+              <p><strong>${message.user.name}:</strong> ${message.message}</p>
+
+                ${message.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
+                <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
+                ${message.user_id == user_id ? seenStatusSvg : ''}
+            </div>
+
+             ${message.react_message ? `
+                <div style="margin-top: 10px;">
+                    <p><img style="width: 30px; height: 30px; border-radius: 50%;" src="{{ asset('${message.react_message}') }}" alt="React Emoji"></p>
+                </div>
+            ` : ''}
+            
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${message.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; margin-top: 20; ${message.user_id == user_id ? 'right: 90px;' : 'left: 70px;'} margin-top:35px; ${message.user_id != user_id ? 'color:black;' : 'color:green;'}" data-message-id="${message.id}">
+            </a>
+            <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${message.id}" style="background-color: #233138;">
+                <li><a class="dropdown-item text-white reply-message" href="#" data-message-content="${message.message}">Reply</a></li>
+                <li><a class="dropdown-item text-white react-message" href="#" onclick="toggleReact(${message.id})">React</a></li>
+                ${message.user_id == user_id ? `
+                    <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${message.id}">Delete</a></li>
+                    <li><a class="dropdown-item text-white edit-message" href="#" data-message-id="${message.id}">Edit</a></li>
+                    ${message.status === 'deleted' ? `
+                        <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${message.id}">Remove</a></li>
+                    ` : ''}
+                ` : ''}
+            </ul>         
+        </div>
+    </div>
+</div>
+                        `;
+                    });
+
+                    $('#chat-content').html(chatContent);
+
+                   
+                    var newUrl = '/group-chat/' + groupId;
+                    history.pushState({ groupId: groupId, groupName: groupName }, '', newUrl);
+                } else {
+                    alert('Failed to load group chat messages.');
+                }
+            },
+            error: function(xhr) {
+                alert('An error occurred: ' + xhr.responseText);
+                console.log('AJAX error:', xhr.responseText);
+            }
+        });
+    };
+
+    
+ 
 
 </script>
  

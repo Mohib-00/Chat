@@ -311,6 +311,39 @@
 
                         <div class="col-lg-12 mt-3">
                         <div class="row sideBar" style="background-color: #111b21;height:730px; ">
+
+                            @foreach ($groupChats as $group_chat)
+    <div class="row sideBar-body" data-group-id="{{ $group_chat->id }}">
+        <div style="margin-left:-22px" class="col-sm-2 col-xs-2">
+            <div class="avatar-icon mt-4" data-group-id="{{ $group_chat->id }}">
+                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+            </div>
+        </div>
+        <div class="col-sm-9 col-xs-9">
+            <div class="row">
+                <a href="#" style="text-decoration: none; color:white;">
+                    <div class="col-sm-8 col-xs-8 sideBar-name">
+                        <span class="name-meta group-chat-link v"  
+                            data-group-id="{{ $group_chat->id }}"
+                            data-group-name="{{ $group_chat->group_name }}">
+                            {{ $group_chat->group_name }}
+                        </span>
+                        <br>
+                        <span class="v" id="message" style="color:#8797a1;font-size:15px;">
+                            {{ $group_chat->lastMessageComments->message ?? '' }}
+                        </span>
+                    </div>
+                    <div class="col-sm-4 col-xs-4 mt-5 sideBar-time pull-right">
+                        <span class="time-meta text-white pull-right">
+                            {{ $group_chat->lastMessageComments ? $group_chat->lastMessageComments->created_at->diffForHumans() : '' }}
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+@endforeach
+
                             @foreach ($user_messages as $single_message)
                             <div   class="row sideBar-body " data-message-id="{{ $single_message->id }}">
                                 <div style="margin-left:-22px" class="col-sm-2 col-xs-2">
@@ -343,7 +376,9 @@
                                 </div>
                               </div> 
                             </div>
-                           @endforeach                      
+                           @endforeach   
+                           
+                           
                         </div>
                       </div>
                    </div>              
@@ -464,6 +499,8 @@
 
                             <input type="hidden" name="reply_message_content" id="replyMessage">
 
+                             
+
                             <input id="image-upload" type="file" style="display: none;" multiple>
                             <input id="image" type="hidden" name="image">
 
@@ -472,9 +509,17 @@
 
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
 
+                            
+
                             <input type="file" id="file-input" style="display: none;">
 
                             <input type="file" id="statusUploadInput" style="display: none;">
+
+
+                            <input type="hidden" id="groupChatId" value="1">  
+                            <input type="hidden" id="userId" value="{{ auth()->user()->id }}">  
+ 
+ 
 
                            
                             <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">
@@ -504,6 +549,14 @@
 
                                             <div class="col-6">
                                                 <button  style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3 mt-4 mx-4" id="submitMessage">
+                                                    <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                                        <title>send</title>
+                                                        <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
+                                                    </svg>
+                                                    
+                                                </button>
+
+                                                <button   type="button"  style="border-radius: 20px; background-color: white; border: 1px solid green;" class="sendgrp input-group-text p-3 mt-4 mx-4" id="submitgrpMessage">
                                                     <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                                         <title>send</title>
                                                         <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>

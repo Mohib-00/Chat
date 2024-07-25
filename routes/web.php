@@ -50,3 +50,11 @@ Route::get('/get-last-message', [MessagesController::class, 'getLastMessage'])->
 Route::post('/addStatus', [MessagesController::class, 'addStatus'])->name('addStatus');
 
 Route::post('/reply-status', [MessagesController::class, 'replyToStatus'])->name('reply.status');
+
+Route::post('/create-group', [MessagesController::class, 'createGroup'])->name('create-group');
+
+Route::post('/save-group-message', [MessagesController::class, 'saveGroupMessage'])->name('save-group-message');
+
+Route::get('/group-chat/{groupId}', [MessagesController::class, 'loadGroupChatMessages']);
+
+ 
