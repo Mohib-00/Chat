@@ -113,10 +113,12 @@ class MessagesController extends Controller
         $otherUsers = User::where('id', '!=', auth()->id())->get();
 
        
+        $groupChatIds = $groupChats->pluck('id');
+        $groupChatss = GroupChat::whereIn('id', $groupChatIds)->get();
         
     
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats'));
+       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss'));
 
     }
 
@@ -407,7 +409,6 @@ public function saveReact(Request $request)
 
 public function saveGroupMessage(Request $request)
 {
-    
     \Log::info('Request Data:', $request->all());
 
     $validated = $request->validate([
@@ -420,7 +421,6 @@ public function saveGroupMessage(Request $request)
     }
 
     $messageComment = new MessageComment;
-
     $messageComment->group_chat_id = $request->input('group_chat_id');
     $messageComment->user_id = auth()->user()->id;
     $messageComment->message = $request->message;
@@ -443,8 +443,6 @@ public function saveGroupMessage(Request $request)
 
     return response()->json(['success' => true]);
 }
-
-
 
  
 

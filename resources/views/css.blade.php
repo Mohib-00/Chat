@@ -426,7 +426,7 @@
     display: none
    }
 
-   #submitgrpMessage{
+   .sendgrp{
     display: none
    }
 

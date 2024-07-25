@@ -140,17 +140,21 @@
        
     });
 
-    $(".group-chat-link").click(function() {       
-        $(".send").hide();
-        $("#submitgrpMessage").show(); 
-        
-    });
+    $(".group-chat-link").click(function() {
+   
+    $(".send").hide();
+
+    
+    var groupId = $(this).data('group-id');
+ 
+    $("#submitgrpMessage" + groupId).show();
+});
 
      
 
     $(".user-chat-link").click(function() {       
         $(".send").show();
-        $("#submitgrpMessage").hide(); 
+        $(".sendgrp").hide(); 
     });
 
   
@@ -201,8 +205,7 @@ $(document).on('click', '.mmbr', function() {
             },
             success: function(response) {
                 if (response.success) {
-                    alert('Group chat created successfully');
-                    // Optionally update the UI or redirect
+                     
                 }
             },
             error: function(xhr) {
@@ -215,16 +218,12 @@ $(document).on('click', '.mmbr', function() {
     }
 });
 
-function sendGroupMessage() {
+function sendGroupMessage(groupId) {
     var formData = new FormData();
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-    var groupChatId = $('#groupChatId').val(); 
-    var userId = $('#userId').val();  
     var messageInput = $('[name="message"]').val().trim();  
 
-    formData.append('group_chat_id', groupChatId);
-    formData.append('user_id', userId);
+    formData.append('group_chat_id', groupId);
     formData.append('message', messageInput || 'No message');
 
     if ($('#video-upload')[0].files.length > 0) {
@@ -264,14 +263,15 @@ function sendGroupMessage() {
             console.log('AJAX error:', xhr.responseText);
         }
     });
-    
 }
 
-
-$('#submitgrpMessage').click(function(e) {
+// Click event for submit buttons
+$(document).on('click', '.sendgrp', function(e) {
     e.preventDefault();
-    sendGroupMessage();  
-   });
+    var groupId = $(this).data('group-id');
+    sendGroupMessage(groupId);
+});
+
 
    $('.group-chat-link').click(function(e) {
     e.preventDefault();

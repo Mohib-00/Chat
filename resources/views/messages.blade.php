@@ -516,7 +516,7 @@
                             <input type="file" id="statusUploadInput" style="display: none;">
 
 
-                            <input type="hidden" id="groupChatId" value="1">  
+                             
                             <input type="hidden" id="userId" value="{{ auth()->user()->id }}">  
  
  
@@ -556,13 +556,18 @@
                                                     
                                                 </button>
 
-                                                <button   type="button"  style="border-radius: 20px; background-color: white; border: 1px solid green;" class="sendgrp input-group-text p-3 mt-4 mx-4" id="submitgrpMessage">
-                                                    <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                                @foreach($groupChatss as $group)
+                                                <input type="hidden" id="groupChatId{{ $group->id }}" value="{{ $group->id }}">
+                                                <button data-group-id="{{ $group->id }}" type="button" style="border-radius: 20px; background-color: white; border: 1px solid green;" class="sendgrp input-group-text p-3 mt-4 mx-4" id="submitgrpMessage{{ $group->id }}" style="display: none;">
+                                                    <svg viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                                         <title>send</title>
                                                         <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
                                                     </svg>
-                                                    
                                                 </button>
+                                            @endforeach
+                                            
+                                            
+
                                             </div>
 
                                         </div>
@@ -639,14 +644,7 @@
                 <input type="hidden" id="statusUserId" value="2">  
                 <input class="inp" style="background-color: #202c33; border:none; position:absolute; border-radius:10px; width:200%; color:white; padding:20px 0px 20px 10px;" type="text" name="message" autocomplete="off" class="form-control" placeholder="Type a reply">
 
-                <button type="button" id="replyMessage" style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3 butn">
-
-                    <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
-                        <title>send</title>
-                        <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
-                    </svg>
-                    
-                </button>
+                 
             </div>
 
         </div>
