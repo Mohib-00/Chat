@@ -290,6 +290,7 @@ $(document).on('click', '.sendgrp', function(e) {
     e.preventDefault();
     var groupId = $(this).data('group-id');
     var groupName = $(this).data('group-name');
+    var user_id = @json(auth()->user()->id);
     window.history.pushState({}, '', '/group-chat/' + groupId);
     
     loadGroupMessage(groupId, groupName);
@@ -298,6 +299,7 @@ $(document).on('click', '.sendgrp', function(e) {
 
    
 function HtmlGroupChat(messages,groupId) {
+
     if (!Array.isArray(messages)) {
         console.error("Expected messages to be an array, but got:", data);
         return;
@@ -306,6 +308,7 @@ function HtmlGroupChat(messages,groupId) {
 
     messages.forEach(message => {
                         var createdAt = new Date(message.created_at);
+                        var user_id = @json(auth()->user()->id);
                         var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
                         var messageStyle = (message.user_id == user_id) ? 'text-right' : '';    
                         messageStyle += (message.user_id == user_id) ? ' ml-50' : '';
