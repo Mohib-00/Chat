@@ -140,23 +140,6 @@
        
     });
 
-    $(".group-chat-link").click(function() {
-   
-    $(".send").hide();
-
-    
-    var groupId = $(this).data('group-id');
- 
-    $("#submitgrpMessage" + groupId).show();
-});
-
-     
-
-    $(".user-chat-link").click(function() {       
-        $(".send").show();
-        $(".sendgrp").hide(); 
-    });
-
   
 
 });
@@ -164,6 +147,36 @@
 
  
 <script>
+
+var currentVisibleButtonId = null;
+ 
+function showButtonForGroupChat(groupId) {
+    
+    if (currentVisibleButtonId !== null) {
+        $("#submitgrpMessage" + currentVisibleButtonId).hide();
+    }
+ 
+    $("#submitgrpMessage" + groupId).show();
+    $(".send").hide();
+
+    currentVisibleButtonId = groupId;
+}
+
+ 
+$(".group-chat-link").click(function() {
+ 
+    var groupId = $(this).data('group-id');
+
+    showButtonForGroupChat(groupId);
+});
+
+$(".user-chat-link").click(function() {       
+        $(".send").show();
+        $(".sendgrp").hide(); 
+    });
+
+  
+
    $(document).on('click', '.usersgrp .sideBar-body', function() {
     
     $(this).toggleClass('selected');  
@@ -265,7 +278,7 @@ function sendGroupMessage(groupId) {
     });
 }
 
-// Click event for submit buttons
+ 
 $(document).on('click', '.sendgrp', function(e) {
     e.preventDefault();
     var groupId = $(this).data('group-id');
@@ -277,25 +290,15 @@ $(document).on('click', '.sendgrp', function(e) {
     e.preventDefault();
     var groupId = $(this).data('group-id');
     var groupName = $(this).data('group-name');
+    window.history.pushState({}, '', '/group-chat/' + groupId);
+    
     loadGroupMessage(groupId, groupName);
 
 });
 
    
-
- 
-function loadGroupMessage(groupId, groupName) {
-
-      
-        var user_id = @json(auth()->user()->id);
-
-        $.ajax({
-            url: '/group-chat/' + groupId,
-            method: 'GET',
-            success: function(response) {
-                if (response.success) {
-                    var messages = response.messages;
-                    var chatContent = '';
+function HtmlGroupChat(messages, user_id) {
+    var chatContent = '';
 
                     messages.forEach(function(message) {
                         var createdAt = new Date(message.created_at);
@@ -399,28 +402,36 @@ ${message.reply_message_content ? `
         </div>
     </div>
 </div>
-                        `;
-                    });
+        `;
+    });
 
-                    $('#chat-content').html(chatContent);
+    return chatContent;
+}
 
-                   
-                    var newUrl = '/group-chat/' + groupId;
-                    history.pushState({ groupId: groupId, groupName: groupName }, '', newUrl);
-                } else {
-                    alert('Failed to load group chat messages.');
-                }
-            },
-            error: function(xhr) {
-                alert('An error occurred: ' + xhr.responseText);
-                console.log('AJAX error:', xhr.responseText);
+function loadGroupMessage(groupId, groupName) {
+    var user_id = @json(auth()->user()->id);
+
+    $.ajax({
+        url: '/group-chat/' + groupId,
+        method: 'GET',
+        success: function(response) {
+            if (response.success && response.messages) {
+                var messages = response.messages;
+                var chatContent = HtmlGroupChat(messages, user_id);
+                $('#chat-content').empty();
+                $('#chat-content').append(chatContent);
+            } else {
+                alert('Failed to load group chat messages.');
+                console.log('Failed to load group chat messages. Response:', response);
             }
-        });
-    };
-
-    
+        },
+        error: function(xhr) {
+            alert('An error occurred: ' + xhr.responseText);
+            console.log('AJAX error:', xhr.responseText);
+        }
+    });
+}
  
-
 </script>
  
  
