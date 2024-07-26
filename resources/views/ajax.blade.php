@@ -297,10 +297,14 @@ $(document).on('click', '.sendgrp', function(e) {
 });
 
    
-function HtmlGroupChat(messages, user_id) {
+function HtmlGroupChat(messages,groupId) {
+    if (!Array.isArray(messages)) {
+        console.error("Expected messages to be an array, but got:", data);
+        return;
+    }
     var chatContent = '';
 
-                    messages.forEach(function(message) {
+    messages.forEach(message => {
                         var createdAt = new Date(message.created_at);
                         var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
                         var messageStyle = (message.user_id == user_id) ? 'text-right' : '';    
