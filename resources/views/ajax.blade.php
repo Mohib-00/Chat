@@ -380,7 +380,7 @@ ${message.reply_message_content ? `
             </div>
 
             <div class="message-content" style="font-size:17px;background:${message.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${message.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${message.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
-              <p><strong>${message.user.name}:</strong> ${message.message}</p>
+             ${message.user_id != user_id ? `<p><strong style="color:green">${message.user.name}<br></strong> ${message.message}</p>` : `<p>${message.message}</p>`}
 
                 ${message.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
                 <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
