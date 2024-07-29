@@ -115,10 +115,12 @@ class MessagesController extends Controller
        
         $groupChatIds = $groupChats->pluck('id');
         $groupChatss = GroupChat::whereIn('id', $groupChatIds)->get();
+
+         
         
     
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss'));
+       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss',));
 
     }
 

@@ -175,6 +175,21 @@ $(".user-chat-link").click(function() {
         $(".sendgrp").hide(); 
     });
 
+
+    $(".group-chat-link").click(function() {        
+        $(".usr").hide();
+        $(".groupp").show(); 
+        $(".userimage").hide();
+        $(".groupimage").show();
+    });
+
+    $(".user-chat-link").click(function() {        
+        $(".groupp").hide(); 
+        $(".usr").show();
+        $(".groupimage").hide();
+        $(".userimage").show();
+    });
+
   
 
    $(document).on('click', '.usersgrp .sideBar-body', function() {
@@ -290,7 +305,13 @@ $(document).on('click', '.sendgrp', function(e) {
     e.preventDefault();
     var groupId = $(this).data('group-id');
     var groupName = $(this).data('group-name');
+    var groupImage = $(this).data('user-image');
     var user_id = @json(auth()->user()->id);
+
+
+    $('#selected-group-name').text(groupName);
+    $('#selected-group-image').attr('src', groupImage);
+
     window.history.pushState({}, '', '/group-chat/' + groupId);
     
     loadGroupMessage(groupId, groupName);

@@ -315,8 +315,12 @@
                             @foreach ($groupChats as $group_chat)
     <div class="row sideBar-body" data-group-id="{{ $group_chat->id }}">
         <div style="margin-left:-22px" class="col-sm-2 col-xs-2">
-            <div class="avatar-icon mt-4" data-group-id="{{ $group_chat->id }}">
-                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+            <div class="avatar-icon mt-4" data-user-id="{{ $group_chat->id }}">
+                @if ($group_chat->group_image)
+                <img  src="{{ asset('images/' . $group_chat->group_image) }}">
+                @else
+               <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                @endif
             </div>
         </div>
         <div class="col-sm-9 col-xs-9">
@@ -324,8 +328,10 @@
                 <a href="#" style="text-decoration: none; color:white;">
                     <div class="col-sm-8 col-xs-8 sideBar-name">
                         <span class="name-meta group-chat-link v"  
+                            data-user-image="{{ asset('images/' . $group_chat->group_image) }}" 
                             data-group-id="{{ $group_chat->id }}"
                             data-group-name="{{ $group_chat->group_name }}">
+                            
                             {{ $group_chat->group_name }}
                         </span>
                         <br>
@@ -392,20 +398,42 @@
                         <div class="row">
 
                             @if (count($user_messages) > 0)
-                            <div class="col-lg-1 col-md-1 col-sm-1">
+                            <div class="col-lg-1 col-md-1 col-sm-1 userimage">
                                 <img id="selected-user-image" class="icon1 mx-4" src="{{ asset('images/' . $user_messages[0]->image) }}" alt="User Image">
                             </div>
+
+                            @if (count($groupChatss) > 0)
+                            <div class="col-lg-1 col-md-1 col-sm-1 groupimage" style="display: none"  >
+                                <img id="selected-group-image" class="icon1 mx-4" src="{{ asset('images/' . $groupChatss[0]->image) }}" alt="Group Image">
+                            </div>
+                            @else
+                            <p>No conversation so far...</p>
+                            @endif
                             
                             <div class="col-lg-8 col-md-8 col-sm-8 mt-2">
-                                <a class="heading-name-meta v" id="selected-user-name" data-user-id="{{ $user_messages[0]->id }}" style="color:#dfe3e6; margin-top:1%;font-size:20px;text-decoration:none;">
+                                <a class="heading-name-meta v  usr" id="selected-user-name" data-user-id="{{ $user_messages[0]->id }}" style="color:#dfe3e6; margin-top:1%;font-size:20px;text-decoration:none;">
                                     {{ $user_messages[0]->name }}
                                     <br>
                                 </a>
+
+                                @if (count($groupChatss) > 0)
+                                <a class="group-name-meta v groupp" id="selected-group-name" data-user-id="{{ $groupChatss[0]->id }}" style="color:#dfe3e6; margin-top:1%;font-size:20px;text-decoration:none;display:none">
+                                    {{ $groupChatss[0]->name }}
+                                    <br>
+                                </a>
+                                @else
+                                <p>No conversation so far...</p>
+                                @endif
+
                                 <div class="v" id="typing" style="display: none;color:white;font-weight:bolder">typing...</div>
                                 <div class="last v" id="last-seen" style="font-size: 0.9em; color: grey;"></div>
                                 
                                 <i class="fa fa-arrow-left  d-sm-block d-md-none" aria-hidden="true" id="goBackIcon" style="color:#aebbc2; cursor: pointer;"></i>
                             </div> 
+
+                            @else
+                            <p>No conversation so far...</p>
+                            @endif
                             
                             <div class="col-lg-1 col-md-1 col-sm-1" >
                                 <div class="row">
@@ -458,9 +486,7 @@
                             </div>
                             
 
-                            @else
-                            <p>No conversation so far...</p>
-                            @endif
+                            
                             
                         </div>
                     </div>
