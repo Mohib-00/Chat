@@ -8,6 +8,7 @@ use App\Models\MessageComment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
  
 class MessagesController extends Controller
 {
@@ -151,6 +152,21 @@ public function getConversations(Request $request)
         
     return response()->json(['conversations' => $conversations, 'updatedConversations' => $updatedConversations]);
 }
+
+public function getGroupConversations(Request $request)
+{
+    $groupId = $request->chat_group_id;  
+    $lastCheckedgrpUniqueTimestamp = $request->input('lastCheckedgrpUniqueTimestamp');
+
+    $groupConversations = MessageComment::where('group_chat_id', $groupId)
+        ->where('groupUnixTimestamp', '>', $lastCheckedgrpUniqueTimestamp)
+        ->get();
+
+   
+
+    return response()->json(['groupConversations' => $groupConversations]);
+}
+
  
 public function delete($id)
 {
@@ -181,7 +197,7 @@ public function delete($id)
    public function openNewPage()
 {
 
-    \Log::info('New page request received'); 
+    
     return response()->json(['message' => 'New page opened successfully']);
 }
 
@@ -411,7 +427,7 @@ public function saveReact(Request $request)
 
 public function saveGroupMessage(Request $request)
 {
-    \Log::info('Request Data:', $request->all());
+    
 
     $validated = $request->validate([
         'group_chat_id' => 'required|exists:group_chats,id',
@@ -426,7 +442,7 @@ public function saveGroupMessage(Request $request)
     $messageComment->group_chat_id = $request->input('group_chat_id');
     $messageComment->user_id = auth()->user()->id;
     $messageComment->message = $request->message;
-    $messageComment->uniquetimestamp = time();
+    $messageComment->groupUnixTimestamp = time();
 
     if ($request->hasFile('video')) {
         $videoPath = $request->file('video')->store('videos', 'public');

@@ -534,6 +534,7 @@
                             <input id="video" type="hidden" name="video">
 
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
+                            <input type="hidden" id="groupUnixTimestamp" name="groupUnixTimestamp" value="">
 
                             
 
@@ -541,6 +542,10 @@
 
                             <input type="file" id="statusUploadInput" style="display: none;">
 
+                            @if(isset($grps[0]))
+                            <input type="hidden" id="chatGroupId" value="{{ $grps[0]->id }}">
+                            @endif
+                        
 
                              
                             <input type="hidden" id="userId" value="{{ auth()->user()->id }}">  

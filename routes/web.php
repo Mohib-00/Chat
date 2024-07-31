@@ -14,6 +14,8 @@ Route::post('store', [MessagesController::class, 'store'])->name('storeConversat
 
 Route::get('getConversations', [MessagesController::class, 'getConversations'])->name('getConversations');
 
+Route::get('getGroupConversations', [MessagesController::class, 'getGroupConversations'])->name('getGroupConversations');
+
 Route::get('/delete-message/{id}', [MessagesController::class, 'delete'])->name('deleteMessage');
 
 Route::get('/open-new-page', [MessagesController::class, 'openNewPage'])->name('open.new.page');

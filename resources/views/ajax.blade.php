@@ -221,7 +221,7 @@ $(document).on('click', '.mmbr', function() {
         userNames.push($(this).find('.name-meta').data('user-name'));
     });
 
-    console.log('Selected User Names:', userNames); // Debugging output
+    
 
     if (userNames.length > 0) {
         $.ajax({
@@ -238,7 +238,7 @@ $(document).on('click', '.mmbr', function() {
             },
             error: function(xhr) {
                 alert('An error occurred: ' + xhr.responseText);
-                console.log('AJAX error:', xhr.responseText);
+                
             }
         });
     } else {
@@ -276,24 +276,97 @@ function sendGroupMessage(groupId) {
             'X-CSRF-TOKEN': csrfToken
         },
         success: function(response) {
-            console.log('Response:', response);
             if (response.success) {
-                console.log('Message saved successfully');
+                var groupConversations = [response.message];  
+                var chatHtml = HtmlGroupChat(groupConversations, groupId);
+                $('#chat-content').append(chatHtml);
                 $('[name="message"]').val('');
                 $('#image-upload').val('');
                 $('#video-upload').val('');
+                scrollToBottom();
             } else {
                 alert('Failed to save message');
             }
         },
         error: function(xhr) {
             alert('An error occurred: ' + xhr.responseText);
-            console.log('AJAX error:', xhr.responseText);
         }
     });
 }
 
- 
+var lastgrpCheckedTimestamp = null;
+getLastgrpCheckedTimestamp(false);
+
+function scrollToBottom() {
+    var chatContainer = $('#chat-content');
+    chatContainer.scrollTop(chatContainer[0].scrollHeight);
+}
+
+function getLastgrpCheckedTimestamp(keep_last_stamp = true) {
+    if (keep_last_stamp) {
+        const timestamp = localStorage.getItem('lastCheckedgrpTimestamp');
+         
+        return timestamp;
+    } else {
+        localStorage.setItem('lastCheckedgrpTimestamp', 0);
+         
+        return 0;
+    }
+}
+
+function fetchGroupConversations() {
+    var lastCheckedTimestamp = getLastgrpCheckedTimestamp() || 0;
+    var groupId = $('#chatGroupId').val();
+    
+
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        url: "{{ route('getGroupConversations') }}",
+        method: "get",
+        data: {
+            lastCheckedgrpUniqueTimestamp: lastCheckedTimestamp,
+            chat_group_id: groupId,
+            _token: csrfToken,
+        },
+        success: function(response) {
+            if (response && Array.isArray(response.groupConversations)) {
+                var groupConversations = response.groupConversations;
+
+                if (lastCheckedTimestamp === 0) {
+                    $('#chat-content').empty();
+                }
+
+                if (groupConversations.length > 0) {
+                    groupConversations.forEach(function(conversation) {
+                        var chatHtml = HtmlGroupChat(groupConversations, groupId);
+                        $('#chat-content').append(chatHtml);
+
+                        if (conversation.groupUnixTimestamp) {
+                            lastCheckedTimestamp = conversation.groupUnixTimestamp;
+                              
+                        }
+                    });
+
+                    localStorage.setItem('lastCheckedgrpTimestamp', lastCheckedTimestamp);
+                  
+                    scrollToBottom();
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            
+        }
+    });
+}
+
+fetchGroupConversations();
+setInterval(function() {
+    fetchGroupConversations();
+}, 2000);
+
+
+
 $(document).on('click', '.sendgrp', function(e) {
     e.preventDefault();
     var groupId = $(this).data('group-id');
@@ -301,33 +374,36 @@ $(document).on('click', '.sendgrp', function(e) {
 });
 
 
-   $('.group-chat-link').click(function(e) {
+$('.group-chat-link').click(function(e) {
     e.preventDefault();
     var groupId = $(this).data('group-id');
     var groupName = $(this).data('group-name');
     var groupImage = $(this).data('user-image');
-    var user_id = @json(auth()->user()->id);
-
 
     $('#selected-group-name').text(groupName);
     $('#selected-group-image').attr('src', groupImage);
-
+ 
+    $('#chatGroupId').val(groupId);
+    
+    
+    fetchGroupConversations();
+    
+ 
     window.history.pushState({}, '', '/group-chat/' + groupId);
     
     loadGroupMessage(groupId, groupName);
-
 });
 
-   
-function HtmlGroupChat(messages,groupId) {
 
+   
+function HtmlGroupChat(messages, groupId) {
     if (!Array.isArray(messages)) {
-        console.error("Expected messages to be an array, but got:", data);
-        return;
+        return '';
     }
     var chatContent = '';
 
     messages.forEach(message => {
+        if (!message || typeof message !== 'object') return;
                         var createdAt = new Date(message.created_at);
                         var user_id = @json(auth()->user()->id);
                         var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
@@ -401,7 +477,7 @@ ${message.reply_message_content ? `
             </div>
 
             <div class="message-content" style="font-size:17px;background:${message.user_id == user_id ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${message.user_id == user_id ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${message.user_id == user_id ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
-             ${message.user_id != user_id ? `<p><strong style="color:green">${message.user.name}<br></strong> ${message.message}</p>` : `<p>${message.message}</p>`}
+              ${message.user_id != user_id ? `  <p><strong style="color:green">${message.user && message.user.name ? message.user.name : 'Unknown User'}<br></strong> ${message.message}</p> ` : `<p>${message.message}</p>`}
 
                 ${message.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
                 <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
@@ -435,7 +511,7 @@ ${message.reply_message_content ? `
 
     return chatContent;
 }
-
+ 
 function loadGroupMessage(groupId, groupName) {
     var user_id = @json(auth()->user()->id);
 
@@ -449,13 +525,12 @@ function loadGroupMessage(groupId, groupName) {
                 $('#chat-content').empty();
                 $('#chat-content').append(chatContent);
             } else {
-                alert('Failed to load group chat messages.');
-                console.log('Failed to load group chat messages. Response:', response);
+              
             }
         },
         error: function(xhr) {
             alert('An error occurred: ' + xhr.responseText);
-            console.log('AJAX error:', xhr.responseText);
+             
         }
     });
 }
@@ -525,11 +600,11 @@ function loadGroupMessage(groupId, groupName) {
    url: "{{ route('open.new.page') }}",
    type: 'GET',
    success: function(response) {
-   console.log(response.message);
+   
    window.location.href = "/profile";
    },
    error: function(xhr, status, error) {
-   console.error(xhr.responseText);
+    
    }
  });
 });
@@ -576,10 +651,10 @@ function loadGroupMessage(groupId, groupName) {
             emoji: emojiSrc
         },
         success: function(response) {
-            console.log('Reaction saved:', response);
+          
         },
         error: function(xhr, status, error) {
-            console.error('Error saving reaction:', error);
+            
         }
     });
 }
@@ -626,7 +701,7 @@ function loadGroupMessage(groupId, groupName) {
     if (backImage) {
         $('#chat-container').css('background-image', 'url(' + backImage + ')');
     } else {
-        console.error("Background image is undefined for user:", userId);
+       
     }
     
     $('#selected-user-name').text(userName);
@@ -664,7 +739,7 @@ function loadGroupMessage(groupId, groupName) {
            }
        },
        error: function(xhr, status, error) {
-           console.error("Error loading chat:", error);
+            
        }
    });
 }
@@ -679,6 +754,7 @@ function Html(conversation, user_id) {
    var deleteButton = (conversation.user_id == user_id) ? `<a style="color:white" class="delete-message btn-sm  position-absolute  top-0 start-0 mt-1 ms-1" data-message-id="${conversation.id}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>` : '';
    var createdAt = new Date(conversation.created_at);
    var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
+   var user_id = @json(auth()->user()->id);
    var messageStyle = (conversation.user_id == user_id) ? 'text-right' : '';    
    messageStyle += (conversation.user_id == user_id) ? ' ml-50' : '';
    var messageHtml = '';
@@ -840,12 +916,7 @@ $(document).on('click', '#replyMessage', function(e) {
     var statusUserId = $('#statusUserId').val();
     var messageId = $('#message_id').val();
 
-    console.log({
-        _token: '{{ csrf_token() }}',
-        message: message,
-        status_user_id: statusUserId,
-        message_id: messageId,
-    });
+    
 
     $.ajax({
         url: '{{ route('reply.status') }}',
@@ -857,14 +928,14 @@ $(document).on('click', '#replyMessage', function(e) {
             message_id: messageId,
         },
         success: function(response) {
-            console.log(response);
+          
             if (response.success) {
                 $('.inp').val('');
                  
             }
         },
         error: function(response) {
-            console.error('Error:', response);
+            
         }
     });
 });
@@ -965,7 +1036,7 @@ function getLastMessage() {
             }
         },
         error: function(xhr, status, error) {
-            console.error(xhr.responseText);
+            
         }
     });
 }
@@ -977,7 +1048,7 @@ function sendMessage() {
     formData.append('message_id', $('[name="message_id"]').val());
     var messageInput = $('[name="message"]').val().trim();
     var replyMessage = $('#replyMessage').val().trim(); 
-    console.log("Reply Message:", replyMessage);
+     
 
     var uniqueTimestamp = Math.floor(Date.now() / 1000);
     var formattedDate = new Date(uniqueTimestamp * 1000).toISOString().slice(0, 19).replace('T', ' ');
@@ -1022,7 +1093,7 @@ function sendMessage() {
             $('#reply').hide();   
         },
         error: function(xhr, status, error) {
-            console.error(xhr.responseText);
+             
         }
     });
 }
@@ -1202,7 +1273,7 @@ function fetchConversations(userId) {
            }
        },
        error: function(xhr, status, error) {
-           console.error(xhr.responseText);
+        
            loadingMessages = false;
        }
    });
@@ -1270,7 +1341,7 @@ function setupWallpaperChange(userId) {
                            }
                        },
                        error: function(xhr, status, error) {
-                           console.error(xhr.responseText);
+                            
                        }
                    });
                });
@@ -1316,7 +1387,7 @@ function setupWallpaperChange(userId) {
                }            
                },
                error: function(xhr, status, error) {
-               console.error(xhr.responseText);
+               
                }
            });
        } else {       

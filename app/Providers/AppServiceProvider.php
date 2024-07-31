@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\GroupChat;
 use App\Models\Message;
 use App\Models\MessageComment;
 use App\Models\User;
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
         //$user= User::first();
 
         //View::share('user',$user);
+
+
+        $grps = GroupChat::all();
+        View::share('grps',$grps);
  
  
 
