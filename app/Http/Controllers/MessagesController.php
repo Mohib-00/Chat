@@ -45,7 +45,7 @@ class MessagesController extends Controller
     
         $conversation->message_id = $request->message_id;
         $conversation->uniquetimestamp = $uniqueTimestamp;
-        $conversation->group_chat_id = $request->input('group_chat_id');
+        
     
         
         if ($request->has('reply_message_content')) {
@@ -162,9 +162,13 @@ public function getGroupConversations(Request $request)
         ->where('groupUnixTimestamp', '>', $lastCheckedgrpUniqueTimestamp)
         ->get();
 
+    $updatedgroupConversations = MessageComment::where('group_chat_id', $groupId)
+    ->where('groupUpdatedTimestamp', '>', $lastCheckedgrpUniqueTimestamp)
+    ->get();    
+
    
 
-    return response()->json(['groupConversations' => $groupConversations]);
+    return response()->json(['groupConversations' => $groupConversations, 'updatedgroupConversations' => $updatedgroupConversations]);
 }
 
  
@@ -457,6 +461,8 @@ public function saveGroupMessage(Request $request)
         $messageComment->image = json_encode($imagePaths);
     }
 
+    
+
     $messageComment->save();
 
     return response()->json(['success' => true]);
@@ -479,6 +485,62 @@ public function loadGroupChatMessages($groupId)
 
     return response()->json(['success' => true, 'messages' => $messages]);
 }
+
+public function deletegrp($id)
+{
+    $message = MessageComment::find($id);
+    $groupUpdatedTimestamp = time();
+    
+    if ($message) {
+        $deletedMessageId = $message->id;  
+       
+        $message->groupUpdatedTimestamp = $groupUpdatedTimestamp;
+        $message->status = 'deleted';
+        $message->message = '<i>This message has been deleted</i>';
+
+        $message->image = null;
+        $message->video = null;
+        $message->save();
+
+        return response()->json([
+            'success' => true, 
+            'deletedMessageId' => $deletedMessageId,
+            
+        ]);  
+    } else {
+        return response()->json(['success' => false, 'error' => 'Message not found'], 404);
+    }
+}
+
+public function destroygrpmsg($id)
+{
+    $messageComment = MessageComment::findOrFail($id);
+  
+    $messageComment->delete();
+
+    return response()->json(['success' => 'Message deleted successfully']);
+}
+
+public function savegrpReact(Request $request)
+    {
+        $groupUpdatedTimestamp = time();       
+
+        $messageComment = MessageComment::find($request->conversation_id);
+
+        if (!$messageComment) {
+            return response()->json(['error' => 'Message not found'], 404);
+        }
+
+        $messageComment->groupUpdatedTimestamp = $groupUpdatedTimestamp;
+        
+        $messageComment->react_message = $request->emoji;
+        $messageComment->save();
+
+        return response()->json(['message' => 'Reaction saved successfully'], 200);
+    }
+
+
+   
 
 
 }

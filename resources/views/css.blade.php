@@ -124,6 +124,26 @@
                                        #chat-content::-webkit-scrollbar-thumb:hover {
                                            background-color: #374045;  
                                        } 
+
+
+
+   #chat-grpcontent::-webkit-scrollbar {
+                                           width: 10px;  
+                                       }
+                       
+                                       #chat-grpcontent::-webkit-scrollbar-track {
+                                           background-color:transparent;  
+                                       }
+                       
+                                       #chat-grpcontent::-webkit-scrollbar-thumb {
+                                           background-color: #374045;  
+                                           border-radius: 5px;  
+                                            
+                                       }
+                       
+                                       #chat-grpcontent::-webkit-scrollbar-thumb:hover {
+                                           background-color: #374045;  
+                                       }                                     
    
    .sideBar-body {
    border-bottom: 1px solid #202c33;

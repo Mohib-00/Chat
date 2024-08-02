@@ -45,7 +45,7 @@ Route::put('/messages/{id}', [MessagesController::class, 'update'])->name('messa
 
 Route::delete('/messages/{id}', [MessagesController::class, 'destroy'])->name('messages.destroy');
 
-Route::post('/save-react', [MessagesController::class, 'saveReact'])->name('save-react');
+Route::post('/save-grpreact', [MessagesController::class, 'savegrpReact']);
 
 Route::get('/get-last-message', [MessagesController::class, 'getLastMessage'])->name('getLastMessage');
 
@@ -58,5 +58,11 @@ Route::post('/create-group', [MessagesController::class, 'createGroup'])->name('
 Route::post('/save-group-message', [MessagesController::class, 'saveGroupMessage'])->name('save-group-message');
 
 Route::get('/group-chat/{groupId}', [MessagesController::class, 'loadGroupChatMessages']);
+
+Route::get('/delete-grpmessage/{id}', [MessagesController::class, 'deletegrp'])->name('deleteMessage');
+
+Route::put('/grpmessages/{id}', [MessagesController::class, 'update'])->name('messages.update');
+
+Route::put('/messagesgrp/{id}', [MessagesController::class, 'updategrpmessage'])->name('messages.update');
 
  

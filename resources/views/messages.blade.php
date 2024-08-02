@@ -493,9 +493,15 @@
                     
                     <div id="message" class="row message "style="height:510px;width:100% ">
                         <div class="col-lg-12 col-sm-12   conversation">
-                            <div id="chat-content"  style=" height: calc(170% - 120px); overflow-y: auto;width:102%">          
+                            
+                            <div id="chat-content"  style=" height: calc(150% - 120px); overflow-y: auto;width:102%">          
                                
                             </div>
+
+                            <div id="chat-grpcontent"  style="display:none; height: calc(150% - 120px); overflow-y: auto;width:102%">          
+                               
+                            </div>
+
                             <form id="myForm" class="form-group">
                                 <div id="reply" class="container-fluid" style="margin-top:-21px;margin-left:5px;background-color:#202c33;width:102%">
                                     <div class="row">
