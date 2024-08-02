@@ -124,8 +124,14 @@
                                        #chat-content::-webkit-scrollbar-thumb:hover {
                                            background-color: #374045;  
                                        } 
-
-
+   
+   .sideBar-body {
+   border-bottom: 1px solid #202c33;
+   height:82.5px;
+   margin: 0 !important;
+   
+   }
+   
 
    #chat-grpcontent::-webkit-scrollbar {
                                            width: 10px;  
@@ -143,15 +149,9 @@
                        
                                        #chat-grpcontent::-webkit-scrollbar-thumb:hover {
                                            background-color: #374045;  
-                                       }                                     
-   
-   .sideBar-body {
-   border-bottom: 1px solid #202c33;
-   height:82.5px;
-   margin: 0 !important;
-   
-   }
-   
+                                       } 
+
+
    .sideBar-body:hover {
    background-color: #202c33;
    }
@@ -253,6 +253,11 @@
    @media (max-width: 1354px) {
        .vo {
            width:19% !important;  
+   
+       }
+
+       .zo {
+           width:26.5% !important;  
    
        }
 

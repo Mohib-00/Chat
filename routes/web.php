@@ -47,6 +47,8 @@ Route::delete('/messages/{id}', [MessagesController::class, 'destroy'])->name('m
 
 Route::post('/save-grpreact', [MessagesController::class, 'savegrpReact']);
 
+Route::post('/save-react', [MessagesController::class, 'saveReact']);
+
 Route::get('/get-last-message', [MessagesController::class, 'getLastMessage'])->name('getLastMessage');
 
 Route::post('/addStatus', [MessagesController::class, 'addStatus'])->name('addStatus');
@@ -64,5 +66,3 @@ Route::get('/delete-grpmessage/{id}', [MessagesController::class, 'deletegrp'])-
 Route::put('/grpmessages/{id}', [MessagesController::class, 'update'])->name('messages.update');
 
 Route::put('/messagesgrp/{id}', [MessagesController::class, 'updategrpmessage'])->name('messages.update');
-
- 

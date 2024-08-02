@@ -449,19 +449,30 @@ public function saveGroupMessage(Request $request)
     $messageComment->groupUnixTimestamp = time();
 
     if ($request->hasFile('video')) {
-        $videoPath = $request->file('video')->store('videos', 'public');
-        $messageComment->video = $videoPath;
+        $video = $request->file('video');
+        $videoName = time() . '-' . $video->getClientOriginalName();       
+        $video->move(public_path('videos'), $videoName);      
+        $messageComment->video = 'videos/' . $videoName;  
     }
 
+    $imagePaths = [];  
     if ($request->hasFile('images')) {
-        $imagePaths = [];
-        foreach ($request->file('images') as $image) {
-            $imagePaths[] = $image->store('images', 'public');
+        $images = $request->file('images');
+        foreach ($images as $image) {
+            $imageName = time() . '-' . $image->getClientOriginalName();       
+            $image->move(public_path('images'), $imageName);      
+            $imagePaths[] = 'images/' . $imageName;  
         }
-        $messageComment->image = json_encode($imagePaths);
     }
+    if (!empty($imagePaths)) {     
+        $imageString = implode(',', $imagePaths);
+        $messageComment->image = $imageString;       
+        $messageComment->message = '';
+    } 
 
-    
+    if ($request->has('reply_message_content')) {
+        $messageComment->reply_message_content = $request->reply_message_content;
+    }
 
     $messageComment->save();
 
@@ -538,6 +549,22 @@ public function savegrpReact(Request $request)
 
         return response()->json(['message' => 'Reaction saved successfully'], 200);
     }
+
+    public function updategrpmessage(Request $request, $id)
+{
+    $messageComment = MessageComment::findOrFail($id);
+    $updatedMessage = $request->input('message');
+    $originalMessage = $messageComment->message;
+
+    if ($updatedMessage !== $originalMessage) {
+        $messageComment->message = $updatedMessage;
+        $messageComment->edit_status = 'Edited';
+        $messageComment->groupUpdatedTimestamp = time();
+        $messageComment->save();
+    }
+
+    return response()->json(['success' => 'Message updated successfully']);
+}
 
 
    

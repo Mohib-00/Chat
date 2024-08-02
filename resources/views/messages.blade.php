@@ -323,7 +323,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-sm-9 col-xs-9">
+        <div class="col-sm-10 col-xs-10">
             <div class="row">
                 <a href="#" style="text-decoration: none; color:white;">
                     <div class="col-sm-8 col-xs-8 sideBar-name">
@@ -361,7 +361,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-sm-9 col-xs-9">
+                                <div class="col-sm-10 col-xs-10">
                                     <div class="row">
                                         <a href="#" style="text-decoration: none; color:white;">
                                             <div class="col-sm-8 col-xs-8 sideBar-name">
@@ -493,7 +493,6 @@
                     
                     <div id="message" class="row message "style="height:510px;width:100% ">
                         <div class="col-lg-12 col-sm-12   conversation">
-                            
                             <div id="chat-content"  style=" height: calc(150% - 120px); overflow-y: auto;width:102%">          
                                
                             </div>
@@ -512,7 +511,7 @@
                                             @if (count($user_messages) > 0)
                                             <h5><i style="color: #52bdde"> {{ $user_messages[0]->name }}</i></h5>
                                             @endif
-                                            <p id="reply-message" style="color:#9fa4a6"></p>
+                                            <p class="replygrpmsg" id="reply-message" style="color:#9fa4a6"></p>
                                         </div>
                                         <div class="col-1">
                                             <svg id="hideReply" style="color: #8797a1;margin-top:30px;margin-left:20px" viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" class="" fill="currentColor" enable-background="new 0 0 24 24">

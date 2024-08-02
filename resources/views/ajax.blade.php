@@ -262,7 +262,7 @@ function sendGroupMessage(groupId) {
     var formData = new FormData();
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
     var messageInput = $('[name="message"]').val().trim();  
-
+    var replyMessage = $('#replyMessage').val().trim(); 
     formData.append('group_chat_id', groupId);
     formData.append('message', messageInput || 'No message');
 
@@ -281,6 +281,7 @@ function sendGroupMessage(groupId) {
     if (replyMessage !== '') {
         formData.append('reply_message_content', replyMessage);  
     }
+   
 
     $.ajax({
         url: '/save-group-message',
@@ -300,6 +301,7 @@ function sendGroupMessage(groupId) {
                 $('#image-upload').val('');
                 $('#video-upload').val('');
                 scrollToBottom();
+                $('#reply').hide();
             } else {
                 alert('Failed to save message');
             }
@@ -330,7 +332,12 @@ function getLastgrpCheckedTimestamp(keep_last_stamp = true) {
     }
 }
 
+var fetchGroupConversationsPollingFlag = true;
+
 function fetchGroupConversations() {
+
+    fetchGroupConversationsPollingFlag = false;
+    
     var lastCheckedTimestamp = getLastgrpCheckedTimestamp() || 0;
     var groupId = $('#chatGroupId').val();
 
@@ -389,9 +396,12 @@ function fetchGroupConversations() {
                     scrollToBottom();
                 }
             }
+
+            fetchGroupConversationsPollingFlag = true;
         },
         error: function(xhr, status, error) {
             console.error('Error fetching group conversations:', error);
+            fetchGroupConversationsPollingFlag = true;
         }
     });
 }
@@ -399,7 +409,11 @@ function fetchGroupConversations() {
  
 fetchGroupConversations();
 setInterval(function() {
-    fetchGroupConversations();
+
+    if(fetchGroupConversationsPollingFlag){
+        fetchGroupConversations();
+    }
+    
 }, 2000);
 
 
@@ -466,13 +480,13 @@ function HtmlGroupChat(messages, groupId) {
         <div style="position: relative;">
 
 ${message.reply_message_content ? `
-    <div class="container-fluid vo" style="margin-top:-21px; ${message.user_id == user_id ? 'margin-left:650px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
+    <div class="container-fluid zo" style="margin-top:-21px; ${message.user_id == user_id ? 'margin-left:590px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
                     <div class="row">
                         <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
                             <p style="display: none">nn</p>
                         </div>
                          <div class="col-10" style="${message.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px 4px">  
-                            <p style="font-size:17px; color: #dfe3e6; ${message.user_id == user_id ? 'margin-left:-25%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${message.reply_message_content}</p>
+                            <p style="font-size:17px; color: #dfe3e6; ${message.user_id == user_id ? 'margin-left:-20%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${message.reply_message_content}</p>
                         </div>
                     </div>
                 </div>
@@ -534,10 +548,10 @@ ${message.reply_message_content ? `
             </a>
             <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${message.id}" style="background-color: #233138;">
                 <li><a class="dropdown-item text-white reply-message" href="#" data-message-content="${message.message}">Reply</a></li>
-                <li><a class="dropdown-item text-white react-message" href="#" onclick="toggleReact(${message.id})">React</a></li>
+                <li><a class="dropdown-item text-white react-grpmessage" href="#" onclick="toggleReact(${message.id})">React</a></li>
                 ${message.user_id == user_id ? `
                     <li><a id="delete" class="dropdown-item text-white delete-grpmessage" href="#" data-message-id="${message.id}">Delete</a></li>
-                    <li><a class="dropdown-item text-white edit-message" href="#" data-message-id="${message.id}">Edit</a></li>
+                    <li><a class="dropdown-item text-white edit-grpmessage" href="#" data-message-id="${message.id}">Edit</a></li>
                     ${message.status === 'deleted' ? `
                         <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${message.id}">Remove</a></li>
                     ` : ''}
@@ -552,6 +566,14 @@ ${message.reply_message_content ? `
     return chatContent;
 }
 
+
+$(document).on('click', '.reply-grpmessage', function(event) {
+    event.preventDefault();
+    var messageContent = $(this).data('message-content');
+    $('.replygrpmsg').text(messageContent);  
+    $('#replyMessage').val(messageContent);  
+    $('#reply').show();  
+});
  
 function loadGroupMessage(groupId, groupName) {
     var user_id = @json(auth()->user()->id);
@@ -575,6 +597,46 @@ function loadGroupMessage(groupId, groupName) {
         }
     });
 }
+
+
+let currentMessageId = null;
+
+$(document).on('click', '.edit-grpmessage', function(event) {
+    event.preventDefault();
+    currentMessageId = $(this).data('message-id');
+    let currentMessage = $(this).closest('.card-body').find('.message-content').contents().filter(function() {
+        return this.nodeType === 3;
+    }).text().trim();
+    $('#editMessageInput').val(currentMessage).data('message-id', currentMessageId).focus();
+});
+
+$('#editMessageInput').on('keypress', function(event) {
+    if (event.which == 13 && currentMessageId) {  
+        event.preventDefault();  
+        let updatedMessage = $(this).val().trim();
+        let inputField = $(this);  
+
+        if (currentMessageId && updatedMessage) {
+            $.ajax({
+                url: `/messagesgrp/${currentMessageId}`,
+                type: 'PUT',
+                data: {
+                    message: updatedMessage,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        inputField.val('').focus(); 
+                        currentMessageId = null;
+                    }
+                },
+                error: function(xhr) {
+                    alert('Error updating message');
+                }
+            });
+        }
+    }
+});
 
 
 $(document).on('click', '.remove-grpmessage', function(event) {
@@ -1365,7 +1427,11 @@ function checkLastSeen(userId) {
        }   
 }
 
+
+var fetchConversationsPollingFlag = true;
+
 function fetchConversations(userId) {
+   fetchConversationsPollingFlag = false;
    var lastCheckedTimestamp = getLastCheckedTimestamp() || 0;
    var message_id = $('[name="message_id"]').val();
    var user_id = "{{ Auth::user()->id }}";
@@ -1418,17 +1484,20 @@ function fetchConversations(userId) {
            } else {
                loadingMessages = false;
            }
+           fetchConversationsPollingFlag = true;
        },
        error: function(xhr, status, error) {
-        
            loadingMessages = false;
+           fetchConversationsPollingFlag = true;
        }
    });
 }
 
 fetchConversations();
 setInterval(function() {
-   fetchConversations();
+    if(fetchConversationsPollingFlag){
+        fetchConversations();
+    }
 }, 2000);
 
 document.getElementById('searchText').addEventListener('input', function () {
