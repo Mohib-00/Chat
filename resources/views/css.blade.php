@@ -1,6 +1,6 @@
 
 <style>
-    @media (max-width: 768px) {
+       @media (max-width: 768px) {
            .one {
                display: none;  
            }
@@ -256,14 +256,52 @@
    
        }
 
+       .microphone{
+            margin-top:7px;
+             
+        }
+        .send{
+            margin-top:10px;
+        }
+
+        .sendgrp{
+            margin-top:8px;
+        }
+
        .zo {
            width:26.5% !important;  
    
        }
 
+       .s1{
+            margin-top:15px;
+            margin-left:30px;
+        }
+
+        .s2{
+            margin-top:2px;
+            margin-left:36px;
+        }
+
+         
+        #smily{
+            margin-top:18px;
+            margin-left:10px;
+        }
+
+        .plus{
+            margin-top:18px;
+            margin-left:5px;
+        }
+
+
        .mmbr{
             margin-left:55%;
              
+        }
+        .svg4{
+            margin-top:2px;
+            margin-left:20px;
         }
 
        .srch{
@@ -359,6 +397,10 @@
             margin-left: -30px;
              
         }
+
+        .sendgrp{
+            margin-top:8px;
+        }
         .grpsrch{
             margin-left:-30px
         }
@@ -367,6 +409,28 @@
             margin-left:5%;
              
         }
+        .s1{
+            margin-top:15px;
+            margin-left:30px;
+        }
+
+
+        .s2{
+            margin-top:2px;
+            margin-left:36px;
+        }
+
+        .svg4{
+            margin-top:2px;
+            margin-left:20px;
+        }
+
+
+        .smily1{
+            margin-top:-5px;
+            margin-left:20px;
+        }
+        
 
         .cz{
             margin-left:10px;
@@ -404,6 +468,11 @@
            width:18.5% !important;  
    
        }
+       .zo{
+        width:18.3% !important;  
+       }
+
+       
 
        .i{
         margin-left:-60px;
@@ -424,6 +493,25 @@
             margin-left:15px;
             margin-top:20px;
         }
+
+        #smily{
+            margin-top:18px;
+            margin-left:10px;
+        }
+
+        .plus{
+            margin-top:18px;
+            margin-left:-5px;
+        }
+
+        .microphone{
+            margin-top:7px;
+             
+        }
+        .send{
+            margin-top:10px;
+        }
+
     }
 
     .iconnn {

@@ -14,16 +14,110 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  
-   <script>
+<script>
+
+
+   document.getElementById('searchSvg').addEventListener('click', function() {
+    
+    
+    var div = document.getElementById('div3');
+
+    div.classList.remove('col-lg-7');
+    div.classList.add('col-4');
+
+
+    var anchor = document.getElementById('selected-user-name');
+    anchor.style.marginLeft = '35px';
+
+    var grpnme = document.getElementById('selected-group-name');
+    grpnme.style.marginLeft = '35px';
+
+    var lastSeen = document.getElementById('last-seen');
+    lastSeen.style.marginLeft = '35px';
+
+    var svg1 = document.getElementById('svg1');
+    svg1.style.marginLeft = '-20px';
+
+    var svg2 = document.getElementById('SVG2');
+    svg2.style.marginTop = '-50px';
+
+    var searchSvg = document.getElementById('searchSvg');
+    searchSvg.style.marginLeft = '8px';
+
+    var menu = document.getElementById('menu');
+    menu.style.marginLeft = '5px';
+
+    var smily = document.getElementById('smily');
+    smily.style.marginLeft = '-5px';
+
+    var submitMessage = document.getElementById('submitMessage');
+    submitMessage.style.marginLeft = '5px';
+
+    var submitgrpMessage = document.getElementById('submitgrpMessage');
+    submitgrpMessage.style.marginLeft = '5px';
+    svsubmitgrpMessageg2.style.marginTop = '10px';
+  
+});
+
+</script>
+
+ 
+    <script>
+        document.getElementById('end').addEventListener('click', function() {
+           
+            var div3 = document.getElementById('div3');
+            var show = document.getElementById('show');
+ 
+            div3.classList.remove('col-lg-7');
+            div3.classList.add('col-lg-7');
+
+            var anchor = document.getElementById('selected-user-name');
+            anchor.style.marginLeft = '-10px';
+ 
+            var grpnme = document.getElementById('selected-group-name');
+            grpnme.style.marginLeft = '-10px';
+
+            var lastSeen = document.getElementById('last-seen');
+            lastSeen.style.marginLeft = '-10px';
+
+            var svg1 = document.getElementById('svg1');
+            svg1.style.marginLeft = '32px';
+
+            var menu = document.getElementById('menu');
+            menu.style.marginLeft = '15px';
+
+            var searchSvg = document.getElementById('searchSvg');
+            searchSvg.style.marginLeft = '40px';
+
+            var svg2 = document.getElementById('SVG2');
+            svg2.style.marginTop = '22px';
+
+            var smily = document.getElementById('smily');
+            smily.style.marginLeft = '10px';
+                 
+            show.style.display = 'none';        
+            div3.style.display = 'block';  
+        });
+        </script>
+        
+
+
+
+<script>
     function showStatus(name, imageUrl, date, statusImageUrl, statusVideoUrl, fileType) {
+
         let statusDisplayArea = document.getElementById('statusDisplay');
+
         statusDisplayArea.innerHTML = `
             <div class="row">
+
                 <div class="col-2" style="position: absolute">
                     ${fileType.match(/jpg|jpeg|png|gif|jfif/i) ? `<img style="width: 325%;height:921px" src="${statusImageUrl}">` : ''}
                     ${fileType.match(/mp4|webm|ogg/i) ? `<video controls class="vdo" style="height:917.4px"><source src="${statusVideoUrl}" type="video/mp4"></video>` : ''}
                 </div>
+
                 <div class="col-7" style="position:relative">
+
                     <div class="row">
 
                         <div class="col-3">
@@ -45,11 +139,13 @@
 
    <script>
     $(document).ready(function() {
+
         $('.plus').on('click', function() {
             $('#statusUploadInput').click();
         });
 
         $('#statusUploadInput').on('change', function() {
+
             var formData = new FormData();
             formData.append('status', $(this)[0].files[0]);
 
@@ -81,9 +177,14 @@
 
         $("#svgi").click(function() {
         $("#statusContainer").show();
+
         $("#sidebar").hide();
         $("#group").hide();
       
+    });
+
+    $("#searchSvg").click(function() {
+        $("#show").show();    
     });
 
     $("#newgrp").click(function() {
@@ -176,9 +277,11 @@ $(".user-chat-link").click(function() {
     });
 
 
-    $(".group-chat-link").click(function() {        
+    $(".group-chat-link").click(function() {      
+
         $(".usr").hide();
         $(".groupp").show(); 
+
         $(".userimage").hide();
         $(".groupimage").show();
     });
@@ -186,6 +289,7 @@ $(".user-chat-link").click(function() {
     $(".user-chat-link").click(function() {        
         $(".groupp").hide(); 
         $(".usr").show();
+
         $(".groupimage").hide();
         $(".userimage").show();
     });
@@ -196,6 +300,7 @@ $(".user-chat-link").click(function() {
         $("#chat-content").hide();
         $("#chat-grpcontent").show(); 
     });
+
 
     $(".user-chat-link").click(function() {        
         $("#chat-content").show();
@@ -217,6 +322,7 @@ $(".user-chat-link").click(function() {
         
         var userDiv = $('<div class="col-1 avatar">');
         var userImg = $('<img>').attr('src', userImage);
+
         var userNameDiv = $('<div class="col-1 nme">');
         var userNameP = $('<p style="margin-left:25px;margin-top:3px">').text(userName);
 
@@ -228,7 +334,9 @@ $(".user-chat-link").click(function() {
 });
 
 $(document).on('click', '.mmbr', function() {
+
     var userNames = [];
+
     $('.usersgrp .sideBar-body.selected').each(function() {
         userNames.push($(this).find('.name-meta').data('user-name'));
     });
@@ -259,10 +367,13 @@ $(document).on('click', '.mmbr', function() {
 });
 
 function sendGroupMessage(groupId) {
+
     var formData = new FormData();
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
     var messageInput = $('[name="message"]').val().trim();  
     var replyMessage = $('#replyMessage').val().trim(); 
+
     formData.append('group_chat_id', groupId);
     formData.append('message', messageInput || 'No message');
 
@@ -294,14 +405,19 @@ function sendGroupMessage(groupId) {
         },
         success: function(response) {
             if (response.success) {
+
                 var groupConversations = [response.message];  
                 var chatHtml = HtmlGroupChat(groupConversations, groupId);
+
                 $('#chat-grpcontent').append(chatHtml);
                 $('[name="message"]').val('');
+
                 $('#image-upload').val('');
                 $('#video-upload').val('');
+
                 scrollToBottom();
                 $('#reply').hide();
+
             } else {
                 alert('Failed to save message');
             }
@@ -316,6 +432,7 @@ var lastgrpCheckedTimestamp = null;
 getLastgrpCheckedTimestamp(false);
 
 function scrollToBottom() {
+
     var chatContainer = $('#chat-grpcontent');
     chatContainer.scrollTop(chatContainer[0].scrollHeight);
 }
@@ -358,6 +475,7 @@ function fetchGroupConversations() {
         },
         success: function(response) {
             if (response && Array.isArray(response.groupConversations)) {
+
                 var groupConversations = response.groupConversations;
                 var updatedgroupConversations = response.updatedgroupConversations;
 
@@ -379,6 +497,7 @@ function fetchGroupConversations() {
                         var newGroupUpdatedTimestamp = lastCheckedTimestamp;
 
                         updatedgroupConversations.forEach(function(updatedConversation) {
+
                             var messageHtml = HtmlGroupChat([updatedConversation], groupId);
                             $('#chat-grpcontent > #message-' + updatedConversation.id).replaceWith(messageHtml);
 
@@ -419,16 +538,22 @@ setInterval(function() {
 
 
 $(document).on('click', '.sendgrp', function(e) {
+
     e.preventDefault();
+
     var groupId = $(this).data('group-id');
     sendGroupMessage(groupId);
+
 });
 
 
 $('.group-chat-link').click(function(e) {
+
     e.preventDefault();
+
     var groupId = $(this).data('group-id');
     var groupName = $(this).data('group-name');
+
     var groupImage = $(this).data('user-image');
 
     $('#selected-group-name').text(groupName);
@@ -446,7 +571,6 @@ $('.group-chat-link').click(function(e) {
 });
 
 
-   
 function HtmlGroupChat(messages, groupId) {
     if (!Array.isArray(messages)) {
         return '';
@@ -457,12 +581,12 @@ function HtmlGroupChat(messages, groupId) {
     messages.forEach(message => {
         if (!message || typeof message !== 'object') return;
 
-        
-
         var createdAt = new Date(message.created_at);
         var user_id = @json(auth()->user()->id);
+
         var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
-        var messageStyle = (message.user_id == user_id) ? 'text-right' : '';    
+        var messageStyle = (message.user_id == user_id) ? 'text-right' : '';  
+
         messageStyle += (message.user_id == user_id) ? ' ml-50' : '';
         var seenStatusSvg = (message.seen_status == 1) ? 
             `<svg style="color:#4fb9e3" viewBox="0 0 16 11" height="11" width="16" preserveAspectRatio="xMidYMid meet" fill="none">
@@ -480,22 +604,27 @@ function HtmlGroupChat(messages, groupId) {
         <div style="position: relative;">
 
 ${message.reply_message_content ? `
-    <div class="container-fluid zo" style="margin-top:-21px; ${message.user_id == user_id ? 'margin-left:590px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
+    <div id="fluidDiv" class="container-fluid zo" style="margin-top:-21px; ${message.user_id == user_id ? 'margin-left:590px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'}>
                     <div class="row">
+
                         <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
                             <p style="display: none">nn</p>
                         </div>
+
                          <div class="col-10" style="${message.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px 4px">  
                             <p style="font-size:17px; color: #dfe3e6; ${message.user_id == user_id ? 'margin-left:-20%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${message.reply_message_content}</p>
                         </div>
+
                     </div>
                 </div>
 ` : message.reply_status ? `
     <div class="container-fluid voO" style="margin-top:-21px; ${message.user_id == user_id ? 'margin-left:588px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
         <div class="row">
+
             <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
                 <p style="display: none">nn</p>
             </div>
+
             <div class="col-10" style="${message.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px;">  
                  ${(() => {
                     const replyStatus = message.reply_status;
@@ -515,18 +644,23 @@ ${message.reply_message_content ? `
 
              <div id="react-${message.id}" class="col-4" style="display: none; background-color:#222e36; height:70px; border-radius:20px;">
                 <div class="row">
+
                     <div class="col-2 mt-1 mx-4">
                         <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji.jfif') }}" alt="Emoji 1" onclick="savegrpReact(${message.id}, 'emoji.jfif')">
                     </div>
+
                     <div class="col-2 mt-1">
                         <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji1.jfif') }}" alt="Emoji 2" onclick="savegrpReact(${message.id}, 'emoji1.jfif')">
                     </div>
+
                     <div class="col-2 mt-1 mx-4">
                         <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji2.jfif') }}" alt="Emoji 3" onclick="savegrpReact(${message.id}, 'emoji2.jfif')">
                     </div>
+
                     <div class="col-2 mt-1">
                         <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji3.jfif') }}" alt="Emoji 4" onclick="savegrpReact(${message.id}, 'emoji3.jfif')">
                     </div>
+
                 </div>
             </div>
 
@@ -539,13 +673,16 @@ ${message.reply_message_content ? `
             </div>
 
              ${message.react_message ? `
+
                 <div style="margin-top: 10px;">
                     <p><img style="width: 30px; height: 30px; border-radius: 50%;" src="{{ asset('${message.react_message}') }}" alt="React Emoji"></p>
                 </div>
+
             ` : ''}
             
             <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${message.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; margin-top: 20; ${message.user_id == user_id ? 'right: 90px;' : 'left: 70px;'} margin-top:35px; ${message.user_id != user_id ? 'color:black;' : 'color:green;'}" data-message-id="${message.id}">
             </a>
+
             <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${message.id}" style="background-color: #233138;">
                 <li><a class="dropdown-item text-white reply-message" href="#" data-message-content="${message.message}">Reply</a></li>
                 <li><a class="dropdown-item text-white react-grpmessage" href="#" onclick="toggleReact(${message.id})">React</a></li>
@@ -556,7 +693,8 @@ ${message.reply_message_content ? `
                         <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${message.id}">Remove</a></li>
                     ` : ''}
                 ` : ''}
-            </ul>         
+            </ul>    
+
         </div>
     </div>
 </div>
@@ -568,14 +706,18 @@ ${message.reply_message_content ? `
 
 
 $(document).on('click', '.reply-grpmessage', function(event) {
+
     event.preventDefault();
     var messageContent = $(this).data('message-content');
+
     $('.replygrpmsg').text(messageContent);  
     $('#replyMessage').val(messageContent);  
+
     $('#reply').show();  
 });
  
 function loadGroupMessage(groupId, groupName) {
+
     var user_id = @json(auth()->user()->id);
 
     $.ajax({
@@ -583,8 +725,10 @@ function loadGroupMessage(groupId, groupName) {
         method: 'GET',
         success: function(response) {
             if (response.success && response.messages) {
+
                 var messages = response.messages;
                 var chatContent = HtmlGroupChat(messages, user_id);
+
                 $('#chat-grpcontent').empty();
                 $('#chat-grpcontent').append(chatContent);
             } else {
@@ -602,8 +746,10 @@ function loadGroupMessage(groupId, groupName) {
 let currentMessageId = null;
 
 $(document).on('click', '.edit-grpmessage', function(event) {
+
     event.preventDefault();
     currentMessageId = $(this).data('message-id');
+
     let currentMessage = $(this).closest('.card-body').find('.message-content').contents().filter(function() {
         return this.nodeType === 3;
     }).text().trim();
@@ -611,6 +757,7 @@ $(document).on('click', '.edit-grpmessage', function(event) {
 });
 
 $('#editMessageInput').on('keypress', function(event) {
+
     if (event.which == 13 && currentMessageId) {  
         event.preventDefault();  
         let updatedMessage = $(this).val().trim();
@@ -662,10 +809,9 @@ $(document).on('click', '.remove-grpmessage', function(event) {
     });
 
 
-     
-
 
     function toggleReact(conversationId) {
+
         var reactDiv = document.getElementById('react-' + conversationId);
         if (reactDiv.style.display === 'none' || reactDiv.style.display === '') {
             reactDiv.style.display = 'block';
@@ -697,6 +843,7 @@ $(document).on('click', '.remove-grpmessage', function(event) {
 }
 
 $(document).on('click', '.delete-grpmessage', function(e) {
+
    e.preventDefault();
    var messageId = $(this).data('message-id');
       
@@ -746,10 +893,13 @@ $(document).on('click', '.delete-grpmessage', function(e) {
 
    <script>
        document.addEventListener('DOMContentLoaded', (event) => {
+
            const sidebar = document.getElementById('sidebar');
            const chatContent = document.querySelector('.conversation');
+
            const userChatLinks = document.querySelectorAll('.user-chat-link');
            const goBackIcon = document.getElementById('goBackIcon');
+
            const isSidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
        
            userChatLinks.forEach(link => {
@@ -819,10 +969,13 @@ $(document).on('click', '.delete-grpmessage', function(e) {
 <script>                
       document.getElementById('searchText').addEventListener('input', function () {
       var searchText = this.value.toLowerCase();
+
       var sideBar = document.querySelector('.sideBar');
-      var sideBarItems = sideBar.querySelectorAll('.sideBar-body');                                       
+      var sideBarItems = sideBar.querySelectorAll('.sideBar-body');   
+
       sideBarItems.forEach(function (item) {
       var userName = item.querySelector('.name-meta').innerText.toLowerCase();
+
       if (userName.indexOf(searchText) !== -1) {
       item.style.display = 'block';
       } else {
@@ -835,6 +988,7 @@ $(document).on('click', '.delete-grpmessage', function(e) {
 <script>
     function toggleReact(conversationId) {
         var reactDiv = document.getElementById('react-' + conversationId);
+
         if (reactDiv.style.display === 'none' || reactDiv.style.display === '') {
             reactDiv.style.display = 'block';
         } else {
@@ -900,6 +1054,7 @@ $(document).on('click', '.delete-grpmessage', function(e) {
     
     var userId = $(this).data('user-id');
     var userName = $(this).data('user-name');
+
     var userImage = $(this).data('user-image');
     var backImage = $(this).data('user-backimage');  
     
@@ -959,8 +1114,10 @@ function Html(conversation, user_id) {
     
    var deleteButton = (conversation.user_id == user_id) ? `<a style="color:white" class="delete-message btn-sm  position-absolute  top-0 start-0 mt-1 ms-1" data-message-id="${conversation.id}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>` : '';
    var createdAt = new Date(conversation.created_at);
+
    var formattedDate = createdAt.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' });
    var user_id = @json(auth()->user()->id);
+
    var messageStyle = (conversation.user_id == user_id) ? 'text-right' : '';    
    messageStyle += (conversation.user_id == user_id) ? ' ml-50' : '';
    var messageHtml = '';
@@ -1025,25 +1182,31 @@ function Html(conversation, user_id) {
     messageHtml = `
  <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
     <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
+
         <div style="position: relative;">
 
 ${conversation.reply_message_content ? `
     <div class="container-fluid vo" style="margin-top:-21px; ${conversation.user_id == user_id ? 'margin-left:650px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
                     <div class="row">
+
                         <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
                             <p style="display: none">nn</p>
                         </div>
+
                          <div class="col-10" style="${conversation.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px 4px">  
                             <p style="font-size:17px; color: #dfe3e6; ${conversation.user_id == user_id ? 'margin-left:-25%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${conversation.reply_message_content}</p>
                         </div>
+
                     </div>
                 </div>
 ` : conversation.reply_status ? `
     <div class="container-fluid voO" style="margin-top:-21px; ${conversation.user_id == user_id ? 'margin-left:588px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
         <div class="row">
+
             <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
                 <p style="display: none">nn</p>
             </div>
+
             <div class="col-10" style="${conversation.user_id == user_id ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px;">  
                  ${(() => {
                     const replyStatus = conversation.reply_status;
@@ -1063,18 +1226,23 @@ ${conversation.reply_message_content ? `
 
              <div id="react-${conversation.id}" class="col-4" style="display: none; background-color:#222e36; height:70px; border-radius:20px;">
                 <div class="row">
+
                     <div class="col-2 mt-1 mx-4">
                         <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji.jfif') }}" alt="Emoji 1" onclick="saveReact(${conversation.id}, 'emoji.jfif')">
                     </div>
+
                     <div class="col-2 mt-1">
                         <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji1.jfif') }}" alt="Emoji 2" onclick="saveReact(${conversation.id}, 'emoji1.jfif')">
                     </div>
+
                     <div class="col-2 mt-1 mx-4">
                         <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji2.jfif') }}" alt="Emoji 3" onclick="saveReact(${conversation.id}, 'emoji2.jfif')">
                     </div>
+
                     <div class="col-2 mt-1">
                         <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji3.jfif') }}" alt="Emoji 4" onclick="saveReact(${conversation.id}, 'emoji3.jfif')">
                     </div>
+
                 </div>
             </div>
 
@@ -1119,10 +1287,12 @@ ${conversation.reply_message_content ? `
 }
 
 $(document).on('click', '#replyMessage', function(e) {
+
     e.preventDefault();
 
     var message = $('.inp').val().trim();
     var statusUserId = $('#statusUserId').val();
+
     var messageId = $('#message_id').val();
 
     
@@ -1150,10 +1320,13 @@ $(document).on('click', '#replyMessage', function(e) {
 });
 
 $(document).on('click', '.reply-message', function(event) {
+
     event.preventDefault();
     var messageContent = $(this).data('message-content');
+
     $('#reply-message').text(messageContent);  
     $('#replyMessage').val(messageContent);  
+
     $('#reply').show();  
 });
 
@@ -1163,6 +1336,7 @@ $('#hideReply').click(function() {
 });
  
 $(document).on('click', '.remove-message', function(event) {
+
         event.preventDefault();
         let messageId = $(this).data('message-id');
           
@@ -1175,8 +1349,7 @@ $(document).on('click', '.remove-message', function(event) {
                 success: function(response) {
                      
                     $(`#message-${messageId}`).remove();
-                   
-                     
+                                       
                 },
                 error: function(xhr) {
                     alert('Error deleting message');
@@ -1187,17 +1360,22 @@ $(document).on('click', '.remove-message', function(event) {
 let currentMessageId = null;
 
 $(document).on('click', '.edit-message', function(event) {
+
     event.preventDefault();
     currentMessageId = $(this).data('message-id');
+
     let currentMessage = $(this).closest('.card-body').find('.message-content').contents().filter(function() {
         return this.nodeType === 3;
     }).text().trim();
+
     $('#editMessageInput').val(currentMessage).data('message-id', currentMessageId).focus();
 });
 
 $('#editMessageInput').on('keypress', function(event) {
     if (event.which == 13 && currentMessageId) {  
+
         event.preventDefault();  
+
         let updatedMessage = $(this).val().trim();
         let inputField = $(this);  
 
@@ -1239,8 +1417,10 @@ function getLastMessage() {
         },
         success: function(response) {
             if (response.success) {
+
                 var lastMessage = response.lastMessage;
                 $('#editMessageInput').val(lastMessage.message).focus();
+
                 currentMessageId = lastMessage.id;
             }
         },
@@ -1251,6 +1431,7 @@ function getLastMessage() {
 }
 
 function sendMessage() {
+
     var formData = new FormData();
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
@@ -1312,7 +1493,9 @@ var typingInterval = 2000;
 var isTyping = false;
 
 $('[name="message"]').on('input', function() {
+
    clearTimeout(typingTimer);
+
    sendTypingStatus(true);
 });
 
@@ -1320,6 +1503,7 @@ $('[name="message"]').on('input', function() {
 
 $('[name="message"]').on('keyup', function() {
    clearTimeout(typingTimer);
+
    typingTimer = setTimeout(function() {
        sendTypingStatus(false);
    }, typingInterval);
@@ -1330,20 +1514,26 @@ function sendTypingStatus(typing) {
        url: "/typing-status",
        method: "POST",
        headers: {
+
            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
        },
        data: {
            typing: typing
        },
        success: function(response) {
+
            console.log("Typing status sent successfully for user ID:", response.user_id);
             
            if (!typing) {
                updateLastSeen();
            }
        },
+
        error: function(xhr, status, error) {
+
            console.error("Error sending typing status:", error);
+
        }
    });
 }
@@ -1414,6 +1604,7 @@ function checkLastSeen(userId) {
 
    function scrollToBottom() {
        var chatContainer = $('#chat-content');
+
        chatContainer.scrollTop(chatContainer[0].scrollHeight);
    }
 
@@ -1431,11 +1622,15 @@ function checkLastSeen(userId) {
 var fetchConversationsPollingFlag = true;
 
 function fetchConversations(userId) {
+
    fetchConversationsPollingFlag = false;
+
    var lastCheckedTimestamp = getLastCheckedTimestamp() || 0;
    var message_id = $('[name="message_id"]').val();
+
    var user_id = "{{ Auth::user()->id }}";
    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
    var isAtTop = $('#chat-content').scrollTop() === 0;
    var userId = $('#selected-user-name').data('user-id');
 
@@ -1451,12 +1646,17 @@ function fetchConversations(userId) {
            
            if (response && Array.isArray(response.conversations)) {
                var conversations = response.conversations;
+
                var updatedConversations = response.updatedConversations;
 
                if (lastCheckedTimestamp === 0) {
                    $('#chat-content').empty();
                }
+
+
                if (conversations.length > 0 || updatedConversations.length > 0) {
+
+
                    conversations.forEach(function(conversation) {
                        var messageHtml = Html(conversation, user_id);
                        $('#chat-content').append(messageHtml);
@@ -1465,9 +1665,12 @@ function fetchConversations(userId) {
                    });
 
                    if (updatedConversations.length > 0) {
+
                        updatedConversations.forEach(function(updatedConversation) {
+
                            var messageHtml = Html(updatedConversation, user_id);
                            $('#chat-content > #message-' + updatedConversation.id).replaceWith(messageHtml);
+
 
                            if (lastCheckedTimestamp < updatedConversation.updatedtimestamp) {
                                lastCheckedTimestamp = updatedConversation.updatedtimestamp;
@@ -1475,6 +1678,7 @@ function fetchConversations(userId) {
                        });
                    }
                    localStorage.setItem('lastCheckedTimestamp', lastCheckedTimestamp);
+
                    scrollToBottom();
                    loadingMessages = false;       
                }
@@ -1502,13 +1706,17 @@ setInterval(function() {
 
 document.getElementById('searchText').addEventListener('input', function () {
     var searchText = this.value.toLowerCase();
+
     var sideBar = document.querySelector('.sideBar');
+
     var sideBarItems = sideBar.querySelectorAll('.sideBar-body');
 
     sideBarItems.forEach(function (item) {
         var messageElement = item.querySelector('#message');
         if (messageElement) {
+
             var message = messageElement.innerText.toLowerCase();
+
             if (message.indexOf(searchText) !== -1) {
                 item.style.display = 'block';
             } else {
@@ -1541,7 +1749,9 @@ function setupWallpaperChange(userId) {
                    $.ajax({
                        url: '/update-background-image/' + userId,
                        method: 'post',
+
                        data: formData,
+
                        contentType: false,
                        processData: false,
                        headers: {
@@ -1551,6 +1761,7 @@ function setupWallpaperChange(userId) {
                            if (response.success) {
                               
                                var imageUrl = URL.createObjectURL(file);
+
                                $('#chat-container').css('background-image', 'url(' + imageUrl + ')');
                            } else {
                               
@@ -1564,28 +1775,38 @@ function setupWallpaperChange(userId) {
            }
           
            var UserId = $('#selected-user-name').data('user-id');
+
            if (UserId) {
+
                setupWallpaperChange(UserId);
+
            }
        });
 
 
    $(document).on('click', '.delete-message', function(e) {
    e.preventDefault();
+
    var messageId = $(this).data('message-id');
       
    swal.fire({
        title: "Are you sure?",
+
        text: "Once deleted, you will not be able to recover this message!",
        icon: "warning",
+
        buttons: true,
+
        dangerMode: true,
+
    })
    .then((willDelete) => {
        if (willDelete) {       
                $.ajax({
                url: '/delete-message/' + messageId,
+
                method: 'get',
+
                headers: {
                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                },

@@ -390,8 +390,11 @@
                    </div>              
                  </div>                   
                </div>
+
+            
     
-            <div class="col-lg-7 col-md-12 col-sm-12 conversation   text-white three">
+            <div id="div3" class="col-lg-7   conversation   text-white three ">
+
                 <div class="row b" style="width:107.3%;margin-left:1px">
                                             
                     <div class="col-lg-12 col-md-12 col-sm-12" style="background-color: #202c33;padding:5px 10px 5px 0px">
@@ -440,7 +443,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 svg1">
                                 <span data-icon="video-call" class="x1w0mnb">
-                                    <svg class="mt-4 mx-5" style="color:#4d5d66"  viewBox="0 0 24 24" height="30" width="40" preserveAspectRatio="xMidYMid meet" fill="none">
+                                    <svg id="svg1" class="s1" style="color:#4d5d66"  viewBox="0 0 24 24" height="30" width="40" preserveAspectRatio="xMidYMid meet" fill="none">
                                         <title>video-call</title>
                                         <path d="M3.27096 7.31042C3 7.82381 3 8.49587 3 9.84V14.16C3 15.5041 3 16.1762 3.27096 16.6896C3.5093 17.1412 3.88961 17.5083 4.35738 17.7384C4.88916 18 5.58531 18 6.9776 18H13.1097C14.502 18 15.1982 18 15.7299 17.7384C16.1977 17.5083 16.578 17.1412 16.8164 16.6896C17.0873 16.1762 17.0873 15.5041 17.0873 14.16V9.84C17.0873 8.49587 17.0873 7.82381 16.8164 7.31042C16.578 6.85883 16.1977 6.49168 15.7299 6.26158C15.1982 6 14.502 6 13.1097 6H6.9776C5.58531 6 4.88916 6 4.35738 6.26158C3.88961 6.49168 3.5093 6.85883 3.27096 7.31042Z" fill="currentColor"></path>
                                         <path d="M18.7308 9.60844C18.5601 9.75994 18.4629 9.97355 18.4629 10.1974V13.8026C18.4629 14.0264 18.5601 14.2401 18.7308 14.3916L20.9567 16.3669C21.4879 16.8384 22.3462 16.4746 22.3462 15.778V8.22203C22.3462 7.52542 21.4879 7.16163 20.9567 7.63306L18.7308 9.60844Z" fill="currentColor"></path>
@@ -450,7 +453,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 svg2">
                                 <span data-icon="chevron-down-alt" class="">
-                                    <svg class="mx-5"  style="color:#4d5d66;margin-top:22px" viewBox="0 0 17 13" height="15" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 17 13">
+                                    <svg class="mx-5" id="SVG2"  style="color:#4d5d66;margin-top:22px" viewBox="0 0 17 13" height="15" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 17 13">
                                         <title>chevron-down-alt</title>
                                         <path fill="currentColor" d="M3.202,2.5l5.2,5.2l5.2-5.2l1.5,1.5l-6.7,6.5l-6.6-6.6L3.202,2.5z"></path>
                                     </svg>
@@ -461,8 +464,8 @@
                             </div>
 
                             <div class="col-lg-1 col-md-1 col-sm-1 mt-4 svg3">
-                                <span class="mx-5"  style="color:#8b989e;" data-icon="search-alt" class="">
-                                    <svg viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                <span style="color:#8b989e;" data-icon="search-alt">
+                                    <svg class="s2" id="searchSvg" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                         <title>search-alt</title>
                                         <path fill="currentColor" d="M15.9,14.3H15L14.7,14c1-1.1,1.6-2.7,1.6-4.3c0-3.7-3-6.7-6.7-6.7S3,6,3,9.7 s3,6.7,6.7,6.7c1.6,0,3.2-0.6,4.3-1.6l0.3,0.3v0.8l5.1,5.1l1.5-1.5L15.9,14.3z M9.7,14.3c-2.6,0-4.6-2.1-4.6-4.6s2.1-4.6,4.6-4.6 s4.6,2.1,4.6,4.6S12.3,14.3,9.7,14.3z"></path>
                                     </svg>
@@ -472,7 +475,7 @@
 
                             <div class="col-lg-1 col-md-1 col-sm-1 mt-4">
                             <span data-icon="menu" class="xr9ek0c" data-icon="menu" data-bs-toggle="dropdown" aria-expanded="false ">
-                                <svg class="svg4"  style="color:#8b989e;" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                <svg class="svg4" id="menu"  style="color:#8b989e;" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                     <title>menu</title>
                                     <path fill="currentColor" d="M12,7c1.104,0,2-0.896,2-2c0-1.105-0.895-2-2-2c-1.104,0-2,0.894-2,2 C10,6.105,10.895,7,12,7z M12,9c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,9.895,13.104,9,12,9z M12,15 c-1.104,0-2,0.894-2,2c0,1.104,0.895,2,2,2c1.104,0,2-0.896,2-2C13.999,15.894,13.104,15,12,15z"></path>
                                 </svg>
@@ -490,6 +493,8 @@
                             
                         </div>
                     </div>
+
+                   
                     
                     <div id="message" class="row message "style="height:510px;width:100% ">
                         <div class="col-lg-12 col-sm-12   conversation">
@@ -564,11 +569,11 @@
                                 <div class="row reply" style="padding:4px 0px 5px 0px;height:85px">
 
                                     <div style="width:6%" class="col-1 reply-emojis video-upload-icon" id="image-upload-icon">
-                                        <svg class="mx-4  " style="color:#8b989e;margin-top:35%" viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>smiley</title><path fill="currentColor" d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,14.073,12.566,15.128,17.312,14.073z M11.804,1.011c-6.195,0-10.826,5.022-10.826,11.217 s4.826,10.761,11.021,10.761S23.02,18.423,23.02,12.228C23.021,6.033,17.999,1.011,11.804,1.011z M12,21.354 c-5.273,0-9.381-3.886-9.381-9.159s3.942-9.548,9.215-9.548s9.548,4.275,9.548,9.548C21.381,17.467,17.273,21.354,12,21.354z  M15.108,11.603c0.795,0,1.439-0.879,1.439-1.962s-0.644-1.962-1.439-1.962s-1.439,0.879-1.439,1.962S14.313,11.603,15.108,11.603z"></path></svg>
+                                        <svg class="smily1" id="smily" style="color:#8b989e " viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>smiley</title><path fill="currentColor" d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,14.073,12.566,15.128,17.312,14.073z M11.804,1.011c-6.195,0-10.826,5.022-10.826,11.217 s4.826,10.761,11.021,10.761S23.02,18.423,23.02,12.228C23.021,6.033,17.999,1.011,11.804,1.011z M12,21.354 c-5.273,0-9.381-3.886-9.381-9.159s3.942-9.548,9.215-9.548s9.548,4.275,9.548,9.548C21.381,17.467,17.273,21.354,12,21.354z  M15.108,11.603c0.795,0,1.439-0.879,1.439-1.962s-0.644-1.962-1.439-1.962s-1.439,0.879-1.439,1.962S14.313,11.603,15.108,11.603z"></path></svg>
                                     </div>
 
                                     <div class="col-1" style="width:5%">
-                                        <span><svg class="smily"  style="color:#8b989e;margin-top:19px" viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="none"><title>attach-menu-plus</title><path fill-rule="evenodd" clip-rule="evenodd" d="M20.5 13.2501L20.5 10.7501L13.25 10.7501L13.25 3.5L10.75 3.5L10.75 10.7501L3.5 10.7501L3.5 13.2501L10.75 13.2501L10.75 20.5L13.25 20.5L13.25 13.2501L20.5 13.2501Z" fill="currentColor"></path></svg></span>
+                                        <span><svg class="plus"  style="color:#8b989e " viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="none"><title>attach-menu-plus</title><path fill-rule="evenodd" clip-rule="evenodd" d="M20.5 13.2501L20.5 10.7501L13.25 10.7501L13.25 3.5L10.75 3.5L10.75 10.7501L3.5 10.7501L3.5 13.2501L10.75 13.2501L10.75 20.5L13.25 20.5L13.25 13.2501L20.5 13.2501Z" fill="currentColor"></path></svg></span>
                                     </div>
 
                                     <div class="col-9 reply-main ">
@@ -579,12 +584,12 @@
                                         <div class="row">
 
                                             <div class="col-6 d-none d-md-block microphone">
-                                                <svg class="mt-4 mx-3" style="color:#8b989e" viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>ptt</title><path fill="currentColor" d="M11.999,14.942c2.001,0,3.531-1.53,3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531 S8.469,2.35,8.469,4.35v7.061C8.469,13.412,9.999,14.942,11.999,14.942z M18.237,11.412c0,3.531-2.942,6.002-6.237,6.002 s-6.237-2.471-6.237-6.002H3.761c0,4.001,3.178,7.297,7.061,7.885v3.884h2.354v-3.884c3.884-0.588,7.061-3.884,7.061-7.885 L18.237,11.412z"></path></svg>
+                                                <svg class="microphone" style="color:#8b989e" viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>ptt</title><path fill="currentColor" d="M11.999,14.942c2.001,0,3.531-1.53,3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531 S8.469,2.35,8.469,4.35v7.061C8.469,13.412,9.999,14.942,11.999,14.942z M18.237,11.412c0,3.531-2.942,6.002-6.237,6.002 s-6.237-2.471-6.237-6.002H3.761c0,4.001,3.178,7.297,7.061,7.885v3.884h2.354v-3.884c3.884-0.588,7.061-3.884,7.061-7.885 L18.237,11.412z"></path></svg>
                                             </div>
                                             
 
                                             <div class="col-6">
-                                                <button  style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3 mt-4 mx-4" id="submitMessage">
+                                                <button  style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3" id="submitMessage">
                                                     <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                                         <title>send</title>
                                                         <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
@@ -594,7 +599,7 @@
 
                                                 @foreach($groupChatss as $group)
                                                 <input type="hidden" id="groupChatId{{ $group->id }}" value="{{ $group->id }}">
-                                                <button data-group-id="{{ $group->id }}" type="button" style="border-radius: 20px; background-color: white; border: 1px solid green;" class="sendgrp input-group-text p-3 mt-4 mx-4" id="submitgrpMessage{{ $group->id }}" style="display: none;">
+                                                <button data-group-id="{{ $group->id }}" type="button" style="border-radius: 20px; background-color: white; border: 1px solid green;" class="sendgrp input-group-text p-3" id="submitgrpMessage{{ $group->id }}" style="display: none;">
                                                     <svg viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                                         <title>send</title>
                                                         <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
@@ -611,11 +616,51 @@
                                 </div>
                             </div>                           
                         
-                    </div>                
+                    </div> 
+                    <div id="show" class="col-lg-8" style="background-color:#111b21;display: none;margin-left:680px;margin-top:-892px;width:75%">
+                         <div class="row">
+
+                            <div class="col-3">
+                                <svg id="end" class="x mt-4" style="color:#7d8d96" viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
+                                    <title>x</title>
+                                    <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+                                </svg>
+                            </div>
+
+                            <div class="col-9">
+                                <h4 style="font-weight: lighter;font-size:25px;margin-top:20px">Search Messages</h4>
+                            </div>
+
+                            <div class="col-12 mt-5 p-3" style="background-color:#202c33;border-radius:15px">
+
+                                <div class="col-lg-2 col-sm-2 col-md-2">
+                                    <span style="color:#8b989e" data-icon="search" class="">
+                                        <svg viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                            <title>search</title>
+                                            <path fill="currentColor" d="M15.009,13.805h-0.636l-0.22-0.219c0.781-0.911,1.256-2.092,1.256-3.386 c0-2.876-2.332-5.207-5.207-5.207c-2.876,0-5.208,2.331-5.208,5.207s2.331,5.208,5.208,5.208c1.293,0,2.474-0.474,3.385-1.255 l0.221,0.22v0.635l4.004,3.999l1.194-1.195L15.009,13.805z M10.201,13.805c-1.991,0-3.605-1.614-3.605-3.605 s1.614-3.605,3.605-3.605s3.605,1.614,3.605,3.605S12.192,13.805,10.201,13.805z"></path>
+                                        </svg>
+                                    </span>
+                                    
+                                </div>
+                                <div style="padding:5px 0px 5px 0px;margin-left:-20px" class="col-lg-10 col-sm-10 col-md-10">
+                                    <input style="color:white; border:none;background-color:#202c33" id="searchText" type="text" class="form-control" name="searchText" placeholder="Search">
+                                </div>
+
+                            </div>
+
+                         </div>
+                    </div>     
+
                 </div>
+
+
+                 
+
             </div>
         </div>
-    </div>            
+    </div>      
+    
+    
                  
     <div id="status" class="container-fluid" style="display: none">
         <div class="row">
