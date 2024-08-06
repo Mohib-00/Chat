@@ -410,7 +410,7 @@
                                 <img id="selected-group-image" class="icon1 mx-4" src="{{ asset('images/' . $groupChatss[0]->image) }}" alt="Group Image">
                             </div>
                             @else
-                            <p>No conversation so far...</p>
+                            
                             @endif
                             
                             <div class="col-lg-8 col-md-8 col-sm-8 mt-2">
@@ -425,7 +425,7 @@
                                     <br>
                                 </a>
                                 @else
-                                <p>No conversation so far...</p>
+                                
                                 @endif
 
                                 <div class="v" id="typing" style="display: none;color:white;font-weight:bolder">typing...</div>
@@ -435,7 +435,7 @@
                             </div> 
 
                             @else
-                            <p>No conversation so far...</p>
+                             
                             @endif
                             
                             <div class="col-lg-1 col-md-1 col-sm-1" >
@@ -725,7 +725,13 @@
                 <input type="hidden" id="statusUserId" value="2">  
                 <input class="inp" style="background-color: #202c33; border:none; position:absolute; border-radius:10px; width:200%; color:white; padding:20px 0px 20px 10px;" type="text" name="message" autocomplete="off" class="form-control" placeholder="Type a reply">
 
-                 
+                <button  style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3" id="replyMessage">
+                    <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                        <title>send</title>
+                        <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
+                    </svg>
+                    
+                </button>
             </div>
 
         </div>

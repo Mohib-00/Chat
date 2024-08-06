@@ -15,16 +15,11 @@
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  
 <script>
-
-
-   document.getElementById('searchSvg').addEventListener('click', function() {
-    
-    
+document.getElementById('searchSvg').addEventListener('click', function() {
     var div = document.getElementById('div3');
 
     div.classList.remove('col-lg-7');
     div.classList.add('col-4');
-
 
     var anchor = document.getElementById('selected-user-name');
     anchor.style.marginLeft = '35px';
@@ -55,8 +50,7 @@
 
     var submitgrpMessage = document.getElementById('submitgrpMessage');
     submitgrpMessage.style.marginLeft = '5px';
-    svsubmitgrpMessageg2.style.marginTop = '10px';
-  
+    submitgrpMessage.style.marginTop = '10px';
 });
 
 </script>
