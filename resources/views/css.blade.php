@@ -544,23 +544,8 @@
    }
 
    #div3 {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
-
-#selected-user-name,
-#selected-group-name,
-#last-seen,
-#svg1,
-#SVG2,
-#searchSvg,
-#menu,
-#smily,
-#submitMessage,
-#submitgrpMessage {
-    transition: margin 0.20s ease-in-out;
-}
-
-
-    
+  
    </style>
    
