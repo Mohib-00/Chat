@@ -496,11 +496,12 @@
 
                    
                     
-                    <div id="message" class="row message "style="height:510px;width:100% ">
-                        <div class="col-lg-12 col-sm-12   conversation">
-                            <div id="chat-content"  style=" height: calc(150% - 120px); overflow-y: auto;width:102%">          
-                               
+                    <div id="message" class="row message" style="height:510px;width:100%">
+                        <div class="col-lg-12 col-sm-12 conversation">
+                            <div id="chat-content" style="height: calc(150% - 120px); overflow-y: auto; width: 102%">
+                                
                             </div>
+                    
 
                             <div id="chat-grpcontent"  style="display:none; height: calc(150% - 120px); overflow-y: auto;width:102%">          
                                
@@ -642,9 +643,11 @@
                                     </span>
                                     
                                 </div>
-                                <div style="padding:5px 0px 5px 0px;margin-left:-20px" class="col-lg-10 col-sm-10 col-md-10">
-                                    <input style="color:white; border:none;background-color:#202c33" id="searchText" type="text" class="form-control" name="searchText" placeholder="Search">
-                                </div>
+
+                                 <div style="padding: 5px 0px 5px 0px; margin-left: -20px" class="col-lg-10 col-sm-10 col-md-10">
+                                 <input style="color: white; border: none; background-color: #202c33" id="searchmessages" type="text" class="form-control" name="searchText" placeholder="Search">
+                                  </div>
+                                 <div id="search-results" style="display: none;"></div>
 
                             </div>
 

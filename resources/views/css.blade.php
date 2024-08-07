@@ -546,6 +546,22 @@
    #div3 {
     transition: all 0.2s ease-in-out;
 }
+
+#search-results {
+             
+            margin-top: 10px;
+            height: 775px;
+           
+            background-color: #202c33;
+            color:#6896a1;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .message-content {
+            padding: 5px;
+            border-bottom: 1px solid #444;
+            margin-bottom: 15px;
+        }
   
    </style>
    
