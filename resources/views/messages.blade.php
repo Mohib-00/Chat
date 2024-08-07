@@ -180,7 +180,7 @@
                                 <hr class="hr">
                             </div>
 
-                            <div class="col-12" style="margin-top:5%;" >
+                            <div class="col-12">
 
                                 <div class="col-1" id="hash">
                                     <h4 class="mmbr" style="color:green">#</h4>
