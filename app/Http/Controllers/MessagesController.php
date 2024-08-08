@@ -12,50 +12,59 @@ use Illuminate\Support\Facades\Log;
  
 class MessagesController extends Controller
 {
-    public function store(Request $request)
-    {
-        $conversation = new MessageComment;
-        $conversation->user_id = auth()->user()->id;
-    
-        $uniqueTimestamp = time();
-    
-        if ($request->hasFile('video')) {
-            $video = $request->file('video');
-            $videoName = time() . '-' . $video->getClientOriginalName();       
-            $video->move(public_path('videos'), $videoName);      
-            $conversation->video = 'videos/' . $videoName;  
-        }
-    
-        $imagePaths = [];  
-        if ($request->hasFile('images')) {
-            $images = $request->file('images');
-            foreach ($images as $image) {
-                $imageName = time() . '-' . $image->getClientOriginalName();       
-                $image->move(public_path('images'), $imageName);      
-                $imagePaths[] = 'images/' . $imageName;  
-            }
-        }
-        if (!empty($imagePaths)) {     
-            $imageString = implode(',', $imagePaths);
-            $conversation->image = $imageString;       
-            $conversation->message = '';
-        } else {
-            $conversation->message = $request->message ?? 'No message';
-        }
-    
-        $conversation->message_id = $request->message_id;
-        $conversation->uniquetimestamp = $uniqueTimestamp;
-        
-    
-        
-        if ($request->has('reply_message_content')) {
-            $conversation->reply_message_content = $request->reply_message_content;
-        }
-    
-        $conversation->save();
-    
-        return response()->json($conversation);
+   public function store(Request $request)
+{
+    $conversation = new MessageComment;
+    $conversation->user_id = auth()->user()->id;
+
+    $uniqueTimestamp = time();
+
+    if ($request->hasFile('video')) {
+        $video = $request->file('video');
+        $videoName = $uniqueTimestamp . '-' . $video->getClientOriginalName();
+        $video->move(public_path('videos'), $videoName);
+        $conversation->video = 'videos/' . $videoName;
     }
+
+    $imagePaths = [];
+    if ($request->hasFile('images')) {
+        $images = $request->file('images');
+        foreach ($images as $image) {
+            $imageName = $uniqueTimestamp . '-' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+            $imagePaths[] = 'images/' . $imageName;
+        }
+    }
+
+    if (!empty($imagePaths)) {
+        $imageString = implode(',', $imagePaths);
+        $conversation->image = $imageString;
+        $conversation->message = '';
+    } else {
+        $conversation->message = $request->message ?? 'No message';
+    }
+
+    if ($request->hasFile('pdf')) {
+        $pdf = $request->file('pdf');
+        $pdfName = $uniqueTimestamp . '-' . $pdf->getClientOriginalName();
+        $pdf->move(public_path('pdfs'), $pdfName);
+        $conversation->pdf = 'pdfs/' . $pdfName;
+    }
+
+    $conversation->message_id = $request->message_id;
+    $conversation->uniquetimestamp = $uniqueTimestamp;
+
+    if ($request->has('reply_message_content')) {
+        $conversation->reply_message_content = $request->reply_message_content;
+    }
+
+    $conversation->save();
+
+    return response()->json($conversation);
+}
+
+    
+    
 
     public function replyToStatus(Request $request)
     {
@@ -119,9 +128,9 @@ class MessagesController extends Controller
 
          
         
-    
+        $pdfs = MessageComment::whereNotNull('pdf')->where('pdf', '!=', '')->get();
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss',));
+       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss','pdfs'));
 
     }
 

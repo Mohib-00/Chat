@@ -498,9 +498,20 @@
                     
                     <div id="message" class="row message" style="height:510px;width:100%">
                         <div class="col-lg-12 col-sm-12 conversation">
-                            <div id="chat-content" style="height: calc(150% - 120px); overflow-y: auto; width: 102%">
-                                
+                            <div id="chat-content" style=" height: calc(150% - 120px); overflow-y: auto; width: 102%">
+                            
+                                <div id="pdf">
+                                     
+                                </div>
+                            
+                            
+                            
+                            
+
+
                             </div>
+
+                             
                     
 
                             <div id="chat-grpcontent"  style="display:none; height: calc(150% - 120px); overflow-y: auto;width:102%">          
@@ -543,6 +554,9 @@
 
                             <input id="video-upload" type="file" style="display: none;" accept="video/*">
                             <input id="video" type="hidden" name="video">
+
+                            <input style="display: none" type="file" id="pdf-upload" name="pdf" accept="application/pdf">
+
 
                             <input type="hidden" id="uniqueTimestamp" name="uniquetimestamp" value="">
                             <input type="hidden" id="groupUnixTimestamp" name="groupUnixTimestamp" value="">

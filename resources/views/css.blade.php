@@ -562,6 +562,21 @@
             border-bottom: 1px solid #444;
             margin-bottom: 15px;
         }
+
+
+        #pdf {
+            position: absolute;
+            display: none;
+           
+        }
+        #pdfcontainer {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #ddd;
+           
+        }
+
+
   
    </style>
    

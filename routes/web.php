@@ -22,7 +22,7 @@ Route::get('/profile', function () {
 });
 Route::post('update-profile',[MessagesController::class,'updateProfile'])->name('update-profile');
 
-Route::post('/update-timestamp', [MessagesController::class,'updateTimestamp'])->name('updateTimestamp');
+//Route::post('/update-timestamp', [MessagesController::class,'updateTimestamp'])->name('updateTimestamp');
 Route::get('/load-chat/{userId}', [MessagesController::class, 'loadChat'])->name('loadChat');
 
 Route::post('/typing-status', [MessagesController::class, 'update'])->name('typing-status.update');
