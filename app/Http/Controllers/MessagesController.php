@@ -128,7 +128,8 @@ class MessagesController extends Controller
 
          
         
-        $pdfs = MessageComment::whereNotNull('pdf')->where('pdf', '!=', '')->get();
+        //$pdfs = MessageComment::whereNotNull('pdf')->where('pdf', '!=', '')->get();
+        $pdfs = MessageComment::all();
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
        return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss','pdfs'));
 

@@ -569,12 +569,7 @@
             display: none;
            
         }
-        #pdfcontainer {
-            cursor: pointer;
-            padding: 10px;
-            background-color: #ddd;
-           
-        }
+        
 
 
   

@@ -338,6 +338,7 @@ $(".user-chat-link").click(function() {
         $(".groupimage").show();
     });
 
+     
     $(".user-chat-link").click(function() {        
         $(".groupp").hide(); 
         $(".usr").show();
@@ -1232,48 +1233,47 @@ function Html(conversation, user_id) {
        `;
    }
    
-  else if (conversation.pdf) {
-        var baseUrl = '{{ asset('') }}'; 
-        var pdfUrl = baseUrl + conversation.pdf.trim();  
+   else if (conversation.pdf) {
+    var baseUrl = '{{ asset('') }}'; 
+    var pdfUrl = baseUrl + conversation.pdf.trim();  
 
-        var filePath = conversation.pdf.trim();
-        var fileName = filePath.split('/').pop();
-        var fileNameWithoutExt = fileName.split('.').slice(0, -1).join('.');
+    var filePath = conversation.pdf.trim();
+    var fileName = filePath.split('/').pop();
+    var fileNameWithoutExt = fileName.split('.').slice(0, -1).join('.');
 
-        var fileSizeBytes = conversation.file_size || 0;
-        var fileSizeKB = (fileSizeBytes / 1024).toFixed(2); 
+    var fileSizeBytes = conversation.file_size || 0;
+    var fileSizeKB = (fileSizeBytes / 1024).toFixed(2); 
 
-        var pageCount = conversation.page_count || 1;  
+    var pageCount = conversation.page_count || 1;  
 
-        var alignmentStyle = conversation.user_id == user_id ? 
-            'text-align: right; margin-left: auto;' : 
-            'text-align: left; margin-right: auto;';
+    var alignmentStyle = conversation.user_id == user_id ? 
+        'text-align: right; margin-left: auto;' : 
+        'text-align: left; margin-right: auto;';
 
-        var isSender = conversation.user_id === user_id; 
+    var isSender = conversation.user_id === user_id; 
 
-        var pdfHtml = `
-            <div id="pdfcontainer" class="pdf-container" style="width:35%; position: relative; padding: 10px; border-radius: 8px; background: ${isSender ? '#005c4b' : '#111b21'}; ${alignmentStyle}; overflow: hidden;">
-                <embed src="${pdfUrl}" width="100%" height="150px" type="application/pdf" style="border-radius: 8px; display: block; margin: 0 auto;">
-               <div style="background: ${isSender ? '#025244' : '#1c272e'}; display: flex; flex-direction: column; align-items: flex-start; padding-top: 10px;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                        <p style="margin: 0; font-size: 16px; font-weight: bold; color: #fff; padding: 5px 10px; border-radius: 4px;">${fileNameWithoutExt}</p>
-                        <a href="${pdfUrl}" download style="display: flex; align-items: center; color: #fff; text-decoration: none; font-weight: bold; padding: 5px 10px; border-radius: 4px; margin-left: 10px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cloud-download" viewBox="0 0 16 16">
-                                <path d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383"/>
-                                <path d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708z"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <p style="margin-left: 10px ; font-size: 14px; color: #fff;">${pageCount} page${pageCount > 1 ? 's' : ''} .PDF .${fileSizeKB}kb</p>
-                    
+    var pdfHtml = `
+        <div id="pdfcontainer"   style="width:35%; position: relative; padding: 10px; border-radius: 8px; background: ${isSender ? '#005c4b' : '#111b21'}; ${alignmentStyle}; overflow: hidden;">
+            <embed src="${pdfUrl}" width="100%" height="150px" type="application/pdf" style="border-radius: 8px; display: block; margin: 0 auto;">
+            <div style="background: ${isSender ? '#025244' : '#1c272e'}; display: flex; flex-direction: column; align-items: flex-start; padding-top: 10px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                    <p style="margin: 0; font-size: 16px; font-weight: bold; color: #fff; padding: 5px 10px; border-radius: 4px;">${fileNameWithoutExt}</p>
+                    <a href="${pdfUrl}" download style="display: flex; align-items: center; color: #fff; text-decoration: none; font-weight: bold; padding: 5px 10px; border-radius: 4px; margin-left: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cloud-download" viewBox="0 0 16 16">
+                            <path d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383"/>
+                            <path d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708z"/>
+                        </svg>
+                    </a>
                 </div>
-
-                 <div style="color: #fff; padding: 5px; border-radius: 4px; text-align: center; margin-top: px; ${isSender ? 'margin-left: 280px;' : 'margin-left:-310px'}  ">
-                        <i>${formattedDate}</i>
-                        ${isSender ? seenStatusSvg : ''}
-                    </div>
+                <p style="margin-left: 10px ; font-size: 14px; color: #fff;">${pageCount} page${pageCount > 1 ? 's' : ''} .PDF .${fileSizeKB}kb</p>
             </div>
-        `;
+            <div style="color: #fff; padding: 5px; border-radius: 4px; text-align: center; margin-top: px; ${isSender ? 'margin-left: 280px;' : 'margin-left:-310px'}">
+                <i >${formattedDate}</i>
+                ${isSender ? seenStatusSvg : ''}
+            </div>
+        </div>
+    `;
+
     messageHtml = `
         <div class="card position-relative" style="border:none; background:none !important; ${alignmentStyle}">
             <div style="font-weight:bolder" class="card-body ${messageStyle}">
@@ -1283,8 +1283,29 @@ function Html(conversation, user_id) {
         </div><br>
     `;
 
-    document.getElementById('pdf').innerHTML = pdfHtml;
-}
+    document.getElementById('pdf').innerHTML = `
+        <embed src="${pdfUrl}" width="150%" height="600px" type="application/pdf">
+        <svg id="bckpdf" class="x" style="color:#7d8d96; cursor: pointer; position: absolute; top: 10px; margin-left:10px;" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
+            <title>x</title>
+            <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+        </svg>
+    `; 
+
+    var pdfDiv = document.getElementById('pdf');
+    var pdfContainer = document.getElementById('pdfcontainer');
+
+    document.addEventListener('click', function(event) {
+    if (event.target == 'pdfContainer') {
+        pdfDiv.style.display = 'block'; 
+    } else if (event.target.id === 'bckpdf') {
+        pdfDiv.style.display = 'none';  
+    } else if ( event.target !== 'pdfContainer') {
+        pdfDiv.style.display = 'block';
+    }
+});
+   }
+
+ 
  
    else {
     messageHtml = `
@@ -1394,20 +1415,11 @@ ${conversation.reply_message_content ? `
    return messageHtml;
 }
 
- 
- 
-            var pdfDiv = document.getElementById('pdf');
-             
-            pdfDiv.style.display = 'none';
 
-             
-            document.addEventListener('click', function(event) {
-                if (!pdfDiv.contains(event.target) && event.target.id !== 'pdfcontainer') {
-                    pdfDiv.style.display = 'block';
-                }
-            });
-      
-       
+ 
+ 
+ 
+                     
 
 $(document).on('click', '#replyMessage', function(e) {
 
