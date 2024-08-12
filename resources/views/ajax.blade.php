@@ -1076,7 +1076,7 @@ $(document).on('click', '.delete-grpmessage', function(e) {
 <script type="text/javascript">
   
    var lastCheckedTimestamp = null;
-   //var latestMessageTimestamp = 0;
+   
 
    $(document).ready(function() {
 
@@ -1163,7 +1163,9 @@ $(document).on('click', '.delete-grpmessage', function(e) {
    }
    }); 
 
-function Html(conversation, user_id) {
+
+
+ function Html(conversation, user_id) {
     
    var deleteButton = (conversation.user_id == user_id) ? `<a style="color:white" class="delete-message btn-sm  position-absolute  top-0 start-0 mt-1 ms-1" data-message-id="${conversation.id}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>` : '';
    var createdAt = new Date(conversation.created_at);
@@ -1217,16 +1219,16 @@ function Html(conversation, user_id) {
            imageHtml += `
                <br>
                <a class="image-popup-vertical-fit" href="${fullImageUrl}">
-                   <img src="${fullImageUrl}" style="width:25%;height:150px">
+                   <img src="${fullImageUrl}" style="width:25%;height:400px">
                </a>
            `;
        });
 
        messageHtml = `
            <div class="card position-relative" style="border:none; background:none !important">
-               <div style="font-weight:bolder; " class="card-body ${messageStyle}">
+               <div style="" class="card-body ${messageStyle}">
                    ${imageHtml}
-                   <br><br>
+                   <br>
                    <i style="color:white">${formattedDate}</i>                  
                </div>
            </div><br>
@@ -1235,7 +1237,10 @@ function Html(conversation, user_id) {
    
    else if (conversation.pdf) {
     var baseUrl = '{{ asset('') }}'; 
-    var pdfUrl = baseUrl + conversation.pdf.trim();  
+    var pdfUrl = baseUrl + conversation.pdf.trim(); 
+    var pdfDiv = document.getElementById('pdf');   
+
+    
 
     var filePath = conversation.pdf.trim();
     var fileName = filePath.split('/').pop();
@@ -1253,7 +1258,7 @@ function Html(conversation, user_id) {
     var isSender = conversation.user_id === user_id; 
 
     var pdfHtml = `
-        <div id="pdfcontainer"   style="width:35%; position: relative; padding: 10px; border-radius: 8px; background: ${isSender ? '#005c4b' : '#111b21'}; ${alignmentStyle}; overflow: hidden;">
+        <div class="pdf-container" data-pdf-url="${pdfUrl}" id="pdfcontainer" style="width:35%; position: relative; padding: 10px; border-radius: 8px; background: ${isSender ? '#005c4b' : '#111b21'}; ${alignmentStyle}; overflow: hidden;">
             <embed src="${pdfUrl}" width="100%" height="150px" type="application/pdf" style="border-radius: 8px; display: block; margin: 0 auto;">
             <div style="background: ${isSender ? '#025244' : '#1c272e'}; display: flex; flex-direction: column; align-items: flex-start; padding-top: 10px;">
                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
@@ -1267,47 +1272,81 @@ function Html(conversation, user_id) {
                 </div>
                 <p style="margin-left: 10px ; font-size: 14px; color: #fff;">${pageCount} page${pageCount > 1 ? 's' : ''} .PDF .${fileSizeKB}kb</p>
             </div>
-            <div style="color: #fff; padding: 5px; border-radius: 4px; text-align: center; margin-top: px; ${isSender ? 'margin-left: 280px;' : 'margin-left:-310px'}">
-                <i >${formattedDate}</i>
+            <div style="color: #fff; padding: 5px; border-radius: 4px; text-align: center; margin-top: 10px; ${isSender ? 'margin-left: 280px;' : 'margin-left:-310px'}">
+                <i>${formattedDate}</i>
                 ${isSender ? seenStatusSvg : ''}
             </div>
         </div>
     `;
 
-    messageHtml = `
+    var messageHtml = `
         <div class="card position-relative" style="border:none; background:none !important; ${alignmentStyle}">
             <div style="font-weight:bolder" class="card-body ${messageStyle}">
-                ${pdfHtml} 
+                ${pdfHtml}
                 <br><br>
             </div>
         </div><br>
     `;
+  
+function renderPdf(pdfUrl) {
+    var pdfDiv = document.getElementById('pdf');  
 
-    document.getElementById('pdf').innerHTML = `
+    
+    if (!pdfDiv) {
+        console.error('pdfDiv element not found');
+        return;
+    }
+
+    pdfDiv.innerHTML = `
         <embed src="${pdfUrl}" width="150%" height="600px" type="application/pdf">
         <svg id="bckpdf" class="x" style="color:#7d8d96; cursor: pointer; position: absolute; top: 10px; margin-left:10px;" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
             <title>x</title>
             <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
         </svg>
-    `; 
+    `;
+    pdfDiv.style.display = 'block';
 
+    document.getElementById('bckpdf').addEventListener('click', function() {
+        pdfDiv.style.display = 'none';
+    });
+}
+
+ 
+document.querySelectorAll('.pdf-container').forEach(function(container) {
+    container.addEventListener('click', function() {
+        var pdfUrl = container.getAttribute('data-pdf-url');  
+        renderPdf(pdfUrl);
+    });
+});
+
+let isPdfOpen = false;  
+
+document.addEventListener('click', function(event) {
     var pdfDiv = document.getElementById('pdf');
     var pdfContainer = document.getElementById('pdfcontainer');
+    var bckpdf = document.getElementById('bckpdf');
 
-    document.addEventListener('click', function(event) {
-    if (event.target == 'pdfContainer') {
-        pdfDiv.style.display = 'block'; 
-    } else if (event.target.id === 'bckpdf') {
-        pdfDiv.style.display = 'none';  
-    } else if ( event.target !== 'pdfContainer') {
-        pdfDiv.style.display = 'block';
+     
+    if (isPdfOpen) {
+        if (event.target === bckpdf) {
+            pdfDiv.style.display = 'none';
+            isPdfOpen = false;  
+        } else if (event.target !== pdfDiv && event.target !== pdfContainer) {
+            
+            pdfDiv.style.display = 'none';
+            isPdfOpen = false;  
+        }
+    } else {
+        if (event.target === pdfContainer) {         
+            pdfDiv.style.display = 'block';
+            isPdfOpen = true; 
+        }
     }
 });
-   }
 
- 
- 
-   else {
+}
+
+    else{
     messageHtml = `
  <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
     <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
@@ -1410,16 +1449,10 @@ ${conversation.reply_message_content ? `
 <br>
 
 `;
-   }
-
+}
    return messageHtml;
 }
-
-
- 
- 
- 
-                     
+                   
 
 $(document).on('click', '#replyMessage', function(e) {
 
@@ -1593,7 +1626,7 @@ function sendMessage() {
     if (messageInput !== '') {
         formData.append('message', messageInput);
     } else {
-        formData.append('message', 'No message');
+         
     }
 
     if (replyMessage !== '') {
@@ -1864,8 +1897,7 @@ document.getElementById('searchText').addEventListener('input', function () {
     });
 });
 
-function setupWallpaperChange(userId) {
-                               
+function setupWallpaperChange(userId) {                              
                $('.wallpaper').off('click').on('click', function(e) {
                    e.preventDefault();
                   

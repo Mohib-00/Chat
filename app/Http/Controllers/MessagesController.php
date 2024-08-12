@@ -41,7 +41,7 @@ class MessagesController extends Controller
         $conversation->image = $imageString;
         $conversation->message = '';
     } else {
-        $conversation->message = $request->message ?? 'No message';
+        $conversation->message = $request->message;
     }
 
     if ($request->hasFile('pdf')) {
