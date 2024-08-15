@@ -727,6 +727,7 @@
         </div>
     </div>
 
+   
     <div id="ostatus" class="container-fluid" style="display: none">
         <div class="row">
 
@@ -740,10 +741,10 @@
 
             <div class="col-3"  style="background-color: #182118;height:922px;position:relative">
                 <input type="hidden" id="statusUserId" value="2">  
-                <input class="inp" style="background-color: #202c33; border:none; position:absolute; border-radius:10px; width:200%; color:white; padding:20px 0px 20px 10px;" type="text" name="message" autocomplete="off" class="form-control" placeholder="Type a reply">
+                <input class="inp" style="background-color: #202c33; border:none; position:absolute; border-radius:10px; color:white; padding:20px 0px 20px 10px;" type="text" name="message" autocomplete="off" class="form-control" placeholder="Type a reply">
 
-                <button  style="border-radius: 20px; background-color: green; border: 1px solid green;" class="send input-group-text p-3" id="replyMessage">
-                    <svg  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                <button  style="  background-color: green; border: 1px solid green;margin-top:860px;" class="sendd input-group-text p-3" id="replyMessage">
+                    <svg class="mx-2"  viewBox="0 0 24 24" height="25" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                         <title>send</title>
                         <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
                     </svg>

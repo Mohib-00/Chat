@@ -256,6 +256,16 @@ border-left: 1px solid rgba(0, 0, 0, .08);
 
     }
 
+    .sendd{
+        height:60px;
+        width:18%;
+        border-radius:50%;
+     }
+
+     .inp{
+        width:200%;
+     }
+
     .microphone{
          margin-top:7px;
           
@@ -397,6 +407,18 @@ border-left: 1px solid rgba(0, 0, 0, .08);
          margin-left: -30px;
           
      }
+     .sendd{
+        height:60px;
+        width:13.5%;
+        border-radius:50%;
+     }
+
+     .inp{
+        margin-top:861px;
+        margin-left:-970px;
+        width:200%;
+     }
+     
 
      .sendgrp{
          margin-top:8px;
@@ -472,7 +494,7 @@ border-left: 1px solid rgba(0, 0, 0, .08);
      width:18.3% !important;  
     }
 
-    
+     
 
     .i{
      margin-left:-60px;
@@ -569,5 +591,8 @@ margin-left:25px;
          display: none;
         
      }
+
+
+     
 
 </style>
