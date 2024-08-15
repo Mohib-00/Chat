@@ -1191,48 +1191,244 @@ $(document).on('click', '.delete-grpmessage', function(e) {
 </svg>
 `;
 
-   if (conversation.video) {
-       var videoUrl = '{{ asset('') }}' + conversation.video.trim();
-       var videoHtml = `
-           <video controls style="width:50%">
-               <source src="${videoUrl}" type="video/mp4">
-           </video>
-       `;
+if (conversation.video) {
+    var videoUrl = '{{ asset('') }}' + conversation.video.trim();
+    var isSender = conversation.user_id === user_id; 
+    var alignmentStyle = isSender ? 
+        'text-align: right; margin-left: auto;' : 
+        'text-align: left; margin-right: auto;';
+    
+    var videoHtml = `
+        <div class="video-container" data-video-url="${videoUrl}" style="position: relative; width: 100%; height: 480px;">
+            <video id="video-player" controls style="width:100%; height:100%; object-fit: cover;">
+                <source   src="${videoUrl}">
+            </video>
+            
+        </div>
+    `;
 
-       messageHtml = `
-           <div class="card position-relative" style="border:none; background:none !important">
-               <div style="font-weight:bolder" class="card-body text-black ${messageStyle}">
-                   ${videoHtml}
-                   <br><br>
-                   <i style="color:white">${formattedDate}</i>
+    
 
-               </div>
-           </div><br>
-       `;
+    messageHtml = `
+
+
+    <div id="react-${conversation.id}" class="col-4" style="display: none; background-color:#222e36; height:70px; border-radius:20px;">
+                <div class="row">
+
+                    <div class="col-2 mt-1 mx-4">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji.jfif') }}" alt="Emoji 1" onclick="saveReact(${conversation.id}, 'emoji.jfif')">
+                    </div>
+
+                    <div class="col-2 mt-1">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji1.jfif') }}" alt="Emoji 2" onclick="saveReact(${conversation.id}, 'emoji1.jfif')">
+                    </div>
+
+                    <div class="col-2 mt-1 mx-4">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji2.jfif') }}" alt="Emoji 3" onclick="saveReact(${conversation.id}, 'emoji2.jfif')">
+                    </div>
+
+                    <div class="col-2 mt-1">
+                        <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji3.jfif') }}" alt="Emoji 4" onclick="saveReact(${conversation.id}, 'emoji3.jfif')">
+                    </div>
+
+                </div>
+            </div>
+
+       <div class="card position-relative" style="background: ${isSender ? '#025244' : '#1c272e'}; ${alignmentStyle}; width: 26%">
+    <div style="font-weight: bolder" class="card-body text-black ${messageStyle}">
+        <div class="video-container" style="position: relative; width: 100%; height: 480px;">
+            <video class="clickable-video" controls style="width:100%; height:100%; object-fit: cover;" data-video-url="${videoUrl}">
+                <source src="${videoUrl}">
+            </video>
+        </div>
+        <br><br>
+        <i style="color:white">${formattedDate}</i>
+        ${conversation.user_id == user_id ? seenStatusSvg : ''}
+
+        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${conversation.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top: 0; ${conversation.user_id == user_id ? 'right: 90px;' : 'left: 70px;'} margin-top:520px; ${conversation.user_id != user_id ? 'color:black;' : 'color:green;'}" data-message-id="${conversation.id}">
+        </a>
+        <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
+            <li><a class="dropdown-item text-white reply-message" href="#" data-message-content="${conversation.message}">Reply</a></li>
+            <li><a class="dropdown-item text-white react-message" href="#" onclick="toggleReact(${conversation.id})">React</a></li>
+            ${conversation.user_id == user_id ? `
+                <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
+                <li><a class="dropdown-item text-white edit-message" href="#" data-message-id="${conversation.id}">Edit</a></li>
+                ${conversation.status === 'deleted' ? `
+                    <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${conversation.id}">Remove</a></li>
+                ` : ''}
+            ` : ''}
+        </ul>     
+    </div>
+</div>
+
+${conversation.react_message ? `
+    <div style="margin-top: 10px;">
+        <p><img style="width: 30px; height: 30px; border-radius: 50%;" src="{{ asset('${conversation.react_message}') }}" alt="React Emoji"></p>
+    </div>
+` : ''}
+
+    `;
+
+
+    $(document).on('click', '.clickable-video', function (e) {
+    e.preventDefault();
+
+    var videoUrl = $(this).data('video-url');
+ 
+    $('#chat-container').fadeOut(200, function() {
+        $('#video-viewer').fadeIn(200);
+    });
+
+    
+    $('#video-column').html(`
+        <video controls src="${videoUrl}" style="margin-top:60px;width:70%;height:750px;margin-left:40px"></video>
+    `);
+});
+
+$(document).on('click', '#bckimg', function () {
+    $('#video-viewer').fadeOut(200, function() {
+        $('#chat-container').fadeIn(200);
+    });
+});
+
+
+
 
    } else if (conversation.image && !conversation.message) {
-       var imageUrls = conversation.image.split(',');
-       var baseUrl = '{{ asset('') }}';
-       var imageHtml = '';
-       $.each(imageUrls, function (index, imageUrl) {
-           var fullImageUrl = baseUrl + imageUrl.trim();
-           imageHtml += `
-               <br>
-               <a class="image-popup-vertical-fit" href="${fullImageUrl}">
-                   <img src="${fullImageUrl}" style="width:25%;height:400px">
-               </a>
-           `;
-       });
+    const isSender = conversation.user_id === user_id;
+    const replyContent = conversation.reply_message_content ? `
+        <div class="container-fluid vo" style="margin-top:-21px; ${isSender ? 'margin-left:650px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
+            <div class="row">
+                <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
+                    <p style="display: none">nn</p>
+                </div>
+                <div class="col-10" style="${isSender ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px 4px">  
+                    <p style="font-size:17px; color: #dfe3e6; ${isSender ? 'margin-left:-25%; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">${conversation.reply_message_content}</p>
+                </div>
+            </div>
+        </div>` : 
+    conversation.reply_status ? `
+        <div class="container-fluid voO" style="margin-top:-21px; ${isSender ? 'margin-left:588px; background-color:#005c4b;' : 'margin-left:-1px; background-color:#202c33;'} width:13%">
+            <div class="row">
+                <div class="col-2" style="background-color:#52bdeb;border-radius:5px 0px 0px 5px;">
+                    <p style="display: none">nn</p>
+                </div>
+                <div class="col-10" style="${isSender ? 'background-color:#025244;' : 'background-color:#111b21;'} height:80px;padding:15px 0px 0px 20px;border-radius:0px 10px 10px 0px;width:95%;margin:4px 4px 4px;">
+                    ${(() => {
+                        const replyStatus = conversation.reply_status;
+                        const fileType = replyStatus.split('.').pop();
+                        if (fileType.match(/jpg|jpeg|png|gif|jfif/i)) {
+                            return `<img style="width:110%;height:75px;margin-top:-9%;margin-left:-20%" src="/${replyStatus}">`;
+                        } else if (fileType.match(/mp4|webm|ogg/i)) {
+                            return `<video controls class="vdoo" style=" "><source src="/${replyStatus}" type="video/mp4"></video>`;
+                        } else {
+                            return '';
+                        }
+                    })()}
+                </div>
+            </div>
+        </div>` : 
+    '';
 
-       messageHtml = `
-           <div class="card position-relative" style="border:none; background:none !important">
-               <div style="" class="card-body ${messageStyle}">
-                   ${imageHtml}
-                   <br>
-                   <i style="color:white">${formattedDate}</i>                  
-               </div>
-           </div><br>
-       `;
+    const dropdownMenu = `
+        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink${conversation.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent; border:none; position: absolute; top:455px; ${isSender ? 'right: 90px;' : 'left: 70px;'} margin-top:25px; ${isSender ? 'color:green;' : 'color:black;'}" data-message-id="${conversation.id}">
+        </a>
+        <ul id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuLink${conversation.id}" style="background-color: #233138;">
+            <li><a class="dropdown-item text-white reply-message" href="#" data-message-content="${conversation.message}">Reply</a></li>
+            <li><a class="dropdown-item text-white react-message" href="#" onclick="toggleReact(${conversation.id})">React</a></li>
+            ${isSender ? `
+                <li><a id="delete" class="dropdown-item text-white delete-message" href="#" data-message-id="${conversation.id}">Delete</a></li>
+                <li><a class="dropdown-item text-white edit-message" href="#" data-message-id="${conversation.id}">Edit</a></li>
+                ${conversation.status === 'deleted' ? `
+                    <li><a class="dropdown-item text-white remove-message" href="#" data-message-id="${conversation.id}">Remove</a></li>
+                ` : ''}
+            ` : ''}
+        </ul>`;
+
+    messageHtml = `
+        <div id="message-${conversation.id}" class="card position-relative" style="border:none;background:none;">
+            <div style="font-weight:bolder; font-size:20px;" class="card-body text-white ${messageStyle}">
+                <div style="position: relative;">
+                    ${replyContent}
+                    <div id="react-${conversation.id}" class="col-4" style="display: none; background-color:#222e36; height:70px; border-radius:20px;">
+                        <div class="row">
+                            <div class="col-2 mt-1 mx-4">
+                                <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji.jfif') }}" alt="Emoji 1" onclick="saveReact(${conversation.id}, 'emoji.jfif')">
+                            </div>
+                            <div class="col-2 mt-1">
+                                <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji1.jfif') }}" alt="Emoji 2" onclick="saveReact(${conversation.id}, 'emoji1.jfif')">
+                            </div>
+                            <div class="col-2 mt-1 mx-4">
+                                <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji2.jfif') }}" alt="Emoji 3" onclick="saveReact(${conversation.id}, 'emoji2.jfif')">
+                            </div>
+                            <div class="col-2 mt-1">
+                                <img style="width:130%;height:45px;border-radius:45%;" src="{{ asset('emoji3.jfif') }}" alt="Emoji 4" onclick="saveReact(${conversation.id}, 'emoji3.jfif')">
+                            </div>
+                        </div>
+                    </div>
+
+                    ${conversation.image && !conversation.message ? 
+                        conversation.image.split(',').map(imageUrl => `
+                            <div class="card position-relative" style="background: ${isSender ? '#025244' : '#1c272e'}; ${isSender ? 'text-align: right; margin-left: auto;' : 'text-align: left; margin-right: auto;'} width:26%">
+                                <div class="card-body ${messageStyle}">
+                                    <a id="imageopen" data-img-url="{{ asset('${imageUrl.trim()}') }}">
+                                        <img src="{{ asset('${imageUrl.trim()}') }}" style="width:100%;height:470px">
+                                    </a>
+                                    <br>
+                                    <i style="color:white;font-weight:lighter;font-size:15px">${formattedDate}</i>
+                                    ${isSender ? seenStatusSvg : ''}
+                                    
+                                </div>
+                            </div>
+                        `).join('') : `
+                        <div class="message-content" style="font-size:17px;background:${isSender ? '#005c4b' : '#202c33'} !important; display:inline-block; padding:5px 5px 0px 10px; border-radius:${isSender ? '10px 0px 10px 10px' : '10px 10px 10px 0px'}; color: #dfe3e6; ${isSender ? 'margin-left: auto; max-width: 80%;' : 'max-width: 80%;'}; letter-spacing: 1px;">
+                            ${conversation.message}
+                            <br>
+                            ${conversation.edit_status === 'Edited' ? '<span style="color:#8b989e;font-size:12px">Edited</span>' : ''}
+                            <p style="font-size:15px;color:#a6abad;display:inline;">${formattedDate}</p>
+                            ${isSender ? seenStatusSvg : ''}
+                        </div>
+                    `}
+                    ${conversation.react_message ? `
+                        <div style="margin-top: 10px;">
+                            <p><img style="width: 30px; height: 30px; border-radius: 50%;" src="{{ asset('${conversation.react_message}') }}" alt="React Emoji"></p>
+                        </div>
+                    ` : ''}
+                    ${dropdownMenu}
+                </div>
+            </div>
+        </div>
+        `;
+
+
+    $(document).on('click', '#imageopen', function (e) {
+    e.preventDefault();
+
+   
+    var imageUrl = $(this).data('img-url');
+    
+   
+    $('#chat-container').fadeOut(200, function() {
+        $('#image-viewer').fadeIn(200);
+    });
+    
+    
+    $('#image-column').html(`<img src="${imageUrl}" style="margin-top:60px;width:70%;height:750px;margin-left:40px">`);
+});
+
+
+$(document).on('click', '#bckimg', function () {
+    
+    $('#image-viewer').fadeOut(200, function() {
+        
+        $('#chat-container').fadeIn(200);
+    });
+});
+
+
+
+
+
    }
    
    else if (conversation.pdf) {
@@ -2003,6 +2199,7 @@ function setupWallpaperChange(userId) {
            });
        }
    });
+   
 });
 
 </script>

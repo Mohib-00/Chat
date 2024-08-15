@@ -14,6 +14,7 @@
      
 </head>
 <body>
+    
     <div class="container-fluid" id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset('images/' . $user->background_image) }}')">
         <div class="row">
             <div style="background-color:#202c33;width:4%" class="col-lg-1 one">
@@ -498,7 +499,7 @@
                     
                     <div id="message" class="row message" style="height:510px;width:100%">
                         <div class="col-lg-12 col-sm-12 conversation">
-                            <div id="chat-content" style=" height: calc(170% - 120px); overflow-y: auto; width: 102%">
+                            <div id="chat-content" style=" height: calc(160% - 120px); overflow-y: auto; width: 102%">
                         
                             </div>
 
@@ -752,6 +753,94 @@
         </div>
     </div>
 </form>
+
+
+   <div class="container-fluid" id="image-viewer" style="display:none;background-color:#111b21;height:921px">
+    <div class="row">
+
+        <div class="col-4">
+
+            <div id="left-btn" class="col-12" style="background-color:#1d252b;width:10%;border-radius:40%;height:60px;margin-top:60%">
+            <svg style="color:#484f54;margin-left:5px" viewBox="0 0 30 30" height="50" width="50" preserveAspectRatio="xMidYMid meet" class="" x="0px" y="0px"><title>chevron</title><path fill="currentColor" d="M11,21.212L17.35,15L11,8.65l1.932-1.932L21.215,15l-8.282,8.282L11,21.212z"></path></svg>
+            </div>
+
+        </div>
+
+        <div class="col-4" id="image-column">
+            
+        </div>
+
+        <div class="col-4">
+           
+
+        <div class="col-12">
+            <svg id="bckimg" class="x" style="margin-left:95%;color:white" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
+                <title>x</title>
+                <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+            </svg>
+        </div>
+
+
+        <div id="right-btn" class="col-12" style="background-color:#1d252b;width:10%;border-radius:40%;height:60px;margin-top:58%;margin-left:90%">
+ 
+            <svg style="color:#484f54;margin-left:5px; " viewBox="0 0 30 30" height="50" width="50" preserveAspectRatio="xMidYMid meet" class="" x="0px" y="0px"><title>chevron</title><path fill="currentColor" d="M11,21.212L17.35,15L11,8.65l1.932-1.932L21.215,15l-8.282,8.282L11,21.212z"></path></svg>
+
+        </div>
+
+         
+
+            
+        </div>
+
+
+    </div>
+   </div>
+
+
+
+
+
+   <div class="container-fluid" id="video-viewer" style="display:none;background-color:#111b21;height:921px">
+    <div class="row">
+
+        <div class="col-4">
+
+            <div id="left-btn" class="col-12" style="background-color:#1d252b;width:10%;border-radius:40%;height:60px;margin-top:60%">
+            <svg style="color:#484f54;margin-left:5px" viewBox="0 0 30 30" height="50" width="50" preserveAspectRatio="xMidYMid meet" class="" x="0px" y="0px"><title>chevron</title><path fill="currentColor" d="M11,21.212L17.35,15L11,8.65l1.932-1.932L21.215,15l-8.282,8.282L11,21.212z"></path></svg>
+            </div>
+
+        </div>
+
+        <div class="col-4" id="video-column">
+            
+        </div>
+
+        <div class="col-4">
+           
+
+        <div class="col-12">
+            <svg id="bckimg" class="x" style="margin-left:95%;color:white" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
+                <title>x</title>
+                <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+            </svg>
+        </div>
+
+
+        <div id="right-btn" class="col-12" style="background-color:#1d252b;width:10%;border-radius:40%;height:60px;margin-top:58%;margin-left:90%">
+ 
+            <svg style="color:#484f54;margin-left:5px; " viewBox="0 0 30 30" height="50" width="50" preserveAspectRatio="xMidYMid meet" class="" x="0px" y="0px"><title>chevron</title><path fill="currentColor" d="M11,21.212L17.35,15L11,8.65l1.932-1.932L21.215,15l-8.282,8.282L11,21.212z"></path></svg>
+
+        </div>
+
+         
+
+            
+        </div>
+
+
+    </div>
+   </div>
+
 
     @include('ajax')
 
