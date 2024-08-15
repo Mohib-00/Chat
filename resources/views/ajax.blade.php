@@ -1082,9 +1082,22 @@ $(document).on('click', '.delete-grpmessage', function(e) {
 
    getLastCheckedTimestamp(false);
 
+
+   $('#pdf-upload-icon').click(function() {
+       $('#pdf-upload').click();  
+   });
+
+   $('#pdf-upload').change(function() {
+       var file = this.files[0];
+       $('#pdfupload').val(file.name);  
+   });
+
+
+
    $('#image-upload-icon').click(function() {
        $('#image-upload, #video-upload').click();  
    });
+
 
    $('#image-upload').change(function() {
        var file = this.files[0];
@@ -1826,6 +1839,11 @@ function sendMessage() {
     if ($('#video-upload')[0].files.length > 0) {
         var videoFile = $('#video-upload')[0].files[0];
         formData.append('video', videoFile);
+    }
+
+    if ($('#pdf-upload')[0].files.length > 0) {
+        var pdfFile = $('#pdf-upload')[0].files[0];
+        formData.append('pdfupload', pdfFile);
     }
 
     if ($('#image-upload')[0].files.length > 0) {
