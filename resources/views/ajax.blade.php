@@ -1277,7 +1277,7 @@ messageHtml = `
                         </div>
                     </div>
                 ${conversation.video ? `
-                    <div class="card position-relative" style="background: ${isSender ? '#025244' : '#1c272e'}; ${isSender ? 'text-align: right; margin-left: auto;' : 'text-align: left; margin-right: auto;'} width:26%">
+                    <div class="imgcard card position-relative" style="background: ${isSender ? '#025244' : '#1c272e'}; ${isSender ? 'text-align: right; margin-left: auto;' : 'text-align: left; margin-right: auto;'} ">
                         <div class="card-body ${messageStyle}">
                             <div class="video-container" style="position: relative; width: 100%; height: 480px;">
                                 <video class="clickable-video" controls style="width:100%; height:100%; object-fit: cover;" data-video-url="{{ asset('${conversation.video.trim()}') }}">
@@ -1403,7 +1403,7 @@ $(document).on('click', '#bckimg', function () {
 
                     ${conversation.image && !conversation.message ? 
                         conversation.image.split(',').map(imageUrl => `
-                            <div class="card position-relative" style="background: ${isSender ? '#025244' : '#1c272e'}; ${isSender ? 'text-align: right; margin-left: auto;' : 'text-align: left; margin-right: auto;'} width:26%">
+                            <div class="imgcard card position-relative" style="background: ${isSender ? '#025244' : '#1c272e'}; ${isSender ? 'text-align: right; margin-left: auto;' : 'text-align: left; margin-right: auto;'}">
                                 <div class="card-body ${messageStyle}">
                                     <a id="imageopen" data-img-url="{{ asset('${imageUrl.trim()}') }}">
                                         <img src="{{ asset('${imageUrl.trim()}') }}" style="width:100%;height:470px">
@@ -1488,7 +1488,7 @@ $(document).on('click', '#bckimg', function () {
     var isSender = conversation.user_id === user_id; 
 
     var pdfHtml = `
-        <div class="pdf-container" data-pdf-url="${pdfUrl}" id="pdfcontainer" style="width:35%; position: relative; padding: 10px; border-radius: 8px; background: ${isSender ? '#005c4b' : '#111b21'}; ${alignmentStyle}; overflow: hidden;">
+        <div class="pdf-container" data-pdf-url="${pdfUrl}" id="pdfcontainer" style=" position: relative; padding: 10px; border-radius: 8px; background: ${isSender ? '#005c4b' : '#111b21'}; ${alignmentStyle}; overflow: hidden;">
             <embed src="${pdfUrl}" width="100%" height="150px" type="application/pdf" style="border-radius: 8px; display: block; margin: 0 auto;">
             <div style="background: ${isSender ? '#025244' : '#1c272e'}; display: flex; flex-direction: column; align-items: flex-start; padding-top: 10px;">
                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">

@@ -256,6 +256,15 @@ border-left: 1px solid rgba(0, 0, 0, .08);
 
     }
 
+    .pdf-container{
+        width:50%;
+        height:290px;
+     }
+
+      .imgcard{
+        width:35%;
+      }
+
     .sendd{
         height:60px;
         width:18%;
@@ -407,6 +416,16 @@ border-left: 1px solid rgba(0, 0, 0, .08);
          margin-left: -30px;
           
      }
+
+     .imgcard{
+        width:26%;
+      }
+
+     .pdf-container{
+        width:35%;
+        height:290px;
+     }
+
      .sendd{
         height:60px;
         width:13.5%;
