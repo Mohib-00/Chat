@@ -516,7 +516,7 @@
                                                 
                                             </div>
 
-                                            <div class="col-1">
+                                            <div class="col-1" >
                                                 <svg id="emoji2" class="tmesvg2" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
                                                     <title>panel-emoji-people</title>
                                                     <path fill="currentColor" d="M12,22.1C6.4,22.1,1.9,17.6,1.9,12S6.4,1.9,12,1.9S22.1,6.4,22.1,12S17.6,22.1,12,22.1z M12,3.5 c-4.7,0-8.5,3.8-8.5,8.5s3.8,8.5,8.5,8.5s8.5-3.8,8.5-8.5S16.7,3.5,12,3.5z"></path>
@@ -602,7 +602,7 @@
                                                    @foreach($emojis as $emoji)
 
                                                    <div class="col-1">
-                                                    <img id="smiley" class="showemojis my-2" src="{{ asset('emojis/smileys/' . basename($emoji->smileys)) }}"/>
+                                                    <img id="smileyy" class="showemojis my-2" src="{{ asset('emojis/smileys/' . basename($emoji->smileys)) }}"/>
                                                 </div>
                                                 
 

@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const flagsEmojis = document.getElementById('emoji8');
 
     const recentContainer = document.getElementById('recent');
-    const peopleContainer = document.getElementById('smiley');
+    const peopleContainer = document.getElementById('smileyy');
     const animalContainer = document.getElementById('animal');
     const foodContainer = document.getElementById('food');
     const activityContainer = document.getElementById('activity');
@@ -58,14 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollToContainer(recentContainer);
     });
 
-    if (peopleEmojis && peopleContainer) {
+   
         peopleEmojis.addEventListener('click', function () {
             console.log('People clicked');
             scrollToContainer(peopleContainer);
         });
-    } else {
-        console.log('Elements not found.');
-    }
+     
 
     animalEmojis.addEventListener('click', function () {
         console.log('Animal clicked');
