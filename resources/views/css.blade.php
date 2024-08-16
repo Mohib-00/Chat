@@ -150,6 +150,7 @@ margin: 0 !important;
                                     #chat-grpcontent::-webkit-scrollbar-thumb:hover {
                                         background-color: #374045;  
                                     } 
+                                    
 
 
 .sideBar-body:hover {
@@ -251,6 +252,65 @@ border-left: 1px solid rgba(0, 0, 0, .08);
 }
 
 @media (max-width: 1354px) {
+
+    #bcksmily{
+        margin-left:-70px;
+        margin-top:15px;
+     }  
+
+    .emojis{
+        margin-top:-400px;
+        margin-left:10px;
+    }    
+
+    .tmesvg{
+        margin-left: 20px;
+        margin-top:10px;
+    }
+
+    .tmesvg2{
+        margin-left: 50px;
+        margin-top:10px;
+    }
+
+    .tmesvg3{
+        margin-left: 80px;
+        margin-top:10px;
+    }
+
+    .tmesvg4{
+        margin-left: 130px;
+        margin-top:10px;
+    }
+
+    .tmesvg5{
+        margin-left: 180px;
+        margin-top:10px;
+    }
+
+    .tmesvg6{
+        margin-left: 220px;
+        margin-top:10px;
+    }
+
+    .tmesvg7{
+        margin-left: 260px;
+        margin-top:10px;
+    }
+
+    .tmesvg8{
+        margin-left: 280px;
+        margin-top:10px;
+    }
+    .showemojis{
+        width:75%;
+        height:40px;
+        border-radius:50%;
+        margin-left:5px;
+    }
+
+
+
     .vo {
         width:19% !important;  
 
@@ -412,6 +472,65 @@ border-left: 1px solid rgba(0, 0, 0, .08);
      }
 
      @media (min-width: 1604px) {
+
+     #bcksmily{
+        margin-left:-70px;
+        margin-top:15px;
+     }   
+
+    .emojis{
+        margin-top:-400px;
+        margin-left:10px;
+    }    
+
+    .tmesvg{
+        margin-left: 50px;
+        margin-top:10px;
+    }
+
+    .tmesvg2{
+        margin-left: 80px;
+        margin-top:10px;
+    }
+
+    .tmesvg3{
+        margin-left: 110px;
+        margin-top:10px;
+    }
+
+    .tmesvg4{
+        margin-left: 155px;
+        margin-top:10px;
+    }
+
+    .tmesvg5{
+        margin-left: 200px;
+        margin-top:10px;
+    }
+
+    .tmesvg6{
+        margin-left: 260px;
+        margin-top:10px;
+    }
+
+    .tmesvg7{
+        margin-left: 320px;
+        margin-top:10px;
+    }
+
+    .tmesvg8{
+        margin-left: 360px;
+        margin-top:10px;
+    }
+    .showemojis{
+        width:50%;
+        height:40px;
+        border-radius:50%;
+        margin-left:5px;
+    }
+
+    
+
      .my {
          margin-left: -30px;
           
@@ -610,6 +729,27 @@ margin-left:25px;
          display: none;
         
      }
+
+
+
+
+     .emojiscrollbar::-webkit-scrollbar {
+                                        width: 10px;  
+                                    }
+                    
+                                    #chat-grpcontent::-webkit-scrollbar-track {
+                                        background-color:transparent;  
+                                    }
+                    
+                                    #chat-grpcontent::-webkit-scrollbar-thumb {
+                                        background-color: #374045;  
+                                        border-radius: 5px;  
+                                         
+                                    }
+                    
+                                    #chat-grpcontent::-webkit-scrollbar-thumb:hover {
+                                        background-color: #374045;  
+                                    } 
 
 
      

@@ -16,6 +16,94 @@
 
 
    <script>
+$(".microphone").click(function() {
+    $(".emojis").fadeIn(200);    
+    $(".smily1").fadeOut(200);   
+    $("#bcksmily").fadeIn(200);  
+});
+
+$("#bcksmily").click(function() {
+    $(".emojis").fadeOut(200);   
+    $(".smily1").fadeIn(200);    
+    $("#bcksmily").fadeOut(200);  
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const recentEmojis = document.getElementById('emoji1');
+    const peopleEmojis = document.getElementById('emoji2');
+    const animalEmojis = document.getElementById('emoji3');
+    const foodEmojis = document.getElementById('emoji4');
+    const activityEmojis = document.getElementById('emoji5');
+    const travelEmojis = document.getElementById('emoji6');
+    const objectsEmojis = document.getElementById('emoji7');
+    const flagsEmojis = document.getElementById('emoji8');
+
+    const recentContainer = document.getElementById('recent');
+    const peopleContainer = document.getElementById('smiley');
+    const animalContainer = document.getElementById('animal');
+    const foodContainer = document.getElementById('food');
+    const activityContainer = document.getElementById('activity');
+    const travelContainer = document.getElementById('travel');
+    const objectsContainer = document.getElementById('objects');
+    const flagsContainer = document.getElementById('flags');
+
+    function scrollToContainer(container) {
+        container.scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('.emoji-category').forEach(c => c.classList.remove('active'));
+        container.classList.add('active');
+    }
+
+    recentEmojis.addEventListener('click', function () {
+        console.log('Recent clicked');
+        scrollToContainer(recentContainer);
+    });
+
+    if (peopleEmojis && peopleContainer) {
+        peopleEmojis.addEventListener('click', function () {
+            console.log('People clicked');
+            scrollToContainer(peopleContainer);
+        });
+    } else {
+        console.log('Elements not found.');
+    }
+
+    animalEmojis.addEventListener('click', function () {
+        console.log('Animal clicked');
+        scrollToContainer(animalContainer);
+    });
+
+    foodEmojis.addEventListener('click', function () {
+        console.log('Food clicked');
+        scrollToContainer(foodContainer);
+    });
+
+    activityEmojis.addEventListener('click', function () {
+        console.log('Activity clicked');
+        scrollToContainer(activityContainer);
+    });
+
+    travelEmojis.addEventListener('click', function () {
+        console.log('Travel clicked');
+        scrollToContainer(travelContainer);
+    });
+
+    objectsEmojis.addEventListener('click', function () {
+        console.log('Objects clicked');
+        scrollToContainer(objectsContainer);
+    });
+
+    flagsEmojis.addEventListener('click', function () {
+        console.log('Flags clicked');
+        scrollToContainer(flagsContainer);
+    });
+});
+
+
+
+    </script>
+
+
+   <script>
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('searchmessages').addEventListener('input', function() {
         var searchText = this.value.toLowerCase();
@@ -152,6 +240,8 @@ function scrollToMessage(index) {
         });
         </script>
         
+
+      
 
 
 

@@ -67,9 +67,70 @@
                     </div>
                 </div>
             </form>
+
+
+            <h1 style="color:white;margin-top:40px">Add Emojis</h1>
+             
+             
+
+
+                <form action="{{ route('emojis.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+              
+
+<div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="mt-5 ti">Smileys:</label>
+                    <input style="background-color: #222e36; color: white; border-radius: 5px" type="file" name="smileys" class="form-control"  />
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <label class="mt-5 ti">Animals:</label>
+                    <input style="background-color: #222e36; color: white; border-radius: 5px" type="file" name="animals" class="form-control"  />
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <label class="mt-5 ti">Food:</label>
+                    <input style="background-color: #222e36; color: white; border-radius: 5px" type="file" name="food" class="form-control"  />
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <label class="mt-5 ti">Activity:</label>
+                    <input style="background-color: #222e36; color: white; border-radius: 5px" type="file" name="activity" class="form-control"  />
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <label class="mt-5 ti">Travel:</label>
+                    <input style="background-color: #222e36; color: white; border-radius: 5px" type="file" name="travel" class="form-control"  />
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <label class="mt-5 ti">Objects:</label>
+                    <input style="background-color: #222e36; color: white; border-radius: 5px" type="file" name="objects" class="form-control"  />
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <label class="mt-5 ti">Flags:</label>
+                    <input style="background-color: #222e36; color: white; border-radius: 5px" type="file" name="flags" class="form-control"  />
+                </div>
+
+
+                <div class="col-lg-12">
+                    <input id="addemoji" type="submit" style="background-color: black;margin-left:-1px"  value="Add emoji" class="btn btn-primary" />
+                </div>
+
+</div>
+            </form>
+             
             
         </div>
+
+       
+
+        
     </div>
+
+    
 
 </div>
     

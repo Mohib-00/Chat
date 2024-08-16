@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Emojis;
 use App\Models\GroupChat;
 use App\Models\Message;
 use App\Models\MessageComment;
@@ -126,12 +127,12 @@ class MessagesController extends Controller
         $groupChatIds = $groupChats->pluck('id');
         $groupChatss = GroupChat::whereIn('id', $groupChatIds)->get();
 
-         
+         $emojis = Emojis::all();
         
         //$pdfs = MessageComment::whereNotNull('pdf')->where('pdf', '!=', '')->get();
         $pdfs = MessageComment::all();
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss','pdfs'));
+       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss','pdfs','emojis'));
 
     }
 
@@ -575,6 +576,66 @@ public function savegrpReact(Request $request)
 
     return response()->json(['success' => 'Message updated successfully']);
 }
+
+public function storeemoji(Request $request)
+{
+    $emoji = new Emojis();
+
+    if ($request->hasFile('smileys')) {
+        $smileys = $request->file('smileys');
+        $smileysName = time() . '-' . $smileys->getClientOriginalName();
+        $smileys->move(public_path('emojis/smileys'), $smileysName);
+        $emoji->smileys = 'emojis/smileys/' . $smileysName;
+    }
+
+    if ($request->hasFile('animals')) {
+        $animals = $request->file('animals');
+        $animalsName = time() . '-' . $animals->getClientOriginalName();
+        $animals->move(public_path('emojis/animals'), $animalsName);
+        $emoji->animals = 'emojis/animals/' . $animalsName;
+    }
+
+    if ($request->hasFile('food')) {
+        $food = $request->file('food');
+        $foodName = time() . '-' . $food->getClientOriginalName();
+        $food->move(public_path('emojis/food'), $foodName);
+        $emoji->food = 'emojis/food/' . $foodName;
+    }
+
+    if ($request->hasFile('activity')) {
+        $activity = $request->file('activity');
+        $activityName = time() . '-' . $activity->getClientOriginalName();
+        $activity->move(public_path('emojis/activity'), $activityName);
+        $emoji->activity = 'emojis/activity/' . $activityName;
+    }
+
+    if ($request->hasFile('travel')) {
+        $travel = $request->file('travel');
+        $travelName = time() . '-' . $travel->getClientOriginalName();
+        $travel->move(public_path('emojis/travel'), $travelName);
+        $emoji->travel = 'emojis/travel/' . $travelName;
+    }
+
+    if ($request->hasFile('objects')) {
+        $objects = $request->file('objects');
+        $objectsName = time() . '-' . $objects->getClientOriginalName();
+        $objects->move(public_path('emojis/objects'), $objectsName);
+        $emoji->objects = 'emojis/objects/' . $objectsName;
+    }
+
+    if ($request->hasFile('flags')) {
+        $flags = $request->file('flags');
+        $flagsName = time() . '-' . $flags->getClientOriginalName();
+        $flags->move(public_path('emojis/flags'), $flagsName);
+        $emoji->flags = 'emojis/flags/' . $flagsName;
+    }
+
+    $emoji->save();
+
+    return redirect()->back();
+}
+
+
 
 
    }

@@ -48,3 +48,6 @@ Route::get('/group-chat/{groupId}', [MessagesController::class, 'loadGroupChatMe
 Route::get('/delete-grpmessage/{id}', [MessagesController::class, 'deletegrp'])->name('deleteMessage');
 Route::put('/grpmessages/{id}', [MessagesController::class, 'update'])->name('messages.update');
 Route::put('/messagesgrp/{id}', [MessagesController::class, 'updategrpmessage'])->name('messages.update');
+
+Route::post('/add-emojis', [MessagesController::class, 'storeemoji'])->name('emojis.store');
+

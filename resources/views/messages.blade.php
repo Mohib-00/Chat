@@ -500,7 +500,230 @@
                     <div id="message" class="row message" style="height:510px;width:100%">
                         <div class="col-lg-12 col-sm-12 conversation">
                             <div id="chat-content" style=" height: calc(160% - 120px); overflow-y: auto; width: 102%">
+
+                               
                         
+                            </div>
+
+                            <div class="container-fluid emojis" style="position: absolute;background-color:#202c33;height:440px;display:none ">
+                                <div class="row">
+
+                                    <div class="col-12" style="background-color:">
+                                        <div class="row">
+
+                                            <div class="col-1">
+                                                <svg id="emoji1" class="tmesvg" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" class="" version="1.1"><title>panel-recent</title><path d="M20.5378905,11.9748276 C20.5378905,7.24555819 16.704097,3.41176471 11.9748276,3.41176471 C7.24555819,3.41176471 3.41176471,7.24555819 3.41176471,11.9748276 C3.41176471,16.704097 7.24555819,20.5378905 11.9748276,20.5378905 C16.704097,20.5378905 20.5378905,16.704097 20.5378905,11.9748276 Z M21.9496552,11.9748276 C21.9496552,17.4837931 17.4837931,21.9496552 11.9748276,21.9496552 C6.46586207,21.9496552 2,17.4837931 2,11.9748276 C2,6.46586207 6.46586207,2 11.9748276,2 C17.4837931,2 21.9496552,6.46586207 21.9496552,11.9748276 Z M12.1176471,6.70588235 L12.1176471,12.396898 L16.5044771,15.0244548 C16.8389217,15.2247753 16.9476508,15.6582881 16.7473302,15.9927327 C16.5470097,16.3271773 16.1134969,16.4359063 15.7790523,16.2355858 L10.7058824,13.1969356 L10.7058824,6.70588235 C10.7058824,6.31603429 11.0219166,6 11.4117647,6 C11.8016128,6 12.1176471,6.31603429 12.1176471,6.70588235 Z" fill="currentColor" fill-rule="nonzero"></path></svg>
+                                                
+                                            </div>
+
+                                            <div class="col-1">
+                                                <svg id="emoji2" class="tmesvg2" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                                    <title>panel-emoji-people</title>
+                                                    <path fill="currentColor" d="M12,22.1C6.4,22.1,1.9,17.6,1.9,12S6.4,1.9,12,1.9S22.1,6.4,22.1,12S17.6,22.1,12,22.1z M12,3.5 c-4.7,0-8.5,3.8-8.5,8.5s3.8,8.5,8.5,8.5s8.5-3.8,8.5-8.5S16.7,3.5,12,3.5z"></path>
+                                                    <path fill="currentColor" d="M8.9,11.6c0.7,0,1.3-0.7,1.3-1.5S9.6,8.6,8.9,8.6s-1.3,0.7-1.3,1.5C7.6,10.9,8.2,11.6,8.9,11.6z"></path>
+                                                    <path fill="currentColor" d="M17.1,13.6c-1.1,0.1-3,0.4-5,0.4s-4-0.3-5-0.4c-0.4,0-0.6,0.3-0.4,0.7c1.1,2,3.1,3.5,5.5,3.5 c2.3,0,4.4-1.5,5.5-3.5C17.8,14,17.5,13.6,17.1,13.6z M12.3,16c-2.6,0-4.1-1-4.2-1.6c0,0,4.4,0.9,8,0C16.1,14.4,15.6,16,12.3,16z"></path>
+                                                    <path fill="currentColor" d="M15.1,11.6c0.7,0,1.3-0.7,1.3-1.5s-0.6-1.5-1.3-1.5s-1.3,0.7-1.3,1.5C13.8,10.9,14.4,11.6,15.1,11.6z"></path>
+                                                </svg>
+                                                
+                                            </div>
+
+
+                                            <div class="col-1">
+                                                <svg id="emoji3" class="tmesvg3" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>panel-emoji-nature</title><path fill="currentColor" d="M7.2,12.2c0.608,0,1.1,0.627,1.1,1.4S7.808,15,7.2,15s-1.1-0.627-1.1-1.4S6.592,12.2,7.2,12.2z M16.9,12.2 c0.608,0,1.1,0.627,1.1,1.4S17.508,15,16.9,15s-1.1-0.627-1.1-1.4S16.292,12.2,16.9,12.2z M21.5,11.1c-0.3-0.6-0.7-1.4-1.2-2.4 c0.9-0.4,1.7-1.3,2-2.2c0.3-0.7,0.4-2.1-1-3.5l0,0c-1-0.9-2-1.2-2.9-1c-1.1,0.3-1.9,1.2-2.3,1.9c-1.4-0.7-2.9-0.8-4.1-0.8 c-1.5,0-2.8,0.3-4,0.9C7.5,3.1,6.8,2.2,5.7,1.9c-1-0.2-2,0.1-2.9,1l0,0c-1,1-1.4,2.2-1,3.4c0.4,1.1,1.2,1.9,2,2.3 c-0.2,0.5-0.4,1-0.6,1.6L3,10.4c-0.3,0.7-0.5,1.3-0.8,1.9c-0.4,1-0.9,1.9-0.9,3.1c0,1.6,0.8,6.7,10.5,6.7c3.8,0,6.6-0.7,8.5-2.2 s2.2-3.4,2.2-4.3C22.7,13.5,22.3,12.7,21.5,11.1z M18.8,3.5c0.4-0.1,0.9,0.1,1.5,0.6c0.6,0.6,0.8,1.2,0.6,1.8 c-0.2,0.6-0.7,1.1-1.2,1.3c-0.6-1.2-1.3-2-2.1-2.6C17.8,4.2,18.2,3.6,18.8,3.5z M3.3,5.9c-0.2-0.6,0-1.2,0.6-1.8 C4.4,3.6,5,3.4,5.4,3.5c0.5,0.1,1.1,0.7,1.3,1.2C5.8,5.4,5.1,6.2,4.5,7.3C4,7,3.4,6.5,3.3,5.9z M21.1,15.6c0,0.7-0.2,2-1.6,3.1 c-1.5,1.2-4.1,1.8-7.5,1.8c-8.3,0-8.9-3.9-8.9-5.1c0-0.8,0.3-1.5,0.7-2.4c0.3-0.6,0.6-1.2,0.8-2.1l0.1-0.2c0.5-1.5,2-6.2,7.3-6.2 c1.2,0,2.5,0.2,3.7,0.9c0.1,0.1,0.5,0.3,0.5,0.3c0.9,0.7,1.7,1.7,2.4,3.2c0.6,1.3,1,2.2,1.4,2.9C20.8,13.4,21.1,13.9,21.1,15.6z  M14.6,17c-0.1,0.1-0.6,0.4-1.2,0.3c-0.4-0.1-0.7-0.3-0.9-0.8c0-0.1-0.1-0.1-0.1-0.2c0.8-0.1,1.3-0.6,1.3-1.3S13,15,12,15 c-0.9,0-1.7-0.7-1.7,0c0,0.6,0.6,1.2,1.4,1.3l-0.1,0.1c-0.3,0.4-0.5,0.7-0.9,0.8c-0.5,0.1-1.1-0.1-1.3-0.3c-0.2-0.2-0.5-0.1-0.7,0.1 s-0.1,0.5,0.1,0.7c0.1,0.1,0.8,0.5,1.6,0.5c0.2,0,0.4,0,0.5-0.1c0.4-0.1,0.8-0.3,1.1-0.7c0.4,0.4,0.9,0.6,1.2,0.7 c0.8,0.2,1.7-0.2,2-0.5c0.2-0.2,0.2-0.5,0-0.7C15.1,16.9,14.8,16.8,14.6,17z"></path></svg>
+                                                
+                                            </div>
+
+
+                                            <div class="col-1">
+                                                <svg id="emoji4" class="tmesvg4" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>panel-emoji-food</title><path fill="currentColor" d="M7.4,11.4L7.4,11.4c-0.4,0-0.8,0.4-0.8,0.8V14c0,0.4,0.4,0.8,0.8,0.8l0,0c0.4,0,0.8-0.4,0.6-0.8v-1.8 C8,11.6,7.8,11.4,7.4,11.4z"></path><path fill="currentColor" d="M4.6,10.4c-0.4,0-0.8,0.4-0.8,0.8V15c0,0.4,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8v-3.8C5.4,10.6,5,10.4,4.6,10.4z "></path><path fill="currentColor" d="M23,7.2c-0.6-0.6-1.6-0.8-2.8-0.6c-0.2,0-0.4,0.2-0.6,0.2V4.2C19.6,3.6,19,3,18.4,3h-17 C0.8,3,0.2,3.6,0.2,4.2v7.4c0,5.4,3.2,9.6,8.4,9.6h2.2c4.2,0,7-2.6,8-6H19h0.2c2.2-0.4,4-2.6,4.4-4.8C24,9,23.8,8,23,7.2z M18.2,4.4 v3H1.6v-3H18.2z M11,19.8H8.8c-5.2,0-7-4.4-7-8.2V8.8h16.6v2.8C18.2,15.6,16,19.8,11,19.8z M19.4,13.6c0.2-0.6,0.2-1.4,0.2-2V8.4 C20,8.2,20.2,8,20.6,8c0.6-0.2,1.2,0,1.4,0.4c0.4,0.4,0.6,1,0.4,1.8C22.2,11.6,20.8,13.2,19.4,13.6z"></path></svg>
+                                                
+                                            </div>
+
+                                            <div class="col-1">
+                                            <svg id="emoji5" class="tmesvg5" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>panel-emoji-activity</title><path fill="currentColor" d="M14.8,15.3l1.3-3.8c0.1-0.2,0-0.5-0.2-0.6l-3.3-2.4c-0.2-0.1-0.5-0.1-0.6,0l-3.3,2.4 c-0.2,0.1-0.3,0.4-0.2,0.6l1.3,3.8c0.1,0.2,0.3,0.4,0.5,0.4h4C14.5,15.7,14.7,15.5,14.8,15.3z"></path><path fill="currentColor" d="M12,1.9C6.4,1.9,1.9,6.4,1.9,12S6.4,22.1,12,22.1S22.1,17.6,22.1,12S17.6,1.9,12,1.9z M9.8,20.3 c0.1-0.2,0.1-0.4,0-0.6l-1.4-2.3c-0.1-0.1-0.2-0.2-0.4-0.3l-2.5-0.6c-0.2-0.1-0.5,0.1-0.6,0.2c-0.9-1.3-1.4-2.9-1.5-4.5 c0.2,0,0.4,0,0.5-0.2l1.7-2c0.1,0,0.2-0.2,0.2-0.3L5.5,7.1c0-0.2-0.1-0.3-0.3-0.4C6.2,5.4,7.5,4.5,9,4c0,0.1,0.2,0.3,0.3,0.3 l2.5,1.1c0.1,0.1,0.3,0.1,0.4,0l2.5-1.1C14.8,4.2,14.9,4.1,15,4c1.5,0.6,2.7,1.5,3.7,2.7c-0.1,0.1-0.2,0.2-0.2,0.4l-0.2,2.6 c0,0.2,0,0.3,0.1,0.4l1.7,2c0.1,0.1,0.3,0.2,0.4,0.2c0,1.6-0.5,3.1-1.3,4.4c-0.1-0.1-0.2-0.1-0.4-0.1l-2.5,0.6 c-0.1,0-0.3,0.1-0.4,0.3l-1.4,2.3c-0.1,0.2-0.1,0.3,0,0.5c-0.8,0.2-1.6,0.4-2.5,0.4C11.3,20.6,10.5,20.5,9.8,20.3z"></path></svg>
+                                            </div>
+
+
+                                            <div class="col-1">
+                                                <svg id="emoji6"  class="tmesvg6" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>panel-emoji-travel</title><path fill="currentColor" d="M21.5,11.5c0-0.7-0.1-1.4-0.3-2l-1.5-4.3C19.2,3.9,18,3,16.6,3H7.3C5.9,3,4.7,3.9,4.2,5.2L2.6,9.9 c-0.1,0.4-0.2,0.7-0.2,1.1v1.2l0,0v7.4c0,0.6,0.5,1.1,1.1,1.1h1.1c0.6,0,1.1-0.5,1.1-1.1v-1.1h12.7v1.1c0,0.6,0.5,1.1,1.1,1.1h1.1 c0.6,0,1.1-0.5,1.1-1.1v-7.4l0,0L21.5,11.5L21.5,11.5z M4.1,10.4l1.6-4.7C5.9,5,6.6,4.5,7.4,4.5h9.2c0.7,0,1.4,0.5,1.6,1.2l1.5,4.3 c0.1,0.3,0.2,0.6,0.2,0.8H4C3.9,10.7,4,10.5,4.1,10.4z M5.5,16.1c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5S7,13.8,7,14.6 C6.9,15.4,6.3,16.1,5.5,16.1z M14.9,15.5H9.3c-0.5,0-1-0.4-1-1c0-0.5,0.4-1,1-1h5.6c0.5,0,1,0.4,1,1C15.8,15.1,15.4,15.5,14.9,15.5z  M18.6,16.1c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5C20.1,15.4,19.4,16.1,18.6,16.1z"></path></svg>
+                                            </div>
+
+
+                                            <div class="col-1">
+                                            <svg id="emoji7" class="tmesvg7" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>panel-emoji-objects</title><path fill="currentColor" d="M18.8,6.7c-0.9-2.6-3.2-4.6-6-4.9c-0.3,0-0.5,0-0.8,0h0c-0.3,0-0.5,0-0.8,0C8.4,2.1,6.1,4,5.2,6.7 c-1,3,0.1,6.2,2.7,8H8c0.2,0.1,0.3,0.4,0.3,0.6v2c0,0.8,0.6,1.4,1.4,1.4h4.5h0.1c0.8,0,1.4-0.6,1.4-1.4v-2c0-0.2,0.1-0.5,0.3-0.6 l0.1-0.1C18.6,12.8,19.7,9.6,18.8,6.7z M15.3,13.6l-0.1,0.1c-0.5,0.4-0.9,1-0.9,1.7v2c0,0,0,0.1-0.1,0.1c0,0,0,0-0.1,0H9.8 c0,0-0.1,0-0.1-0.1v-2c0-0.7-0.3-1.3-0.9-1.7l-0.1-0.1c-2-1.4-3-4-2.2-6.5C7.2,5,9.1,3.4,11.4,3.2c0.2,0,0.4,0,0.6,0h0.1 c0.2,0,0.4,0,0.6,0c2.2,0.2,4.2,1.8,4.9,3.9C18.3,9.5,17.4,12.1,15.3,13.6z"></path><path fill="currentColor" d="M9.2,21.2c0,0.6,0.5,1,1,1h3.7c0.6,0,1-0.5,1-1v-1H9.2V21.2L9.2,21.2z"></path><path fill="currentColor" d="M13.6,10.5c-0.4,0-0.8,0.3-0.8,0.8c0,0.1,0,0.2,0.1,0.3c-0.2,0.3-0.5,0.5-0.8,0.5s-0.6-0.2-0.8-0.5 c0-0.1,0.1-0.2,0.1-0.3c0-0.4-0.3-0.8-0.8-0.8c-0.4,0-0.8,0.3-0.8,0.8c0,0.4,0.3,0.7,0.7,0.8c0.3,0.4,0.7,0.7,1.1,0.8V15 c0,0.2,0.2,0.4,0.4,0.4s0.4-0.2,0.4-0.4v-2.1c0.4-0.1,0.8-0.4,1.1-0.8l0,0c0.4,0,0.8-0.3,0.8-0.8C14.3,10.8,14,10.5,13.6,10.5z"></path></svg>
+                                             
+                                            </div>
+
+
+                                            <div class="col-1">
+                                                <svg id="emoji8"  class="tmesvg8" style="color:#8797a1" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>panel-emoji-flags</title><path fill="currentColor" d="M5.5,3.8V3.6c0-0.3-0.2-0.5-0.5-0.5H4.5C4.2,3.1,4,3.3,4,3.6V21c0,0.3,0.2,0.5,0.5,0.5H5 c0.3,0,0.5-0.2,0.5-0.5v-6.2c5,1.8,9.3-2.7,14.5,0.6c0-5.6,0-5.6,0-11.3C14.9,1,10.3,5.6,5.5,3.8z M15.8,12.6 c-1.4,0-2.8,0.3-4.1,0.6c-1.2,0.3-2.4,0.5-3.5,0.5c-0.9,0-1.8-0.2-2.6-0.5V5.4c0.8,0.2,1.5,0.3,2.3,0.3c1.5,0,2.9-0.4,4.3-0.7 c1.3-0.3,2.5-0.6,3.8-0.6c0.9,0,1.7,0.2,2.5,0.5V13C17.6,12.8,16.7,12.6,15.8,12.6z"></path></svg>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 my-5">
+
+                                        <input   style="background-color: #222e36; margin-top:5px; border:none; border-radius:10px; width:100%; color:white; padding:30px 0px 30px 10px;" type="text"   autocomplete="off" chat-box class="form-control" placeholder="Search Emoji">
+                                        
+                                    </div>
+
+
+                                    <div class="container-fluid mt-2 emojiscrollbar" style="height: 250px; overflow-y: auto;">
+                                        <div class="row">
+
+
+
+                                            <div class="col-12">
+                                                <p style="color:#677882;font-size:15px" >Recent</p>                                            
+                                            </div>
+
+                                            <div class="col-12">
+                                                 <div class="row">
+
+                                                    <div class="col-1">
+                                                        <img id="recent" class="showemojis my-2" src="{{ asset('emoji1.jfif') }}" alt="Emoji 1">
+                                                    </div>                                             
+
+                                                 </div>                                            
+                                            </div>
+
+
+
+
+                                            <div class="col-12 mt-5">
+                                                <p style="color:#677882;font-size:15px" >Smileys & People</p>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="row">
+                                                   @foreach($emojis as $emoji)
+
+                                                   <div class="col-1">
+                                                    <img id="smiley" class="showemojis my-2" src="{{ asset('emojis/smileys/' . basename($emoji->smileys)) }}"/>
+                                                </div>
+                                                
+
+                                                     
+                                                    
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12 mt-5">
+                                                <p style="color:#677882;font-size:15px" >Animals & Nature</p>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="row">
+
+                                                    <div class="col-1">
+                                                        <img id="animal" class="showemojis my-2" src="{{ asset('emojis/animals/' . basename($emoji->animals)) }}" >
+                                                    </div>
+                                                   
+                                                  
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12 mt-5">
+                                                <p style="color:#677882;font-size:15px" >Food & Drink</p>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="row">
+
+                                                    <div class="col-1">
+                                                        <img id="food" class="showemojis my-2" src="{{ asset('emojis/food/' . basename($emoji->food)) }}" >
+                                                    </div>
+
+
+                                                    
+                                                    
+
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12 mt-5">
+                                                <p style="color:#677882;font-size:15px" >Activity</p>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="row">
+
+                                                    <div class="col-1">
+                                                        <img id="activity" class="showemojis my-2" src="{{ asset('emojis/activity/' . basename($emoji->activity)) }}" >
+                                                    </div>
+                                                    
+                                                     
+                                                  
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 mt-5">
+                                                <p style="color:#677882;font-size:15px" >Travel & Places</p>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="row">
+
+                                                    <div class="col-1">
+                                                        <img id="travel" class="showemojis my-2" src="{{ asset('emojis/travel/' . basename($emoji->travel)) }}" >
+                                                    </div>
+                                                    
+                                                  
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12 mt-5">
+                                                <p style="color:#677882;font-size:15px" >Objects</p>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="row">
+
+                                                    <div class="col-1">
+                                                        <img id="objects" class="showemojis my-2" src="{{ asset('emojis/objects/' . basename($emoji->objects)) }}" >
+                                                    </div>
+                                                   
+                                                  
+
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-12 mt-5">
+                                                <p style="color:#677882;font-size:15px" >Flags</p>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="row">
+
+                                                    <div class="col-1">
+                                                        <img id="flags" class="showemojis my-2" src="{{ asset('emojis/flags/' . basename($emoji->flags)) }}" >
+                                                    </div>
+                                                   
+                                                    @endforeach
+                                                  
+ 
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
 
                              
@@ -584,7 +807,20 @@
                                 <div class="row reply" style="padding:4px 0px 5px 0px;height:85px">
 
                                     <div style="width:6%" class="col-1 reply-emojis video-upload-icon" id="image-upload-icon">
+
+                                         
+
                                         <svg class="smily1" id="smily" style="color:#8b989e " viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>smiley</title><path fill="currentColor" d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,14.073,12.566,15.128,17.312,14.073z M11.804,1.011c-6.195,0-10.826,5.022-10.826,11.217 s4.826,10.761,11.021,10.761S23.02,18.423,23.02,12.228C23.021,6.033,17.999,1.011,11.804,1.011z M12,21.354 c-5.273,0-9.381-3.886-9.381-9.159s3.942-9.548,9.215-9.548s9.548,4.275,9.548,9.548C21.381,17.467,17.273,21.354,12,21.354z  M15.108,11.603c0.795,0,1.439-0.879,1.439-1.962s-0.644-1.962-1.439-1.962s-1.439,0.879-1.439,1.962S14.313,11.603,15.108,11.603z"></path></svg>
+                                    </div>
+
+                                    <div id="bcksmily" style="display:none" class="col-1 "   >
+
+                                        <svg  class="x" style="color:#7d8d96" viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
+                                            <title>x</title>
+                                            <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+                                        </svg>
+
+                                         
                                     </div>
 
                                     <div class="col-1" id="pdf-upload-icon"  style="width:5%">
