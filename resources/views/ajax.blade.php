@@ -31,7 +31,7 @@ $("#bcksmily").click(function() {
 document.addEventListener('DOMContentLoaded', function () {
     const recentEmojis = document.getElementById('emoji1');
     const peopleEmojis = document.getElementById('emoji2');
-    const animalEmojis = document.getElementById('emoji3');
+    const animalEmojis = document.getElementById('emojii3');
     const foodEmojis = document.getElementById('emoji4');
     const activityEmojis = document.getElementById('emoji5');
     const travelEmojis = document.getElementById('emoji6');
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const recentContainer = document.getElementById('recent');
     const peopleContainer = document.getElementById('smileyy');
-    const animalContainer = document.getElementById('animal');
+    const animalContainer = document.getElementById('animalll');
     const foodContainer = document.getElementById('food');
     const activityContainer = document.getElementById('activity');
     const travelContainer = document.getElementById('travel');
