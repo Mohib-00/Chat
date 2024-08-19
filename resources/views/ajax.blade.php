@@ -14,6 +14,28 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+   <script>
+    
+    function setupEmojiListeners() {
+      
+        const emojis = document.querySelectorAll('.showemojis');
+ 
+        emojis.forEach(emoji => {
+            emoji.addEventListener('click', function() {
+              
+                const selectedEmoji = this.textContent;
+ 
+                const inputField = document.getElementById('editMessageInput');
+
+               
+                inputField.value += selectedEmoji;
+            });
+        });
+    }
+
+ 
+    setupEmojiListeners();
+</script>
 
    <script>
 $(".microphone").click(function() {
@@ -1916,6 +1938,7 @@ function getLastMessage() {
     });
 }
 
+
 function sendMessage() {
     var formData = new FormData();
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -1923,6 +1946,7 @@ function sendMessage() {
     formData.append('message_id', $('[name="message_id"]').val());
     var messageInput = $('[name="message"]').val().trim();
     var replyMessage = $('#replyMessage').val().trim();
+    var emojis = $('#editMessageInput').val().trim();  
 
     if ($('#video-upload')[0].files.length > 0) {
         var videoFile = $('#video-upload')[0].files[0];
@@ -1931,7 +1955,7 @@ function sendMessage() {
 
     if ($('#pdf-upload')[0].files.length > 0) {
         var pdfFile = $('#pdf-upload')[0].files[0];
-        formData.append('pdfupload', pdfFile);
+        formData.append('pdf', pdfFile);
     }
 
     if ($('#image-upload')[0].files.length > 0) {
@@ -1941,19 +1965,16 @@ function sendMessage() {
         }
     }
 
-    if ($('#pdf-upload')[0].files.length > 0) {
-        var pdfFile = $('#pdf-upload')[0].files[0];
-        formData.append('pdf', pdfFile);
-    }
-
     if (messageInput !== '') {
-        formData.append('message', messageInput);
-    } else {
-         
+        formData.append('message', messageInput); 
     }
 
     if (replyMessage !== '') {
         formData.append('reply_message_content', replyMessage);
+    }
+
+    if (emojis !== '') {
+        formData.append('emojis', emojis); 
     }
 
     $.ajax({
@@ -1971,14 +1992,20 @@ function sendMessage() {
             $('#video-upload').val('');
             $('#pdf-upload').val('');
             $('#replyMessage').val('');
+            $('#editMessageInput').val('');  
             updateLastSeen();
             $('#reply').hide();
+            $('.emojis').fadeOut();
+            $(".smily1").fadeIn(200);   
+             $("#bcksmily").fadeOut(200);   
         },
         error: function(xhr, status, error) {
             console.error('Error:', error);
         }
     });
 }
+
+
 
 
 

@@ -376,9 +376,12 @@
 
                                 <span class="v" id="message" style="color:#8797a1;font-size:15px;">{{ $single_message->lastMessageComments->message ?? '' }}</span>
                                 </div>
-                                            <div class="col-sm-4 col-xs-4 mt-5 sideBar-time pull-right">
-                                                <span class="time-meta text-white pull-right ">{{ $single_message->lastMessageComments ? $single_message->lastMessageComments->created_at->diffForHumans() : '' }}</span>
-                                            </div>
+                                <div class="col-sm-4 col-xs-4 mt-5 sideBar-time pull-right">
+                                    <span class="time-meta text-white pull-right ">
+                                        {{ $single_message->lastMessageComments ? $single_message->lastMessageComments->created_at->diffForHumans() : '' }}
+                                    </span>
+                                </div>
+                                
                                         </a>
                                 </div>
                               </div> 
@@ -595,17 +598,196 @@
 
 
                                             <div class="col-12 mt-5">
-                                                <p style="color:#677882;font-size:15px" >Smileys & People</p>
+                                                <p id="smileyy" style="color:#677882;font-size:15px" >Smileys & People</p>
                                             </div>
 
                                             <div class="col-12">
                                                 <div class="row">
-                                                   @foreach($emojis as $emoji)
+                                              
 
-                                                   <div class="col-1">
-                                                    <img id="smileyy" class="showemojis my-2" src="{{ asset('emojis/smileys/' . basename($emoji->smileys)) }}"/>
-                                                </div>
-                                                @endforeach
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😊</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😂</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🤣</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😃</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😄</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😅</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😆</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😉</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😊</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😇</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🥰</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😍</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😘</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😋</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😎</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🤩</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🥳</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😏</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😐</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😶</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🙄</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😣</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😥</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😢</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😭</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😄</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😅</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😆</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🤣</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😂</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😊</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😇</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🥰</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😍</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😘</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😋</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😎</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🤩</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🥳</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😏</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😶</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🙄</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😣</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😥</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😢</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😭</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😠</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😡</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🤬</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😤</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😮</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😲</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🤯</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😳</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">🥺</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😱</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😨</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😰</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😥</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="smiley" class="showemojis my-2">😥</span>
+                                                    </div>
+                                                    
+                                                    
+                                            
                                                 
 
                                                      
@@ -616,58 +798,373 @@
 
 
                                             <div class="col-12 mt-5">
-                                                <p style="color:#677882;font-size:15px" >Animals & Nature</p>
+                                                <p id="animalll" style="color:#677882;font-size:15px" >Animals & Nature</p>
                                             </div>
 
                                             <div class="col-12">
                                                 <div class="row">
 
-                                                    @foreach($emojis as $emoji)
-                                                    <div class="col-1" id="animalll">
-                                                        <img id="animalll" class="showemojis my-2" src="{{ asset('emojis/animals/' . basename($emoji->animals)) }}" >
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐱</span>
                                                     </div>
-                                                    @endforeach
-                                                   
-                                                  
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐶</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐭</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐹</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐰</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦊</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐻</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐼</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐨</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐯</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦁</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐮</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐷</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐽</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐸</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐵</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🙈</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🙉</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🙊</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐒</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦄</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐴</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦙</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐪</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐫</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦒</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦓</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦏</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦍</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦧</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦈</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐠</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐟</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐡</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦑</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦐</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🦞</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="animal" class="showemojis my-2">🐙</span>
+                                                    </div>
+                                                    
 
                                                 </div>
                                             </div>
 
 
                                             <div class="col-12 mt-5">
-                                                <p style="color:#677882;font-size:15px" >Food & Drink</p>
+                                                <p id="food" style="color:#677882;font-size:15px" >Food & Drink</p>
                                             </div>
 
                                             <div class="col-12">
                                                 <div class="row">
 
-                                                    @foreach($emojis as $emoji)
                                                     <div class="col-1">
-                                                        <img id="food" class="showemojis my-2" src="{{ asset('emojis/food/' . basename($emoji->food)) }}" >
+                                                        <span id="foodEmoji" class="showemojis my-2">🍕</span>
                                                     </div>
-                                                    @endforeach
-
-
-                                                    
-                                                    
-
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍔</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍟</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🌭</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍿</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥪</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🌮</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🌯</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥙</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🧆</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥘</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥗</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍲</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍛</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍜</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍝</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍠</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍣</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍱</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥟</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥠</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍥</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍙</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍚</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍘</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍤</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍳</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥚</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥛</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍼</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">☕</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍵</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍶</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍾</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍷</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🥂</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="foodEmoji" class="showemojis my-2">🍺</span>
+                                                    </div>
+                                    
                                                 </div>
                                             </div>
 
 
 
                                             <div class="col-12 mt-5">
-                                                <p style="color:#677882;font-size:15px" >Activity</p>
+                                                <p id="activity" style="color:#677882;font-size:15px" >Activity</p>
                                             </div>
 
                                             <div class="col-12">
                                                 <div class="row">
 
-                                                    @foreach($emojis as $emoji)
                                                     <div class="col-1">
-                                                        <img id="activity" class="showemojis my-2" src="{{ asset('emojis/activity/' . basename($emoji->activity)) }}" >
+                                                        <span id="activityEmoji" class="showemojis my-2">🏀</span>
                                                     </div>
-                                                    @endforeach
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏈</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">⚽</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">⚾</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🎾</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🥎</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏐</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏓</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏸</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🥅</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">⛸️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">⛷️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏂</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏌️‍♂️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏌️‍♀️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🚴‍♂️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🚴‍♀️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🚵‍♂️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🚵‍♀️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🤺</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏇</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🎣</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🤿</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🎽</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🥋</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🛹</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🛷</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🥌</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🎯</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🪁</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🧗‍♂️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🧗‍♀️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏊‍♂️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🏊‍♀️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🚣‍♂️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="activityEmoji" class="showemojis my-2">🚣‍♀️</span>
+                                                    </div>
+                                                    
+
                                                     
                                                      
                                                   
@@ -676,17 +1173,128 @@
                                             </div>
 
                                             <div class="col-12 mt-5">
-                                                <p style="color:#677882;font-size:15px" >Travel & Places</p>
+                                                <p id="travel" style="color:#677882;font-size:15px" >Travel & Places</p>
                                             </div>
 
                                             <div class="col-12">
                                                 <div class="row">
 
-                                                    @foreach($emojis as $emoji)
                                                     <div class="col-1">
-                                                        <img id="travel" class="showemojis my-2" src="{{ asset('emojis/travel/' . basename($emoji->travel)) }}" >
+                                                        <span id="travelEmoji" class="showemojis my-2">✈️</span>
                                                     </div>
-                                                    @endforeach
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚂</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚉</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚆</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚄</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚅</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚈</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚇</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚉</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚍</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚌</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚎</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚐</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚔</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚘</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚙</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🛻</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚚</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚛</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚜</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🏎️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚓</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚕</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚗</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🛵</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🏍️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚲</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🛺</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚡</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚠</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚟</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🛳️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">⛵</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🚤</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🛥️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">⛴️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🛳️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="travelEmoji" class="showemojis my-2">🛬</span>
+                                                    </div>
+                                                    
+
                                                     
                                                   
 
@@ -695,17 +1303,121 @@
 
 
                                             <div class="col-12 mt-5">
-                                                <p style="color:#677882;font-size:15px" >Objects</p>
+                                                <p id="objects" style="color:#677882;font-size:15px" >Objects</p>
                                             </div>
 
                                             <div class="col-12">
                                                 <div class="row">
-
-                                                    @foreach($emojis as $emoji)
                                                     <div class="col-1">
-                                                        <img id="objects" class="showemojis my-2" src="{{ asset('emojis/objects/' . basename($emoji->objects)) }}" >
+                                                        <span id="objectEmoji" class="showemojis my-2">🔑</span>
                                                     </div>
-                                                    @endforeach
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🗝️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🧳</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">💼</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📎</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📐</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">✂️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📌</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📍</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📒</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📕</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📗</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📘</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📙</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📚</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📓</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📒</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🔍</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🔒</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🔓</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🔏</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🔐</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🧱</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🏷️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🧰</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🛠️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🗜️</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🧲</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📏</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">📍</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🧪</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🧫</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🧬</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🔬</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🔭</span>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <span id="objectEmoji" class="showemojis my-2">🧮</span>
+                                                    </div>
+                                                    
+
                                                    
                                                   
 
@@ -716,7 +1428,7 @@
 
 
                                             <div class="col-12 mt-5">
-                                                <p style="color:#677882;font-size:15px" >Flags</p>
+                                                <p id="flags" style="color:#677882;font-size:15px" >Flags</p>
                                             </div>
 
                                             <div class="col-12">
@@ -842,7 +1554,7 @@
                                     </div>
 
                                     <div class="col-9 reply-main ">
-                                        <input id="editMessageInput" style="background-color: #2a3942; margin-top:5px; border:none; border-radius:10px; width:100%; color:white; padding:30px 0px 30px 10px;" type="text" name="message" autocomplete="off" chat-box class="form-control" placeholder="Type a message">
+                                        <input id="editMessageInput" style="font-size:30px;background-color: #2a3942; margin-top:5px; border:none; border-radius:10px; width:100%; color:white; padding:30px 0px 30px 10px;" type="text" name="message" autocomplete="off" chat-box class="form-control" placeholder="Type a message">
                                     </div>
 
                                     <div class="col-1">
@@ -861,6 +1573,8 @@
                                                     </svg>
                                                     
                                                 </button>
+
+                                                
 
                                                 @foreach($groupChatss as $group)
                                                 <input type="hidden" id="groupChatId{{ $group->id }}" value="{{ $group->id }}">

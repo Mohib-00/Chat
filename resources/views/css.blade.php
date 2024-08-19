@@ -751,7 +751,9 @@ margin-left:25px;
                                         background-color: #374045;  
                                     } 
 
-
+.showemojis{
+    font-size:40px;
+}
      
 
 </style>
