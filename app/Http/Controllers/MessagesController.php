@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BroadcastChat;
 use App\Models\Emojis;
 use App\Models\GroupChat;
 use App\Models\Message;
@@ -128,11 +129,12 @@ class MessagesController extends Controller
         $groupChatss = GroupChat::whereIn('id', $groupChatIds)->get();
 
          $emojis = Emojis::all();
-        
-        //$pdfs = MessageComment::whereNotNull('pdf')->where('pdf', '!=', '')->get();
+      
         $pdfs = MessageComment::all();
         $conversations =  MessageComment::where(['message_id'=> $message_info->id])->get();
-       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss','pdfs','emojis'));
+        $userId = auth()->user()->id;
+        $broadcasts = BroadcastChat::where('user_id', $userId)->get(); 
+       return view('messages', compact('user_messages', 'conversations', 'message_info','user','users','otherUsers','groupChats','groupChatss','pdfs','emojis','broadcasts'));
 
     }
 
@@ -241,7 +243,7 @@ public function updateProfile(Request $request){
 
 public function loadChat(Request $request, $userId)
 {
-    
+    // Retrieve direct conversation between authenticated user and the other user
     $messageInfo = Message::where(function ($query) use ($userId) {
         $query->where('sender_id', auth()->user()->id)
             ->where('receiver_id', $userId);
@@ -254,13 +256,25 @@ public function loadChat(Request $request, $userId)
         return response()->json(['message' => 'No conversation found.']);
     }
 
+    // Retrieve direct chat conversations
     $conversations = MessageComment::where('message_id', $messageInfo->id)
         ->whereIn('user_id', [auth()->user()->id, $userId])
-        ->orderBy('created_at', 'asc') 
+        ->orderBy('created_at', 'asc')
         ->get();
 
-    return response()->json(['conversations' => $conversations,]);
+    // Retrieve broadcast messages for the authenticated user
+    $broadcastMessages = MessageComment::whereJsonContains('chat_user_id', auth()->user()->id)
+        ->whereNotNull('broadcast_chat_id')  // Check if it's a broadcast message
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+    return response()->json([
+        'conversations' => $conversations,
+        'broadcastMessages' => $broadcastMessages,
+    ]);
 }
+
+
 
 /*public function update(Request $request)
 {
@@ -576,6 +590,65 @@ public function savegrpReact(Request $request)
 
     return response()->json(['success' => 'Message updated successfully']);
 }
+
+
+public function storeBroadcast(Request $request)
+{
+    $broadcast = new BroadcastChat();
+    $broadcast->broadcast_name = $request->input('broadcast_name');
+    $broadcast->user_ids = json_encode($request->input('user_ids'));   
+    $broadcast->user_id = auth()->user()->id;  
+
+    $broadcast->save();
+
+    return response()->json(['message' => 'Broadcast saved successfully']);
+}
+
+
+
+
+public function loadbroadcastChatMessages($broadcastId)
+{
+    $broadcastChat = BroadcastChat::findOrFail($broadcastId);
+
+    
+    
+
+  
+    $messages = MessageComment::where('broadcast_chat_id', $broadcastId)->with('user')->get();
+
+    return response()->json(['success' => true, 'messages' => $messages]);
+}
+
+
+public function sendBroadcastMessage(Request $request)
+{
+    $request->validate([
+        'broadcast_chat_id' => 'required|integer',
+        'message' => 'required|string',
+    ]);
+
+    $broadcastChat = BroadcastChat::find($request->broadcast_chat_id);
+
+    if (!$broadcastChat) {
+        return response()->json(['error' => 'Broadcast chat not found.'], 404);
+    }
+
+    $userIds = json_decode($broadcastChat->user_ids); 
+    $message = $request->message;
+    $senderId = auth()->user()->id;  
+
+    
+    MessageComment::create([
+        'broadcast_chat_id' => $broadcastChat->id,
+        'chat_user_id' => json_encode($userIds),  
+        'message' => $message,
+        'user_id' => $senderId,  
+    ]);
+
+    return response()->json(['success' => 'Broadcast message sent successfully.']);
+}
+
 
  
    }

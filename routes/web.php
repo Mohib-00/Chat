@@ -51,3 +51,9 @@ Route::put('/messagesgrp/{id}', [MessagesController::class, 'updategrpmessage'])
 
 Route::post('/add-emojis', [MessagesController::class, 'storeemoji'])->name('emojis.store');
 
+Route::post('/broadcast-chats', [MessagesController::class, 'storeBroadcast']);
+Route::get('/broadcast-chat/{broadcastId}', [MessagesController::class, 'loadbroadcastChatMessages']);
+
+Route::post('/send-broadcast-message', [MessagesController::class, 'sendBroadcastMessage'])->name('send.broadcast.message');
+
+

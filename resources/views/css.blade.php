@@ -754,6 +754,33 @@ margin-left:25px;
 .showemojis{
     font-size:40px;
 }
+#user-avatarr, #user-namee {
+    display: flex;
+    flex-wrap: nowrap; 
+    align-items: center;  
+   
+}
+
+ 
+.emojiscrollbar::-webkit-scrollbar {
+                                        width: 10px;  
+                                    }
+                    
+                                    #chat-broadcastcontent::-webkit-scrollbar-track {
+                                        background-color:transparent;  
+                                    }
+                    
+                                    #chat-broadcastcontent::-webkit-scrollbar-thumb {
+                                        background-color: #374045;  
+                                        border-radius: 5px;  
+                                         
+                                    }
+                    
+                                    #chat-broadcastcontent::-webkit-scrollbar-thumb:hover {
+                                        background-color: #374045;  
+                                    } 
+ 
+
      
 
 </style>

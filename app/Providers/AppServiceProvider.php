@@ -35,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
 
         $grps = GroupChat::all();
         View::share('grps',$grps);
+
+        
  
  
 

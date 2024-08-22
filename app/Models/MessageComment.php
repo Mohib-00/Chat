@@ -8,7 +8,7 @@ class MessageComment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['message_id', 'user_id', 'message', 'image', 'media', 'group_chat_id'];
+    protected $fillable = ['message_id', 'user_id', 'message', 'image', 'media', 'group_chat_id','broadcast_chat_id','chat_user_id'];
 
      
     public function message()
@@ -26,6 +26,16 @@ class MessageComment extends Model
     public function groupChat()
     {
         return $this->belongsTo(GroupChat::class, 'group_chat_id', 'id');
+    }
+
+    public function broadcastChat()
+    {
+        return $this->belongsTo(BroadcastChat::class, 'broadcast_chat_id', 'id');
+    }
+
+    public function broadcastuserChat()
+    {
+        return $this->belongsTo(BroadcastChat::class, 'chat_user_id', 'id');
     }
 
     public function lastMessageComments()

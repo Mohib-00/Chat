@@ -27,6 +27,8 @@ return new class extends Migration
             $table->text('reply_message_content')->nullable();
             $table->string('react_message')->nullable();
             $table->integer('group_chat_id')->nullable();
+            $table->json('chat_user_id')->nullable(); 
+            $table->integer('broadcast_chat_id')->nullable();   
             $table->timestamps();
         });
     }
