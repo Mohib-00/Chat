@@ -243,7 +243,7 @@ public function updateProfile(Request $request){
 
 public function loadChat(Request $request, $userId)
 {
-    // Retrieve direct conversation between authenticated user and the other user
+    
     $messageInfo = Message::where(function ($query) use ($userId) {
         $query->where('sender_id', auth()->user()->id)
             ->where('receiver_id', $userId);
@@ -256,25 +256,13 @@ public function loadChat(Request $request, $userId)
         return response()->json(['message' => 'No conversation found.']);
     }
 
-    // Retrieve direct chat conversations
     $conversations = MessageComment::where('message_id', $messageInfo->id)
         ->whereIn('user_id', [auth()->user()->id, $userId])
-        ->orderBy('created_at', 'asc')
+        ->orderBy('created_at', 'asc') 
         ->get();
 
-    // Retrieve broadcast messages for the authenticated user
-    $broadcastMessages = MessageComment::whereJsonContains('chat_user_id', auth()->user()->id)
-        ->whereNotNull('broadcast_chat_id')  // Check if it's a broadcast message
-        ->orderBy('created_at', 'asc')
-        ->get();
-
-    return response()->json([
-        'conversations' => $conversations,
-        'broadcastMessages' => $broadcastMessages,
-    ]);
+    return response()->json(['conversations' => $conversations,]);
 }
-
-
 
 /*public function update(Request $request)
 {
