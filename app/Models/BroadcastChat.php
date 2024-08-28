@@ -22,8 +22,14 @@ class BroadcastChat extends Model
 
     public function messages()
     {
-        return $this->hasMany(MessageComment::class, 'group_chat_id', 'id');
+        return $this->hasMany(MessageComment::class, 'broadcast_chat_id', 'id');
     }
+
+    public function messagess()
+    {
+        return $this->hasMany(MessageComment::class, 'chat_user_id', 'id');
+    }
+    
 
     
     public function lastMessageComments()

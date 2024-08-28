@@ -238,7 +238,12 @@ border-left: 1px solid rgba(0, 0, 0, .08);
     .m{
         margin-left:25px;
     }
-    .plus{
+    .pluss{
+     margin-top: 11px;
+     margin-left:10px;
+    }
+
+    .bckdocument{
      margin-top: 11px;
      margin-left:10px;
     }
@@ -368,10 +373,14 @@ border-left: 1px solid rgba(0, 0, 0, .08);
          margin-left:10px;
      }
 
-     .plus{
+     .pluss{
          margin-top:18px;
          margin-left:5px;
      }
+     .bckdocument{
+     margin-top: 11px;
+     margin-left:10px;
+    }
 
 
     .mmbr{
@@ -477,6 +486,11 @@ border-left: 1px solid rgba(0, 0, 0, .08);
         margin-left:-70px;
         margin-top:15px;
      }   
+
+     .bckdocument{
+     margin-top: 15px;
+     
+    }
 
     .emojis{
         margin-top:-400px;
@@ -638,7 +652,7 @@ border-left: 1px solid rgba(0, 0, 0, .08);
      margin-left:-60px;
      margin-top:25px;
     }
-     .plus {
+     .pluss {
          margin-left: 50px;
      }
      .video{
@@ -659,7 +673,7 @@ border-left: 1px solid rgba(0, 0, 0, .08);
          margin-left:10px;
      }
 
-     .plus{
+     .pluss{
          margin-top:18px;
          margin-left:-5px;
      }
@@ -779,6 +793,144 @@ margin-left:25px;
                                     #chat-broadcastcontent::-webkit-scrollbar-thumb:hover {
                                         background-color: #374045;  
                                     } 
+ 
+
+
+
+
+
+
+
+
+                                    .switch {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 100px;
+  height: 34px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+.circular-label {
+    display: inline-block;
+    width: 45%;
+    height: 25px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    
+}
+
+.circular-label svg {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+.tick-mark {
+    stroke: none; 
+}
+
+#circularCheckbox:checked + .circular-label {
+    background-color: #06cf9c;  
+}
+
+#circularCheckbox:checked + .circular-label .tick-mark {
+    stroke: black;  
+}
+
+
+
+.circular-label {
+    display: inline-block;
+    width: 45%;
+    height: 25px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
+.circular-label svg {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+.tick-mark22 {
+    stroke: none; 
+}
+
+#circularCheckbox2:checked + .circular-label {
+    background-color: #06cf9c;  
+}
+
+#circularCheckbox2:checked + .circular-label .tick-mark22 {
+    stroke: black;  
+}
+
+
+
+ 
+
+ 
+ 
+
+
  
 
      

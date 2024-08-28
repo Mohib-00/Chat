@@ -15,7 +15,7 @@
 </head>
 <body>
     
-    <div class="container-fluid" id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset('images/' . $user->background_image) }}')">
+    <div class="container-fluid" id="chat-container" style="border: 13px solid #0c1317; background-image: url('{{ asset('images/' . $user->background_image) }}');">
         <div class="row">
             <div style="background-color:#202c33;width:4%" class="col-lg-1 one">
                 <div class="row">
@@ -692,6 +692,109 @@
                                
                         
                             </div>
+
+
+                            {{--<div class="col-4" style="background-color:#005c4b;height:300px;border-radius:5px">
+
+                                
+                                
+                                <div class="col-12">
+                                    
+                                    <h4 style="margin-left:20px;">Questions</h4>
+                                </div>
+
+                                <div class="col-12">
+                                    
+                                    <p style="margin-left:20px;color:#adb09e">Select one or more</p>
+                                </div>
+
+                                <div class="row" style="margin-top:30px">
+
+                                    <div class="col-2" style="margin-left:25px;">
+                                        <input type="checkbox" id="circularCheckbox" style="display: none;">
+                                        <label for="circularCheckbox" class="circular-label">
+                                            <svg height="20" width="20" viewBox="0 0 20 20" fill="none">
+                                                <path d="M5 10L8 13L15 6" class="tick-mark" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="col-7">
+                                        <h4 style="margin-left:-20px;margin-top:3px">Option1</h4>
+                                    </div>
+                                    
+                                    <div class="col-1">
+                                        <img style="width:20px;height:20px;border-radius:50%" src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                                    </div>
+                                    
+                                    <div class="col-1">
+                                        <p style="font-size:15px">0</p>
+                                    </div>
+                                    
+                                    <hr id="colorChangeHr" style="width:70%; margin-left:20%; margin-top:-10px; height: 10px; background-color: black; border: none;border-radius:10px;transition: background-color 0.3s ease;">
+                                                                  
+
+                                </div>
+
+
+                                <div class="row" style="margin-top:30px">
+
+                                    <div class="col-2" style="margin-left:25px;">
+                                        <input type="checkbox" id="circularCheckbox2" style="display: none;">
+                                        <label for="circularCheckbox2" class="circular-label">
+                                            <svg height="20" width="20" viewBox="0 0 20 20" fill="none">
+                                                <path d="M5 10L8 13L15 6" class="tick-mark22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="col-7">
+                                        <h4 style="margin-left:-20px;margin-top:3px">Option2</h4>
+                                    </div>
+                                    
+                                    <div class="col-1">
+                                        <img style="width:20px;height:20px;border-radius:50%" src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                                    </div>
+                                    
+                                    <div class="col-1">
+                                        <p style="font-size:15px">0</p>
+                                    </div>
+                                    
+                                    <hr id="colorChangeHr2" style="width:70%; margin-left:20%; margin-top:-10px; height: 10px; background-color: black; border: none; border-radius:10px; transition: background-color 0.3s ease;">
+                                    
+                                </div>
+
+                                <div class="row">
+
+                                <div class="col-9">
+                                </div>
+
+                                <div class="col-3">
+                                    <span class="mx-4">3:20 Pm</span>
+                                </div>
+
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-4">
+                                    </div>
+
+                                    <div class="col-4">
+                                        <p style="margin-left:15px">View Votes</p>
+                                    </div>
+                                    
+                                    <div class="col-4">
+                                    </div>
+                                </div>
+                                
+
+                                 
+
+
+                            </div>
+                            --}}
 
                             <div class="container-fluid emojis" style="position: absolute;background-color:#202c33;height:440px;display:none ">
                                 <div class="row">
@@ -1644,18 +1747,215 @@
                                
                             </div>
 
-                            {{--<div id="chat-broadcastcontent"  style="display:none; height: calc(150% - 120px); overflow-y: auto;width:102%">          
-                               
-                            </div>--}}
+                             
 
                             <div id="pdf" style="margin-top: -740px;margin-left:5%">
                                 
                                      
                             </div>
 
-                           
 
-                            <form id="myForm" class="form-group">
+
+                            <div class="col-12" id="document" style="margin-top: -215px;margin-left:1%;background-color:#233138;position:absolute;width:20%;height:250px;border-radius:15px;display:none">
+                                  
+                                <div class="row"  id="pdf-upload-icon">
+
+                                    <div class="col-1" style="margin-top: 30px; margin-left:20px ">
+                                        <svg style="color:#7f66ff;" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z"/>
+                                          </svg>
+                                    </div>
+
+                                    <div class="col-4" style="margin-top: 10px; margin-left:20px ">
+                                        <p style="color:#c2c8cc;font-size:20px;margin-top: 20px">Document</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="row"   id="image-upload-icon" >
+
+                                    <div class="col-1" style="margin-top: 20px; margin-left:20px ">
+                                        <svg style="color:#007afc" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-image" viewBox="0 0 16 16">
+                                            <path d="M8.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                                            <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8l-2.083-2.083a.5.5 0 0 0-.76.063L8 11 5.835 9.7a.5.5 0 0 0-.611.076L3 12z"/>
+                                          </svg>
+                                    </div>
+
+                                    <div class="col-4" style="  margin-left:20px ">
+                                        <p   style="color:#c2c8cc;font-size:20px;margin-top: 20px">Photos</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="row"  class="row " id="image-upload-icon"   >
+
+                                    <div class="col-1" style="margin-top: 20px; margin-left:20px ">
+                                        <svg style="color:#007afc" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-play" viewBox="0 0 16 16">
+                                            <path d="M6 6.883v4.234a.5.5 0 0 0 .757.429l3.528-2.117a.5.5 0 0 0 0-.858L6.757 6.454a.5.5 0 0 0-.757.43z"/>
+                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                                          </svg>
+                                    </div>
+
+                                    <div class="col-4" style="  margin-left:20px ">
+                                        <p style="color:#c2c8cc;font-size:20px;margin-top: 20px">Videos</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-1" style="margin-top: 20px; margin-left:20px ">
+                                        <svg style="color:#ffbd38" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-blockquote-right" viewBox="0 0 16 16">
+                                            <path d="M2.5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1zm10.113-5.373a7 7 0 0 0-.445-.275l.21-.352q.183.111.452.287.27.176.51.428.234.246.398.562.164.31.164.692 0 .54-.216.873-.217.328-.721.328-.322 0-.504-.211a.7.7 0 0 1-.188-.463q0-.345.211-.521.205-.182.569-.182h.281a1.7 1.7 0 0 0-.123-.498 1.4 1.4 0 0 0-.252-.37 2 2 0 0 0-.346-.298m-2.168 0A7 7 0 0 0 10 6.352L10.21 6q.183.111.452.287.27.176.51.428.234.246.398.562.164.31.164.692 0 .54-.216.873-.217.328-.721.328-.322 0-.504-.211a.7.7 0 0 1-.188-.463q0-.345.211-.521.206-.182.569-.182h.281a1.8 1.8 0 0 0-.117-.492 1.4 1.4 0 0 0-.258-.375 2 2 0 0 0-.346-.3z"/>
+                                          </svg>
+                                    </div>
+
+                                    <div class="col-4" style="  margin-left:20px " id="pollopen">
+                                        <p style="color:#c2c8cc;font-size:20px;margin-top: 20px">Poll</p>
+                                    </div>
+                                </div>                                 
+                            </div>
+
+
+
+
+
+                           
+                        
+                            <div class="col-12" id="poll" style="margin-top: -695px;margin-left:1%;background-color:#111b21;position:absolute;width:45%;height:730px;border-radius:7px;display:none">
+
+                                <div class="col-12" style="background-color:#202c33;height:70px">
+                                <div class="row"  >
+
+                                    <div class="col-1" style="margin-top:20px;margin-left:20px">
+                                        <svg  class="closepoll" style="color:#7d8d96" viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
+                                            <title>x</title>
+                                            <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+                                        </svg>
+                                    </div>
+
+                                    <div class="col-10">
+                                        <p style="font-size:25px;color:#dadee0;margin-top:17px;margin-left:10px;font-weight:bolder">Create Poll</p>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <p style="font-size:20px;font-weight:bold;color:#7d8d96;margin-left:20px;margin-top:40px">Questions</p>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-10" style="margin-left: 20px;">
+                                            <input  style="background-color: transparent;font-size:17px; margin-top: 5px; border: none; border-radius: 10px; width: 117%; font-weight: bold; color:#7c8387; padding: 30px 0px 30px 10px;" type="text" id="questions" name="questions" autocomplete="off" chat-box class="form-control" placeholder="Ask question">
+                                            
+                                        </div>
+
+                                        <div class="col-1 ">
+                                            <svg style="margin-top: 25px;color:#8797a1" viewBox="0 0 20 20" height="20" width="20" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 20 20"><title>emoji-input</title><path fill="currentColor" d="M9.5,1.7C4.8,1.7,1,5.5,1,10.2s3.8,8.5,8.5,8.5s8.5-3.8,8.5-8.5S14.2,1.7,9.5,1.7z  M9.5,17.6c-4.1,0-7.4-3.3-7.4-7.4s3.3-7.4,7.4-7.4s7.4,3.3,7.4,7.4S13.6,17.6,9.5,17.6z"></path><path fill="currentColor" d="M6.8,9.8C7.5,9.7,8,9.1,7.9,8.4C7.8,7.8,7.4,7.3,6.8,7.3C6.1,7.3,5.6,8,5.7,8.7 C5.7,9.3,6.2,9.7,6.8,9.8z"></path><path fill="currentColor" d="M13.9,11.6c-1.4,0.2-2.9,0.3-4.4,0.4c-1.5,0-2.9-0.1-4.4-0.4c-0.2,0-0.4,0.1-0.4,0.3 c0,0.1,0,0.2,0,0.2c0.9,1.8,2.7,2.9,4.7,3c2-0.1,3.8-1.2,4.8-3c0.1-0.2,0-0.4-0.1-0.5C14.1,11.6,14,11.6,13.9,11.6z M9.8,13.6 c-2.3,0-3.5-0.8-3.7-1.4c2.3,0.4,4.6,0.4,6.9,0C13,12.3,12.6,13.6,9.8,13.6L9.8,13.6z"></path><path fill="currentColor" d="M12.2,9.8c0.7-0.1,1.2-0.7,1.1-1.4c-0.1-0.6-0.5-1.1-1.1-1.1c-0.7,0-1.2,0.7-1.1,1.4 C11.2,9.3,11.6,9.7,12.2,9.8z"></path></svg>
+                                        </div>
+
+                                        
+                                        <hr style="margin-top:-10px;width:85%;margin-left:35px;border-color:#02a682;border-width: 3px;border-radius:5px">
+                                        
+                                        
+
+                                    </div>
+
+
+
+                                    <div class="col-12">
+                                        <p style="font-size:20px;font-weight:bold;color:#7d8d96;margin-left:20px;margin-top:40px">Options</p>
+                                    </div>
+
+
+                                    <div class="row">
+
+                                        <div class="col-9" style="margin-left: 20px;">
+                                            <input  style="background-color: transparent;font-size:17px; margin-top: 5px; border: none; border-radius: 10px; width: 130%; font-weight: bold; color:#7c8387; padding: 30px 0px 30px 10px;" type="text" id="option1" name="option1" autocomplete="off" chat-box class="form-control" placeholder="Add">
+                                            
+                                        </div>
+
+                                        <div class="col-1 ">
+                                            <svg style="margin-top: 25px;color:#8797a1" viewBox="0 0 20 20" height="20" width="20" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 20 20"><title>emoji-input</title><path fill="currentColor" d="M9.5,1.7C4.8,1.7,1,5.5,1,10.2s3.8,8.5,8.5,8.5s8.5-3.8,8.5-8.5S14.2,1.7,9.5,1.7z  M9.5,17.6c-4.1,0-7.4-3.3-7.4-7.4s3.3-7.4,7.4-7.4s7.4,3.3,7.4,7.4S13.6,17.6,9.5,17.6z"></path><path fill="currentColor" d="M6.8,9.8C7.5,9.7,8,9.1,7.9,8.4C7.8,7.8,7.4,7.3,6.8,7.3C6.1,7.3,5.6,8,5.7,8.7 C5.7,9.3,6.2,9.7,6.8,9.8z"></path><path fill="currentColor" d="M13.9,11.6c-1.4,0.2-2.9,0.3-4.4,0.4c-1.5,0-2.9-0.1-4.4-0.4c-0.2,0-0.4,0.1-0.4,0.3 c0,0.1,0,0.2,0,0.2c0.9,1.8,2.7,2.9,4.7,3c2-0.1,3.8-1.2,4.8-3c0.1-0.2,0-0.4-0.1-0.5C14.1,11.6,14,11.6,13.9,11.6z M9.8,13.6 c-2.3,0-3.5-0.8-3.7-1.4c2.3,0.4,4.6,0.4,6.9,0C13,12.3,12.6,13.6,9.8,13.6L9.8,13.6z"></path><path fill="currentColor" d="M12.2,9.8c0.7-0.1,1.2-0.7,1.1-1.4c-0.1-0.6-0.5-1.1-1.1-1.1c-0.7,0-1.2,0.7-1.1,1.4 C11.2,9.3,11.6,9.7,12.2,9.8z"></path></svg>
+                                        </div>
+
+                                        <div class="col-1">
+                                            <svg style="margin-top: 28px;color:#8797a1" class="x7r5mf7 x1t4t16n xt16idv" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 2C0.45 2 0 1.55 0 1C0 0.45 0.45 0 1 0H17C17.55 0 18 0.45 18 1C18 1.55 17.55 2 17 2H1ZM1 6H17C17.55 6 18 5.55 18 5C18 4.45 17.55 4 17 4H1C0.45 4 0 4.45 0 5C0 5.55 0.45 6 1 6ZM17 10H1C0.45 10 0 9.55 0 9C0 8.45 0.45 8 1 8H17C17.55 8 18 8.45 18 9C18 9.55 17.55 10 17 10ZM17 14H1C0.45 14 0 13.55 0 13C0 12.45 0.45 12 1 12H17C17.55 12 18 12.45 18 13C18 13.55 17.55 14 17 14Z" fill="currentColor"></path></svg>
+                                        </div>
+
+                                        <hr style="margin-top:-10px;width:85%;margin-left:35px;border-width: 3px;border-radius:5px">
+
+
+                                        <div class="col-9 mt-5" style="margin-left: 20px;">
+                                            <input  style="background-color: transparent;font-size:17px; margin-top: 5px; border: none; border-radius: 10px; width: 130%; font-weight: bold; color:#7c8387; padding: 30px 0px 30px 10px;" type="text" id="option2" name="option2" autocomplete="off" chat-box class="form-control" placeholder="Add">
+                                            
+                                        </div>
+
+                                        <div class="col-1 ">
+                                            <svg style="margin-top: 55px;color:#8797a1" viewBox="0 0 20 20" height="20" width="20" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 20 20"><title>emoji-input</title><path fill="currentColor" d="M9.5,1.7C4.8,1.7,1,5.5,1,10.2s3.8,8.5,8.5,8.5s8.5-3.8,8.5-8.5S14.2,1.7,9.5,1.7z  M9.5,17.6c-4.1,0-7.4-3.3-7.4-7.4s3.3-7.4,7.4-7.4s7.4,3.3,7.4,7.4S13.6,17.6,9.5,17.6z"></path><path fill="currentColor" d="M6.8,9.8C7.5,9.7,8,9.1,7.9,8.4C7.8,7.8,7.4,7.3,6.8,7.3C6.1,7.3,5.6,8,5.7,8.7 C5.7,9.3,6.2,9.7,6.8,9.8z"></path><path fill="currentColor" d="M13.9,11.6c-1.4,0.2-2.9,0.3-4.4,0.4c-1.5,0-2.9-0.1-4.4-0.4c-0.2,0-0.4,0.1-0.4,0.3 c0,0.1,0,0.2,0,0.2c0.9,1.8,2.7,2.9,4.7,3c2-0.1,3.8-1.2,4.8-3c0.1-0.2,0-0.4-0.1-0.5C14.1,11.6,14,11.6,13.9,11.6z M9.8,13.6 c-2.3,0-3.5-0.8-3.7-1.4c2.3,0.4,4.6,0.4,6.9,0C13,12.3,12.6,13.6,9.8,13.6L9.8,13.6z"></path><path fill="currentColor" d="M12.2,9.8c0.7-0.1,1.2-0.7,1.1-1.4c-0.1-0.6-0.5-1.1-1.1-1.1c-0.7,0-1.2,0.7-1.1,1.4 C11.2,9.3,11.6,9.7,12.2,9.8z"></path></svg>
+                                        </div>
+
+                                        <div class="col-1">
+                                            <svg style="margin-top: 58px;color:#8797a1" class="x7r5mf7 x1t4t16n xt16idv" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 2C0.45 2 0 1.55 0 1C0 0.45 0.45 0 1 0H17C17.55 0 18 0.45 18 1C18 1.55 17.55 2 17 2H1ZM1 6H17C17.55 6 18 5.55 18 5C18 4.45 17.55 4 17 4H1C0.45 4 0 4.45 0 5C0 5.55 0.45 6 1 6ZM17 10H1C0.45 10 0 9.55 0 9C0 8.45 0.45 8 1 8H17C17.55 8 18 8.45 18 9C18 9.55 17.55 10 17 10ZM17 14H1C0.45 14 0 13.55 0 13C0 12.45 0.45 12 1 12H17C17.55 12 18 12.45 18 13C18 13.55 17.55 14 17 14Z" fill="currentColor"></path></svg>
+                                        </div>
+
+                                        
+                                        <hr style="margin-top:-10px;width:85%;margin-left:35px;border-width: 3px;border-radius:5px">
+                                        
+                                        
+
+                                    </div>
+
+
+
+
+                                    <div class="row">
+
+                                    <div class="col-10">
+                                        <p style="font-size:20px;font-weight:bold;color:#7d8d96;margin-left:20px;margin-top:40px">Allow multiple answers</p>
+                                    </div>
+
+                                    <div class="col-1" style="margin-top: 35px;">
+                                        
+<label class="switch">
+    <input type="checkbox">
+    <span class="slider round"></span>
+  </label>
+                                    </div>
+                                    
+
+
+                                    </div>
+
+                                    </div>
+
+                                    <div class="col-12" style="background-color:#202c33;margin-top:95px;height:70px">
+                                       <div class="row">
+
+                                        <div class="col-9">
+                                        </div>
+
+                                        <div class="col-2" >
+                                            <button  style="height:80px;width:105%;margin-top:-20px;border-radius: 50px; background-color: green; border: 1px solid green;" class="send input-group-text p-3" id="submitpollMessage">
+                                                <svg style="color:white;margin-left:12px"  viewBox="0 0 24 24" height="30" width="30" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                                    <title>send</title>
+                                                    <path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path>
+                                                </svg>
+                                                
+                                            </button>
+                                        </div>
+
+                                       </div>
+                                    </div>
+
+                                </div>
+                                </div>
+
+                     
+                               
+                            </div>
+
+
+
+                            
                                 <div id="reply" class="container-fluid" style="margin-top:-21px;margin-left:5px;background-color:#202c33;width:102%">
                                     <div class="row">
                                         <div class="col-1" style="background-color:#52bdeb;width:1%;border-radius:5px 0px 0px 5px;">
@@ -1678,7 +1978,7 @@
                         </div>
                     </div>
 
-                    <div style="margin-top:224px; background-color:#202c33;" class="col-lg-12">
+                    <div style="margin-top:224px;width:107%; background-color:#202c33;" class="col-lg-12">
 
                             <input type="hidden" id="message_id" name="message_id" value="{{$message_info->id}}">
 
@@ -1723,14 +2023,14 @@
                            
                             <input type="hidden" id="currentUserId" value="{{ Auth::user()->id }}">
                     
-                            <div class="input-group" >
+                            <div class="input-group"  >
                                 <div class="row reply" style="padding:4px 0px 5px 0px;height:85px">
 
-                                    <div style="width:6%" class="col-1 reply-emojis video-upload-icon" id="image-upload-icon">
+                                    <div style="width:6%" class="col-1 reply-emojis   "  >
 
                                          
 
-                                        <svg class="smily1" id="smily" style="color:#8b989e " viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>smiley</title><path fill="currentColor" d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,14.073,12.566,15.128,17.312,14.073z M11.804,1.011c-6.195,0-10.826,5.022-10.826,11.217 s4.826,10.761,11.021,10.761S23.02,18.423,23.02,12.228C23.021,6.033,17.999,1.011,11.804,1.011z M12,21.354 c-5.273,0-9.381-3.886-9.381-9.159s3.942-9.548,9.215-9.548s9.548,4.275,9.548,9.548C21.381,17.467,17.273,21.354,12,21.354z  M15.108,11.603c0.795,0,1.439-0.879,1.439-1.962s-0.644-1.962-1.439-1.962s-1.439,0.879-1.439,1.962S14.313,11.603,15.108,11.603z"></path></svg>
+                                        <svg class="smily1 microphone" id="smily" style="color:#8b989e " viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>smiley</title><path fill="currentColor" d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,14.073,12.566,15.128,17.312,14.073z M11.804,1.011c-6.195,0-10.826,5.022-10.826,11.217 s4.826,10.761,11.021,10.761S23.02,18.423,23.02,12.228C23.021,6.033,17.999,1.011,11.804,1.011z M12,21.354 c-5.273,0-9.381-3.886-9.381-9.159s3.942-9.548,9.215-9.548s9.548,4.275,9.548,9.548C21.381,17.467,17.273,21.354,12,21.354z  M15.108,11.603c0.795,0,1.439-0.879,1.439-1.962s-0.644-1.962-1.439-1.962s-1.439,0.879-1.439,1.962S14.313,11.603,15.108,11.603z"></path></svg>
                                     </div>
 
                                     <div id="bcksmily" style="display:none" class="col-1 "   >
@@ -1743,8 +2043,14 @@
                                          
                                     </div>
 
-                                    <div class="col-1" id="pdf-upload-icon"  style="width:5%">
-                                        <span><svg class="plus"  style="color:#8b989e " viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="none"><title>attach-menu-plus</title><path fill-rule="evenodd" clip-rule="evenodd" d="M20.5 13.2501L20.5 10.7501L13.25 10.7501L13.25 3.5L10.75 3.5L10.75 10.7501L3.5 10.7501L3.5 13.2501L10.75 13.2501L10.75 20.5L13.25 20.5L13.25 13.2501L20.5 13.2501Z" fill="currentColor"></path></svg></span>
+                                    <div class="col-1"   style="width:5%">
+
+                                        <svg style="display: none;color:#8b989e"  class="bckdocument" style="color:#7d8d96" viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
+                                            <title>x</title>
+                                            <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+                                        </svg>
+
+                                        <span><svg class="pluss"  style="color:#8b989e " viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="none"><title>attach-menu-plus</title><path fill-rule="evenodd" clip-rule="evenodd" d="M20.5 13.2501L20.5 10.7501L13.25 10.7501L13.25 3.5L10.75 3.5L10.75 10.7501L3.5 10.7501L3.5 13.2501L10.75 13.2501L10.75 20.5L13.25 20.5L13.25 13.2501L20.5 13.2501Z" fill="currentColor"></path></svg></span>
                                     </div>
 
                                     <div class="col-9 reply-main ">
@@ -1802,41 +2108,41 @@
                             </div>                           
                         
                     </div> 
-                    <div id="show" class="col-lg-8" style="background-color:#111b21;display: none;margin-left:680px;margin-top:-892px;width:75%">
-                         <div class="row">
+                    <div id="show" class="col-lg-8" style="background-color:#111b21;display: none;margin-left:680px;margin-top:-892px;width:80%;height:892px">
+                        <div class="row">
 
-                            <div class="col-3">
-                                <svg id="end" class="x mt-4" style="color:#7d8d96" viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
-                                    <title>x</title>
-                                    <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
-                                </svg>
-                            </div>
+                           <div class="col-3">
+                               <svg id="end" class="x mt-4" style="color:#7d8d96" viewBox="0 0 24 24" height="35" width="35" preserveAspectRatio="xMidYMid meet" fill="currentColor" enable-background="new 0 0 24 24">
+                                   <title>x</title>
+                                   <path d="M19.6004 17.2L14.3004 11.9L19.6004 6.60005L17.8004 4.80005L12.5004 10.2L7.20039 4.90005L5.40039 6.60005L10.7004 11.9L5.40039 17.2L7.20039 19L12.5004 13.7L17.8004 19L19.6004 17.2Z"></path>
+                               </svg>
+                           </div>
 
-                            <div class="col-9">
-                                <h4 style="font-weight: lighter;font-size:25px;margin-top:20px">Search Messages</h4>
-                            </div>
+                           <div class="col-9">
+                               <h4 style="font-weight: lighter;font-size:25px;margin-top:20px">Search Messages</h4>
+                           </div>
 
-                            <div class="col-12 mt-5 p-3" style="background-color:#202c33;border-radius:15px">
+                           <div class="col-12 mt-5 p-3" style="background-color:#202c33;border-radius:15px">
 
-                                <div class="col-lg-2 col-sm-2 col-md-2">
-                                    <span style="color:#8b989e" data-icon="search" class="">
-                                        <svg viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
-                                            <title>search</title>
-                                            <path fill="currentColor" d="M15.009,13.805h-0.636l-0.22-0.219c0.781-0.911,1.256-2.092,1.256-3.386 c0-2.876-2.332-5.207-5.207-5.207c-2.876,0-5.208,2.331-5.208,5.207s2.331,5.208,5.208,5.208c1.293,0,2.474-0.474,3.385-1.255 l0.221,0.22v0.635l4.004,3.999l1.194-1.195L15.009,13.805z M10.201,13.805c-1.991,0-3.605-1.614-3.605-3.605 s1.614-3.605,3.605-3.605s3.605,1.614,3.605,3.605S12.192,13.805,10.201,13.805z"></path>
-                                        </svg>
-                                    </span>
-                                    
-                                </div>
+                               <div class="col-lg-2 col-sm-2 col-md-2">
+                                   <span style="color:#8b989e" data-icon="search" class="">
+                                       <svg viewBox="0 0 24 24" height="40" width="40" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+                                           <title>search</title>
+                                           <path fill="currentColor" d="M15.009,13.805h-0.636l-0.22-0.219c0.781-0.911,1.256-2.092,1.256-3.386 c0-2.876-2.332-5.207-5.207-5.207c-2.876,0-5.208,2.331-5.208,5.207s2.331,5.208,5.208,5.208c1.293,0,2.474-0.474,3.385-1.255 l0.221,0.22v0.635l4.004,3.999l1.194-1.195L15.009,13.805z M10.201,13.805c-1.991,0-3.605-1.614-3.605-3.605 s1.614-3.605,3.605-3.605s3.605,1.614,3.605,3.605S12.192,13.805,10.201,13.805z"></path>
+                                       </svg>
+                                   </span>
+                                   
+                               </div>
 
-                                 <div style="padding: 5px 0px 5px 0px; margin-left: -20px" class="col-lg-10 col-sm-10 col-md-10">
-                                 <input style="color: white; border: none; background-color: #202c33" id="searchmessages" type="text" class="form-control" name="searchText" placeholder="Search">
-                                  </div>
-                                 <div id="search-results" style="display: none;"></div>
+                                <div style="padding: 5px 0px 5px 0px; margin-left: -20px" class="col-lg-10 col-sm-10 col-md-10">
+                                <input style="color: white; border: none; background-color: #202c33" id="searchmessages" type="text" class="form-control" name="searchText" placeholder="Search">
+                                 </div>
+                                <div id="search-results" style="display: none;"></div>
 
-                            </div>
+                           </div>
 
-                         </div>
-                    </div>     
+                        </div>
+                   </div>     
 
                 </div>
 

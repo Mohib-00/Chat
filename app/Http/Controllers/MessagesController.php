@@ -60,6 +60,11 @@ class MessagesController extends Controller
         $conversation->reply_message_content = $request->reply_message_content;
     }
 
+    $conversation->questions = $request->questions;
+    $conversation->option1 = $request->option1;
+    $conversation->option2 = $request->option2;
+    
+
     $conversation->save();
 
     return response()->json($conversation);
