@@ -694,107 +694,7 @@
                             </div>
 
 
-                            {{--<div class="col-4" style="background-color:#005c4b;height:300px;border-radius:5px">
-
-                                
-                                
-                                <div class="col-12">
-                                    
-                                    <h4 style="margin-left:20px;">Questions</h4>
-                                </div>
-
-                                <div class="col-12">
-                                    
-                                    <p style="margin-left:20px;color:#adb09e">Select one or more</p>
-                                </div>
-
-                                <div class="row" style="margin-top:30px">
-
-                                    <div class="col-2" style="margin-left:25px;">
-                                        <input type="checkbox" id="circularCheckbox" style="display: none;">
-                                        <label for="circularCheckbox" class="circular-label">
-                                            <svg height="20" width="20" viewBox="0 0 20 20" fill="none">
-                                                <path d="M5 10L8 13L15 6" class="tick-mark" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="col-7">
-                                        <h4 style="margin-left:-20px;margin-top:3px">Option1</h4>
-                                    </div>
-                                    
-                                    <div class="col-1">
-                                        <img style="width:20px;height:20px;border-radius:50%" src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                                    </div>
-                                    
-                                    <div class="col-1">
-                                        <p style="font-size:15px">0</p>
-                                    </div>
-                                    
-                                    <hr id="colorChangeHr" style="width:70%; margin-left:20%; margin-top:-10px; height: 10px; background-color: black; border: none;border-radius:10px;transition: background-color 0.3s ease;">
-                                                                  
-
-                                </div>
-
-
-                                <div class="row" style="margin-top:30px">
-
-                                    <div class="col-2" style="margin-left:25px;">
-                                        <input type="checkbox" id="circularCheckbox2" style="display: none;">
-                                        <label for="circularCheckbox2" class="circular-label">
-                                            <svg height="20" width="20" viewBox="0 0 20 20" fill="none">
-                                                <path d="M5 10L8 13L15 6" class="tick-mark22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="col-7">
-                                        <h4 style="margin-left:-20px;margin-top:3px">Option2</h4>
-                                    </div>
-                                    
-                                    <div class="col-1">
-                                        <img style="width:20px;height:20px;border-radius:50%" src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                                    </div>
-                                    
-                                    <div class="col-1">
-                                        <p style="font-size:15px">0</p>
-                                    </div>
-                                    
-                                    <hr id="colorChangeHr2" style="width:70%; margin-left:20%; margin-top:-10px; height: 10px; background-color: black; border: none; border-radius:10px; transition: background-color 0.3s ease;">
-                                    
-                                </div>
-
-                                <div class="row">
-
-                                <div class="col-9">
-                                </div>
-
-                                <div class="col-3">
-                                    <span class="mx-4">3:20 Pm</span>
-                                </div>
-
-                                </div>
-
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-4">
-                                    </div>
-
-                                    <div class="col-4">
-                                        <p style="margin-left:15px">View Votes</p>
-                                    </div>
-                                    
-                                    <div class="col-4">
-                                    </div>
-                                </div>
-                                
-
-                                 
-
-
-                            </div>
-                            --}}
+                           
 
                             <div class="container-fluid emojis" style="position: absolute;background-color:#202c33;height:440px;display:none ">
                                 <div class="row">
@@ -1818,7 +1718,12 @@
 
 
 
+                            <div class="col-12" id="polldetails" style="margin-top: -695px;margin-left:1%;background-color:#0c1317;position:absolute;width:50%;height:730px;border-radius:7px;display:none">
+ 
 
+                                
+
+                            </div>   
                            
                         
                             <div class="col-12" id="poll" style="margin-top: -695px;margin-left:1%;background-color:#111b21;position:absolute;width:45%;height:730px;border-radius:7px;display:none">
@@ -1952,6 +1857,11 @@
                      
                                
                             </div>
+
+
+
+
+
 
 
 

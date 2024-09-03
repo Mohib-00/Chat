@@ -55,5 +55,8 @@ Route::post('/broadcast-chats', [MessagesController::class, 'storeBroadcast']);
 Route::get('/broadcast-chat/{broadcastId}', [MessagesController::class, 'loadbroadcastChatMessages']);
 
 Route::post('/send-broadcast-message', [MessagesController::class, 'sendBroadcastMessage'])->name('send.broadcast.message');
+ 
+Route::get('/poll-details/{id}', [MessagesController::class, 'getPollDetails'])->name('poll.details');
+
 
 

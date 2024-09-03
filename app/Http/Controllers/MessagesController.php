@@ -515,6 +515,18 @@ public function loadGroupChatMessages($groupId)
     return response()->json(['success' => true, 'messages' => $messages]);
 }
 
+public function getPollDetails($id)
+{
+    $conversation = MessageComment::find($id);
+
+    if ($conversation) {
+        return response()->json($conversation);
+    } else {
+        return response()->json(['error' => 'Poll not found'], 404);
+    }
+}
+
+
 public function deletegrp($id)
 {
     $message = MessageComment::find($id);
